@@ -18,7 +18,6 @@ import com.a123sold.a123soldinspection.Helpers.Config;
 import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
-import com.a123sold.a123soldinspection.modals.ConvienceModal;
 import com.a123sold.a123soldinspection.modals.HybridformModal;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
@@ -110,7 +109,6 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
     public void onClick(View v) {
         if ( v == savehybrid ) {
             mapvalues();
-            mapcarprogressvalues();
             HybridformModal hybridformModal=new HybridformModal(CARID, HYBRIDCOOLINGSYSTEM,
             SWITCHABLEPOWERTRAINMOUNT,
             HYBRIDENTERTAINMENTANDINFORMATIONDISPLAY,
@@ -123,9 +121,10 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
                 cupboard().withDatabase(db).put(hybridformModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Successfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(ConvienceModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(HybridformModal.class, "CARID = ?", "1");
                 cupboard().withDatabase(db).put(hybridformModal);
             }
+            mapcarprogressvalues();
             Intent resultIntent = new Intent();
             getActivity().setResult(Activity.RESULT_OK, resultIntent);
             db.close();

@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.a123sold.a123soldinspection.Adapters.InspectionCategoryAdapter;
@@ -40,6 +41,7 @@ public class InspectionCategories extends AppCompatActivity {
     private static ArrayList<Boolean> checks;
     private static Activity activity;
     public static View.OnClickListener myOnClickListener;
+    private Button buttonUpload;
     private ArcProgress arcProgress;
     private CarprogressModal carprogressModal;
     static SQLiteDatabase db;
@@ -82,6 +84,7 @@ public class InspectionCategories extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        buttonUpload=(Button)findViewById(R.id.buttonupload);
         textViewtotalrepairingcost = (TextView) findViewById(R.id.totalcost);
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(this, 1);
         arcProgress = (ArcProgress) findViewById(R.id.arc_progress);
@@ -136,6 +139,7 @@ public class InspectionCategories extends AppCompatActivity {
             }
             if (arcProgress.getProgress() == 96) {
                 arcProgress.setVisibility(View.GONE);
+                buttonUpload.setVisibility(View.VISIBLE);
             }
             checks.add(carprogressModal.getEXTERIORCOMPLETED());
             checks.add(carprogressModal.getHISTORYCOMPLETED());

@@ -398,7 +398,6 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     public void onClick(View v) {
         if ( v == saveinterior ) {
             mapvalues(v.getRootView());
-            mapcarprogressvalues();
             InteriorModal interiorModal =new InteriorModal(CARID,AIRBAGS,SAFTEYBELTS,STEREOANDSPEAKERS,ANTENNA,ALARMSYSTEM
             ,NAVIGATIONSYSTEM,AIRCONDITIONINGSYSTEM,HEATINGSYSTEM,DEFOG,CLOCK,TILTSTEERINGWHEEL,STEERINGCOLUMNLOCK,STEERINGWHEELCONTROLS
             ,HORN,WARNINGCHIMES,INSTRUMENTPANELANDWARNINGLIGHT,WINDSHEILDWIPERS,REARWINDOWWIPER,WASHERS,MAPLIGHTS,OUTSIDEREARVIEWMIRRORS
@@ -416,6 +415,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 cupboard().withDatabase(db).delete(InteriorModal.class, "CARID = ?", "1");
                 cupboard().withDatabase(db).put(interiorModal);
             }
+            mapcarprogressvalues();
             Intent resultIntent = new Intent();
             getActivity().setResult(Activity.RESULT_OK, resultIntent);
             getActivity().finish();
