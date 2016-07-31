@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/navigationbackground"
+    >
+
+    <ImageView
+        android:id="@+id/navicon"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:padding="14sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="5sp"/>
+
+    <TextView
+        android:id="@+id/navtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="14sp"
+        android:layout_marginBottom="10sp"
+        android:padding="2sp"
+        android:textSize="12sp"
+        android:textColor="@drawable/navigationtextbackground"
+        />
+
+</LinearLayout>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="7sp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightgrey">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engine Starts Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxenginestart" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engine Idles Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxengineidle" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remote Start System Operation"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxremortstartsystem" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engine Accelerates and Cruises Properly/Smoothly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxengineAccelerates" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engine Noise Normal (Cold/Hot and High/Low Speeds)"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxenginenoisenormal" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auto/Manual Transmission/Transaxle Operation – Cold and Hot Shift Quality"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxcoldhotshiftquality" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auto/Manual Transmission/Trans axle Noise Normal – Cold and Hot"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxaxlenoise" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shift Interlock Operates Properly (for automatic)"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxshiftinterlockoperates" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Drive Axle/Transfer Case Operation Noise Normal"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxdriveaxleopernoisenormal" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clutch Operates Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxclutchoperates" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Steers Normally (Response, Centering and Free Play)"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxsteersnormally" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Body and Suspension Squeaks and Rattles"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxbodysuspension" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Struts/Shocks Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxstrutsshocks" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brakes/ABS Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxbrakesoperation" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cruise Control"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxcruisecontrol" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gauges Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxgaugework" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Driver Select/Memory Profile Systems"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxmemoryprofile" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Abnormal Wind Noise"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxnoabnormalwindnoise" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Repairing Cost?"
+                android:typeface="sans"
+                android:textSize="20sp"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="5sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_replacementunderhood" />
+            <EditText
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="10sp"
+                android:hint="Enter Cost(₹)"
+                android:id="@+id/editTextreplacementcost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/form_edittextsize"
+                android:numeric="decimal"
+                android:textColor="@color/buttoncolor"
+                android:padding="@dimen/formedittext_padding"
+                android:layout_marginLeft="@dimen/title_padding"
+                android:layout_marginRight="@dimen/title_padding"
+                android:background="@drawable/edittextform_background"/>
+            <EditText
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10sp"
+                android:hint="Comment"
+                android:id="@+id/editTextreplacement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/form_edittextsize"
+                android:textColor="@color/buttoncolor"
+                android:paddingTop="7sp"
+                android:paddingBottom="50sp"
+                android:paddingLeft="@dimen/formedittext_padding"
+                android:layout_marginLeft="@dimen/title_padding"
+                android:layout_marginRight="@dimen/title_padding"
+                android:background="@drawable/edittextform_background"/>
+        </LinearLayout>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Save"
+        android:layout_marginTop="5sp"
+        android:id="@+id/saveroadtest"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/savebutton_background"/>
+    </LinearLayout>

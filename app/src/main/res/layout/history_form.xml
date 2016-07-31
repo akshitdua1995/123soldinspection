@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="7sp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgrey">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Upload Chasis image"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="7sp"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/frame_uploadengineimage" />
+                <ImageView
+                    android:layout_marginLeft="7sp"
+                    android:id="@+id/plusImage"
+                    android:layout_marginTop="6sp"
+                    android:layout_marginBottom="10sp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/plus" />
+            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="7sp"
+                android:id="@+id/chasisImage"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="10sp"
+                android:layout_width="150sp"
+                android:layout_height="100sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/imageupload_background" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="15sp"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VIN Inspection(or chasis no)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxvininspection" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Recalls (OASIS) Performed"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxservicerecall" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle History Report Obtained (customer given)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxhistoryreport" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scheduled Maintenance Performed (customer given)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxschedulemantainence" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Emissions Sticker (ApplicableStates)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxvehicleemissions" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Repairing Cost?"
+            android:typeface="sans"
+            android:textSize="20sp"
+            android:layout_marginLeft="7sp"
+            android:layout_marginTop="5sp"
+            android:textColor="@color/imageback"
+            android:id="@+id/frame_replacementunderhood" />
+        <EditText
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Enter Cost(₹)"
+            android:id="@+id/editTextreplacementcost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/form_edittextsize"
+            android:numeric="decimal"
+            android:textColor="@color/buttoncolor"
+            android:padding="@dimen/formedittext_padding"
+            android:layout_marginLeft="@dimen/title_padding"
+            android:layout_marginRight="@dimen/title_padding"
+            android:background="@drawable/edittextform_background"/>
+        <EditText
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Comment"
+            android:id="@+id/editTextreplacement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/form_edittextsize"
+            android:textColor="@color/buttoncolor"
+            android:paddingTop="7sp"
+            android:paddingBottom="50sp"
+            android:paddingLeft="@dimen/formedittext_padding"
+            android:layout_marginLeft="@dimen/title_padding"
+            android:layout_marginRight="@dimen/title_padding"
+            android:background="@drawable/edittextform_background"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Save"
+            android:layout_marginTop="5sp"
+            android:id="@+id/savehistory"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/savebutton_background"/>
+    </LinearLayout>
+</LinearLayout>

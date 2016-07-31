@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="7sp"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="FRAME"
+        android:typeface="sans"
+        android:textSize="@dimen/form_title_size"
+        android:paddingLeft="@dimen/title_padding"
+        android:textColor="@color/buttoncolor"
+        android:id="@+id/frame_underbody" />
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="1sp"/>
+    <LinearLayout android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3sp"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Frame Damage"
+            android:typeface="sans"
+            android:textSize="@dimen/form_text_size"
+            android:layout_marginLeft="7sp"
+            android:layout_marginTop="2sp"
+            android:textColor="@color/imageback"
+            android:id="@+id/frame_underbody_damage" />
+        <RadioGroup
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="7sp"
+            android:id="@+id/radioButtonframedamage"
+            android:layout_marginBottom="10sp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="80sp"
+                android:layout_height="35sp"
+                android:background="@drawable/radiobuttonbackground"
+                android:typeface="sans"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
+                android:text="Yes"
+                android:id="@+id/radioButtonframedamageyes" />
+
+            <RadioButton
+                android:layout_marginLeft="20sp"
+                android:layout_width="80sp"
+                android:layout_height="35sp"
+                android:background="@drawable/radiobuttonbackground"
+                android:textAlignment="center"
+                android:typeface="sans"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
+                android:button="@android:color/transparent"
+                android:textSize="15sp"
+                android:text="No"
+                android:id="@+id/radioButtonframedamageno" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fuel Supply System"
+            android:typeface="sans"
+            android:textSize="@dimen/form_text_size"
+            android:textColor="@color/imageback"
+            android:id="@+id/checkBoxFuelSupply" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20sp"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgrey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="EXHAUST SYSTEM"
+                android:typeface="sans"
+                android:textSize="@dimen/form_title_size"
+                android:paddingLeft="@dimen/title_padding"
+                android:textColor="@color/buttoncolor"
+                android:id="@+id/exhaust_system" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="1sp"/>
+            <LinearLayout android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3sp"
+                android:layout_width="match_parent">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exhaust System Condition"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxexhaustsystemcondition" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emissions Control Test"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxexhaustcontroltest" />
+            </LinearLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="TRANSMISSION, TRANSAXLE, DIFFERENTIAL AND TRANSFER CASE"
+            android:typeface="sans"
+            android:textSize="@dimen/form_title_size"
+            android:paddingLeft="@dimen/title_padding"
+            android:textColor="@color/buttoncolor"
+            android:id="@+id/transmission_case" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="1sp"/>
+        <LinearLayout android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_width="match_parent">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Automatic Transmission/Transaxle"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxautomatictransmission" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manual Transmission/Transaxle, Differential and Transfer Case"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxmanualtransmission" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4x4 Hub Operation"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxhuboperation" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Universal Joints, CV Joints and CV Joint Boots"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxuniversaljoints" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transmission Mounts(not cracked, broken or oil-soaked)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxtransmissionmounts" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Differential/Drive Axle"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxdriveaxle" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="TIRES AND WHEELS"
+            android:typeface="sans"
+            android:textSize="@dimen/form_title_size"
+            android:paddingLeft="@dimen/title_padding"
+            android:textColor="@color/buttoncolor"
+            android:id="@+id/tiresandwheels" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="1sp"/>
+        <LinearLayout android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_width="match_parent">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tires Match and Are Correct Size"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxtiresmatch" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheels Match and Are Correct Size"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxwheelsmatch" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Tire Tread Depth – Front Tires (L/R)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_tirethreaddepthfront" />
+            <EditText
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:hint="Type here"
+                android:id="@+id/editTexttirethreaddepthfront"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/form_edittextsize"
+                android:textColor="@color/buttoncolor"
+                android:padding="@dimen/formedittext_padding"
+                android:layout_marginLeft="@dimen/title_padding"
+                android:layout_marginRight="@dimen/title_padding"
+                android:background="@drawable/edittextform_background"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Tire Tread Depth – Rear Tires (L/R)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_tirethreaddepthrear" />
+            <EditText
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:hint="Type here"
+                android:id="@+id/editTexttirethreaddepthrear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/form_edittextsize"
+                android:textColor="@color/buttoncolor"
+                android:padding="@dimen/formedittext_padding"
+                android:layout_marginLeft="@dimen/title_padding"
+                android:layout_marginRight="@dimen/title_padding"
+                android:background="@drawable/edittextform_background"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Normal Tire Wear"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_normaltierwear" />
+            <EditText
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:hint="Type here"
+                android:id="@+id/editTextnormaltierwear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/form_edittextsize"
+                android:textColor="@color/buttoncolor"
+                android:padding="@dimen/formedittext_padding"
+                android:layout_marginLeft="@dimen/title_padding"
+                android:layout_marginRight="@dimen/title_padding"
+                android:background="@drawable/edittextform_background"/>
+            <LinearLayout
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Tire Pressure – Front Tires (L/R)-(Scale 1-5)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_tirepressurefront" />
+                <TextView
+                    android:layout_weight="9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="0"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="2sp"
+                    android:layout_marginTop="2sp"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/seekbarvalue1" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text=""
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/seekbarvaluefeedback1" />
+            <SeekBar
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/seekBartirepressureFront"
+                android:layout_marginTop="2sp"
+                android:layout_marginBottom="10sp"
+                android:max="5" />
+            <LinearLayout
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Tire Pressure – Rear Tires (L/R)-(Scale 1-5)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_tirepressureback" />
+            <TextView
+                android:layout_weight="8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="2sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/seekbarvalue2" />
+            </LinearLayout>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text=""
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/seekbarvaluefeedback2" />
+            <SeekBar
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/seekBartirepressureBack"
+                android:layout_marginTop="2sp"
+                android:layout_marginBottom="10sp"
+                android:max="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Tire Pressure Monitoring System"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_tirepressuremonitoring" />
+            <EditText
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:hint="Type here"
+                android:id="@+id/editTexttirePressureMonitoring"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/form_edittextsize"
+                android:textColor="@color/buttoncolor"
+                android:padding="@dimen/formedittext_padding"
+                android:layout_marginLeft="@dimen/title_padding"
+                android:layout_marginRight="@dimen/title_padding"
+                android:background="@drawable/edittextform_background"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheels"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxWheels" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheel Covers and Center Caps"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxwheelcovers" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rack-and-Pinion, Linkage and Boots"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxrackandpinion" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Control Arms, Bushings and Ball Joints"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxcontrolarms" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tie Rods and Idler Arm"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxtierods" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sway Bars, Links and Bushings"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxswaybars" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Springs"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxsprings" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Struts and Shocks"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxstrutsshocks" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheel Alignment (check if necessary)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxwheelalignment" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Power Steering Pump"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxpowersteeringpump" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:background="@color/lightgrey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="BRAKES"
+            android:typeface="sans"
+            android:textSize="@dimen/form_title_size"
+            android:paddingLeft="@dimen/title_padding"
+            android:textColor="@color/buttoncolor"
+            android:id="@+id/fluids" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="1sp"/>
+        <LinearLayout android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_width="match_parent">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calipers and Wheel Cylinders"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxcalipersandwheel" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brake Pads and Shoes – Front Brakes (L/R)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxfrontbrakes" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brake Pads and Shoes – Rear Brakes (L/R)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxrearbrakes" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rotors and Drums"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxrotordrums" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brake Lines, Hoses and Fittings"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxbrakelines" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parking Brake"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxtransfercasefluid" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Master Cylinder and Booster"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxmastercylendir" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/form_text_size"
+        android:layout_width="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Repairing Cost?"
+            android:typeface="sans"
+            android:textSize="20sp"
+            android:layout_marginLeft="7sp"
+            android:layout_marginTop="5sp"
+            android:textColor="@color/imageback"
+            android:id="@+id/frame_replacementunderhood" />
+        <EditText
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Enter Cost(₹)"
+            android:id="@+id/editTextreplacementcost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/form_edittextsize"
+            android:numeric="decimal"
+            android:textColor="@color/buttoncolor"
+            android:padding="@dimen/formedittext_padding"
+            android:layout_marginLeft="@dimen/title_padding"
+            android:layout_marginRight="@dimen/title_padding"
+            android:background="@drawable/edittextform_background"/>
+        <EditText
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Comment"
+            android:id="@+id/editTextreplacement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/form_edittextsize"
+            android:textColor="@color/buttoncolor"
+            android:paddingTop="7sp"
+            android:paddingBottom="50sp"
+            android:paddingLeft="@dimen/formedittext_padding"
+            android:layout_marginLeft="@dimen/title_padding"
+            android:layout_marginRight="@dimen/title_padding"
+            android:background="@drawable/edittextform_background"/>
+    </LinearLayout>
+    </LinearLayout>
+<Button
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:text="Save"
+android:id="@+id/saveunderbody"
+android:textSize="16sp"
+android:textColor="@color/white"
+android:background="@drawable/savebutton_background"/>
+</LinearLayout>

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.a123sold.a123soldinspection.FormsScrollingActivity">
+        <item
+            android:id="@+id/miCompose"
+            android:icon="@drawable/savebutton"
+            android:titleCondensed="save"
+            app:showAsAction="always"
+            android:title="Save">
+        </item>
+    </menu>

@@ -1,0 +1,1632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7sp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgrey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="GRILL, TRIM AND ROOF RACK"
+                android:typeface="sans"
+                android:textSize="@dimen/form_title_size"
+                android:paddingLeft="@dimen/title_padding"
+                android:textColor="@color/buttoncolor"
+                android:id="@+id/frame_grilltrim" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="1sp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="8sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Grill Inspection (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_ownerguide" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtongrill"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtongrillyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtongrillno" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Trim Inspection (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_key_remote" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtontrim"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtontrimyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonkeytrimno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Roof Rack Inspection (Available)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_universal_transmittor" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonroofrack"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonroofrackyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonroofrackno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Deployable Running Boards (For SUV)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_rc" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtondeployablerunning"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtondeployablerunningyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtondeployablerunningno" />
+            </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20sp"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgrey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="GLASS AND OUTSIDE MIRRORS"
+                android:typeface="sans"
+                android:textSize="@dimen/form_title_size"
+                android:paddingLeft="@dimen/title_padding"
+                android:textColor="@color/buttoncolor"
+                android:id="@+id/frame_flassandoutside" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="1sp"/>
+            <LinearLayout android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3sp"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Windshield Glass Inspection (Crack)"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="2sp"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/frame_company" />
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="7sp"
+                    android:id="@+id/radioButtonwindshieldglass"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="80sp"
+                        android:layout_height="35sp"
+                        android:background="@drawable/radiobuttonbackground"
+                        android:typeface="sans"
+                        android:textSize="15sp"
+                        android:textAlignment="center"
+                        android:button="@android:color/transparent"
+                        android:paddingLeft="10sp"
+                        android:paddingRight="10sp"
+                        android:paddingTop="4sp"
+                        android:paddingBottom="4sp"
+                        android:text="Yes"
+                        android:id="@+id/radioButtonwindshieldglassyes" />
+
+                    <RadioButton
+                        android:layout_marginLeft="20sp"
+                        android:layout_width="80sp"
+                        android:layout_height="35sp"
+                        android:background="@drawable/radiobuttonbackground"
+                        android:textAlignment="center"
+                        android:typeface="sans"
+                        android:paddingLeft="10sp"
+                        android:paddingRight="10sp"
+                        android:paddingTop="4sp"
+                        android:paddingBottom="4sp"
+                        android:button="@android:color/transparent"
+                        android:textSize="15sp"
+                        android:text="No"
+                        android:id="@+id/radioButtonwindshieldglassno" />
+                </RadioGroup>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Upload Windshield Glass Image"
+                        android:typeface="sans"
+                        android:textSize="@dimen/form_text_size"
+                        android:layout_marginLeft="7sp"
+                        android:layout_marginTop="7sp"
+                        android:textColor="@color/imageback"
+                        android:id="@+id/frame_uploadengineimage" />
+                    <ImageView
+                        android:layout_marginLeft="7sp"
+                        android:id="@+id/plusImage"
+                        android:layout_marginTop="6sp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/plus" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_marginLeft="7sp"
+                    android:id="@+id/windshieldglassImage"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="10sp"
+                    android:layout_width="150sp"
+                    android:layout_height="100sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/imageupload_background" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Side Glass Inspection (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_companysideglass" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonsideglass"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonsideglassyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonsideglassno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Rear Window/Tailgate Glass Inspection (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_rearwindow" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonrearwindowglass"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonrearwindowglassyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonrearwindowglassno" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Upload Rear WIndow Glass Image"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="7sp"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/frame_uploadrearglassimage" />
+                <ImageView
+                    android:layout_marginLeft="7sp"
+                    android:id="@+id/plusImage2"
+                    android:layout_marginTop="6sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/plus" />
+            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="7sp"
+                android:id="@+id/rearviewglassImage"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="10sp"
+                android:layout_width="150sp"
+                android:layout_height="100sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/imageupload_background" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Outside Mirror Inspection (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_outsidemirror" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:id="@+id/radioButtonoutsidemirror"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonoutsidemirroryes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonoutsidemirrorno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Wiper Blade (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_wiperblade" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:id="@+id/radioButtonwiperblade"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonwiperbladeyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonwiperbladeno" />
+            </RadioGroup>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outside Folding Mirror Inspection"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxoutsidefoldingmirror" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="EXTERIOR LIGHTS"
+            android:typeface="sans"
+            android:textSize="@dimen/form_title_size"
+            android:paddingLeft="@dimen/title_padding"
+            android:textColor="@color/buttoncolor"
+            android:id="@+id/frame_exterior" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="1sp"/>
+        <LinearLayout android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_width="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Front-End Exterior Lights (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_frontexteriorlight_damage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtonfrontexteriorlight"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonfrontexteriorlightyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonfrontexteriorlightno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Back-End Exterior Lights (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_backexteriorlight_damage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonbackexteriorlight"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonbackexteriorlightyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonbackexteriorlightno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Side Exterior Lights (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_sideexteriorlight_damage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtonsideexteriorlight"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonsideexteriorlightyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonsideexteriorlightno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Hazard Lights (Damage)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_hazardlight_damage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtonhazardlight"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonhazardlightyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonhazardlightno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Trailer Lamp Connector Operation (Available)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_trailerlampconnector" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtontrailerlampconnector"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtontrailerlampconnectoryes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtontrailerlampconnectorno" />
+            </RadioGroup>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto On/Off Lighting"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:textColor="@color/imageback"
+                android:id="@+id/checkBoxautolighting" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="BODY PANELS AND BUMPER"
+            android:typeface="sans"
+            android:textSize="@dimen/form_title_size"
+            android:paddingLeft="@dimen/title_padding"
+            android:textColor="@color/buttoncolor"
+            android:id="@+id/frame_bodypanel" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="1sp"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="8sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Evidence of Flood Damage"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_flooddamage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtonflooddamage"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonflooddamageyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonflooddamageno" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Evidence of Fire Damage"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_firedamage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtontfiredamage"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtontfiredamageyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonkeyfiredamageno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Evidence of Major Damage"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_majordamage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonmajordamage"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonmajordamageyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonmajordamageno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Evidence of Hail Damage"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_haildamage" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:id="@+id/radioButtonhaildamage"
+                android:layout_marginLeft="7sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonhaildamageyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonhaildamageno" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Body Panel Inspection"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_bodypanelins" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonbodypanel"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonbodypanelyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonbodypanelno" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Bumper/Fascia Inspection"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_bumperfacia" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonbumper"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonbumperyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonbumperno" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Upload Bumper Image"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="7sp"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/frame_bumperimage" />
+                <ImageView
+                    android:layout_marginLeft="7sp"
+                    android:id="@+id/plusImagebumper"
+                    android:layout_marginTop="6sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/plus" />
+            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="7sp"
+                android:id="@+id/bumperImage"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="10sp"
+                android:layout_width="150sp"
+                android:layout_height="100sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/imageupload_background" />
+               </LinearLayout>
+            </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20sp"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgrey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="DOORS, HOOD, DECKLID, TAILGATE"
+                android:typeface="sans"
+                android:textSize="@dimen/form_title_size"
+                android:paddingLeft="@dimen/title_padding"
+                android:textColor="@color/buttoncolor"
+                android:id="@+id/exhaust_doorshood" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="1sp"/>
+            <LinearLayout android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3sp"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Upload Doors Image (Both left and right such that doors are visible)"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="7sp"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/frame_doors" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_marginLeft="7sp"
+                            android:id="@+id/plusdoorleft"
+                            android:layout_marginTop="6sp"
+                            android:layout_marginBottom="5sp"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/plus" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="(Left)"
+                            android:typeface="sans"
+                            android:textSize="@dimen/form_text_size"
+                            android:layout_marginLeft="7sp"
+                            android:layout_marginTop="7sp"
+                            android:textColor="@color/imageback"
+                            android:id="@+id/frame_doorsleft" />
+                    </LinearLayout>
+                        <ImageView
+                            android:layout_marginLeft="7sp"
+                            android:id="@+id/leftdoorImage"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="10sp"
+                            android:layout_width="140sp"
+                            android:layout_height="90sp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/imageupload_background" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                    <ImageView
+                        android:layout_marginLeft="7sp"
+                        android:id="@+id/plusdoorright"
+                        android:layout_marginTop="6sp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/plus" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="(right)"
+                        android:typeface="sans"
+                        android:textSize="@dimen/form_text_size"
+                        android:layout_marginLeft="7sp"
+                        android:layout_marginTop="7sp"
+                        android:textColor="@color/imageback"
+                        android:id="@+id/frame_doorsright" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_marginLeft="7sp"
+                            android:id="@+id/rightdoorImage"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="10sp"
+                            android:layout_width="140sp"
+                            android:layout_height="90sp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/imageupload_background" />
+                    </LinearLayout>
+                </LinearLayout>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Doors Inspection/Alignment"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxdoorsinspection" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hood Inspection/Alignment"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxexhoodinspection" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Deck lid Inspection/Alignment (Available)"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="2sp"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/frame_decklid" />
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="7sp"
+                    android:id="@+id/radioButtondeclklid"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="80sp"
+                        android:layout_height="35sp"
+                        android:background="@drawable/radiobuttonbackground"
+                        android:typeface="sans"
+                        android:textSize="15sp"
+                        android:textAlignment="center"
+                        android:button="@android:color/transparent"
+                        android:paddingLeft="10sp"
+                        android:paddingRight="10sp"
+                        android:paddingTop="4sp"
+                        android:paddingBottom="4sp"
+                        android:text="Yes"
+                        android:id="@+id/radioButtondeclklidyes" />
+
+                    <RadioButton
+                        android:layout_marginLeft="20sp"
+                        android:layout_width="80sp"
+                        android:layout_height="35sp"
+                        android:background="@drawable/radiobuttonbackground"
+                        android:textAlignment="center"
+                        android:typeface="sans"
+                        android:paddingLeft="10sp"
+                        android:paddingRight="10sp"
+                        android:paddingTop="4sp"
+                        android:paddingBottom="4sp"
+                        android:button="@android:color/transparent"
+                        android:textSize="15sp"
+                        android:text="No"
+                        android:id="@+id/radioButtondecklidno" />
+                </RadioGroup>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tailgate Inspection/Alignment"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxtailgateinspection" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Roof Inspection"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxroofinspection" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hood Release Mechanisms Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxhoodrelease" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hood Hinges, Prop Rod/Gas Struts Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxhoodhinges" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Door Hinges Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxdoorhinges" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trunk/Tailgate Hinges/Gas Struts Operate Properly"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxTrunktailgatehinges" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PowerLiftgate Operation"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxpowerlifegate" />
+            </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="PAINT"
+            android:typeface="sans"
+            android:textSize="@dimen/form_title_size"
+            android:paddingLeft="@dimen/title_padding"
+            android:textColor="@color/buttoncolor"
+            android:id="@+id/exhaust_system" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="1sp"/>
+        <LinearLayout android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3sp"
+            android:layout_width="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Paint Gauge tool (RE-PAINT)"
+                android:typeface="sans"
+                android:textSize="@dimen/form_text_size"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/imageback"
+                android:id="@+id/frame_paintgauge" />
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="7sp"
+                android:id="@+id/radioButtonrepaint"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:button="@android:color/transparent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Yes"
+                    android:id="@+id/radioButtonrepaintyes" />
+
+                <RadioButton
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="80sp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/radiobuttonbackground"
+                    android:textAlignment="center"
+                    android:typeface="sans"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:button="@android:color/transparent"
+                    android:textSize="15sp"
+                    android:text="No"
+                    android:id="@+id/radioButtonrepaintno" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Repairing Cost?"
+        android:typeface="sans"
+        android:textSize="20sp"
+        android:layout_marginLeft="7sp"
+        android:layout_marginTop="5sp"
+        android:textColor="@color/imageback"
+        android:id="@+id/frame_replacementunderhood" />
+    <EditText
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="10sp"
+        android:hint="Enter Cost(₹)"
+        android:id="@+id/editTextreplacementcost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/form_edittextsize"
+        android:numeric="decimal"
+        android:textColor="@color/buttoncolor"
+        android:padding="@dimen/formedittext_padding"
+        android:layout_marginLeft="@dimen/title_padding"
+        android:layout_marginRight="@dimen/title_padding"
+        android:background="@drawable/edittextform_background"/>
+    <EditText
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10sp"
+        android:hint="Comment"
+        android:id="@+id/editTextreplacement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/form_edittextsize"
+        android:textColor="@color/buttoncolor"
+        android:paddingTop="7sp"
+        android:paddingBottom="50sp"
+        android:paddingLeft="@dimen/formedittext_padding"
+        android:layout_marginLeft="@dimen/title_padding"
+        android:layout_marginRight="@dimen/title_padding"
+        android:background="@drawable/edittextform_background"/>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Save"
+        android:id="@+id/saveexterior"
+        android:textSize="16sp"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/white"
+        android:background="@drawable/savebutton_background"/>
+</LinearLayout>

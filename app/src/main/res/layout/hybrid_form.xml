@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="7sp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgrey">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hybrid Cooling System"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxhybridcoolingsystem" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Switchable Power train Mount"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxswitchableport" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hybrid Entertainment and Information Display"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxhybridentertainment" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="110 V Power Outlet"
+                    android:typeface="sans"
+                    android:textSize="@dimen/form_text_size"
+                    android:textColor="@color/imageback"
+                    android:id="@+id/checkBoxpoweroutlet" />
+            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Repairing Cost?"
+            android:typeface="sans"
+            android:textSize="20sp"
+            android:layout_marginLeft="7sp"
+            android:layout_marginTop="5sp"
+            android:textColor="@color/imageback"
+            android:id="@+id/frame_replacementunderhood" />
+        <EditText
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Enter Cost(₹)"
+            android:id="@+id/editTextreplacementcost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/form_edittextsize"
+            android:numeric="decimal"
+            android:textColor="@color/buttoncolor"
+            android:padding="@dimen/formedittext_padding"
+            android:layout_marginLeft="@dimen/title_padding"
+            android:layout_marginRight="@dimen/title_padding"
+            android:background="@drawable/edittextform_background"/>
+        <EditText
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Comment"
+            android:id="@+id/editTextreplacement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/form_edittextsize"
+            android:textColor="@color/buttoncolor"
+            android:paddingTop="7sp"
+            android:paddingBottom="50sp"
+            android:paddingLeft="@dimen/formedittext_padding"
+            android:layout_marginLeft="@dimen/title_padding"
+            android:layout_marginRight="@dimen/title_padding"
+            android:background="@drawable/edittextform_background"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Save"
+            android:id="@+id/savehybrid"
+            android:layout_marginTop="5sp"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/savebutton_background"/>
+        </LinearLayout>
+</LinearLayout>
