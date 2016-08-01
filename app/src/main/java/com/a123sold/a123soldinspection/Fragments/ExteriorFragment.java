@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,8 @@ import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.ExteriorformModal;
+
+import java.io.IOException;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -261,7 +265,17 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
         editTextreplacementcost = (EditText)rootView.findViewById( R.id.editTextreplacementcost );
         editTextreplacement = (EditText)rootView.findViewById( R.id.editTextreplacement );
         saveexterior = (Button)rootView.findViewById( R.id.saveexterior );
-        
+        plusImage.setOnClickListener(this);
+        plusImage2.setOnClickListener(this);
+        plusImagebumper.setOnClickListener(this);
+        plusdoorleft.setOnClickListener(this);
+        plusdoorright.setOnClickListener(this);
+        bumperImage.setOnClickListener(this);
+        leftdoorImage.setOnClickListener(this);
+        rightdoorImage.setOnClickListener(this);
+        rearviewglassImage.setOnClickListener(this);
+        windshieldglassImage.setOnClickListener(this);
+
         saveexterior.setOnClickListener(this);
     }
 
@@ -293,9 +307,73 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
             getActivity().setResult(Activity.RESULT_OK, resultIntent);
             getActivity().finish();
             db.close();
+        }else if(v==plusImage || v==windshieldglassImage){
+            captureimage(1);
+        }else if(v==plusImage2 || v==rearviewglassImage){
+            captureimage(2);
+        }else if(v==plusImagebumper || v==bumperImage){
+            captureimage(3);
+        }else if(v==plusdoorleft || v==leftdoorImage){
+            captureimage(4);
+        }else if(v==plusdoorright || v==rightdoorImage){
+            captureimage(5);
         }
     }
 
+    private void captureimage(int code) {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,"data");
+        startActivityForResult(cameraIntent, code);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {;
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            switch (requestCode){
+                case 1:
+                    windshieldglassImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"windshield");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 2:
+                    rearviewglassImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"rearglass");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 3:
+                    bumperImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"bumper");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
+                    leftdoorImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"leftdoor");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 5:
+                    rightdoorImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+rightdoorImage+"rightdoor");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        }
+    }
     private void mapcarprogressvalues() {
         CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
         if(carprogressModal.getEXTERIORCOMPLETED()==false) {
@@ -304,6 +382,8 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
             values.put("EXTERIORCOMPLETED", true);
             values.put("PROGRESS",progress);
             cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+        }else{
+
         }
 
         try {
@@ -369,6 +449,11 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 OLDCOST=0f;
             }
             editTextreplacement.setText(exteriorformModal.getCOMMENTEXTERIOR());
+            helperFormsFunctions.loadImageFromStorage(windshieldglassImage,1,CARID,Config.exteriorimg+"windshield");
+            helperFormsFunctions.loadImageFromStorage(rearviewglassImage,1,CARID,Config.exteriorimg+"rearglass");
+            helperFormsFunctions.loadImageFromStorage(bumperImage,1,CARID,Config.configimg+"bumper");
+            helperFormsFunctions.loadImageFromStorage(leftdoorImage,1,CARID,Config.configimg+"leftdoor");
+            helperFormsFunctions.loadImageFromStorage(rightdoorImage,1,CARID,Config.configimg+"rightdoor");
         }else{
             OLDCOST=0f;
         }

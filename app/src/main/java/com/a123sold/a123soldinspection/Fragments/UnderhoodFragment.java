@@ -4,29 +4,35 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.a123sold.a123soldinspection.Adapters.SeekBarListAdapter;
 import com.a123sold.a123soldinspection.Database.InspectionFormDatabase;
 import com.a123sold.a123soldinspection.Helpers.Config;
+import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.Helpers.ListHelper;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.UnderhoodModal;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 public class UnderhoodFragment extends android.app.Fragment implements View.OnClickListener {
     static SQLiteDatabase db;
+    HelperFormsFunctions helperFormsFunctions;
     private ListView listViewFluids,listViewEngine,listViewCoolingsystem,listViewFuelsystem,listViewElectricalsystem;
     private String[] fluidstitles={"Engine Oil/Filter Change","Chassis Lube","Coolant","Brake Fluid","Automatic Trans axle/Transmission Fluid",
     "Transfer Case Fluid","Drive Axle Fluid","Power Steering Fluid","Manual Trans axle/Transmission Hydraulic Clutch Fluid","Washer Fluid","Air Conditioning System Charge"};
@@ -39,7 +45,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     private EditText editTextreplacementcost;
     private EditText editTextreplacement;
     private Button saveunderhood;
-
+    private ImageView engine1,engine2,plusengine1,plusengine2;
     Integer CARID;
     Integer ENGINEOIL ;
     Integer CHASISTUBE ;
@@ -164,7 +170,8 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
                 OLDCOST=0f;
             }
             editTextreplacement.setText(underhoodModal.getCOMMENTUNDERHOOD());
-
+            helperFormsFunctions.loadImageFromStorage(engine1,1,CARID,Config.underhoodimg+"engine");
+            helperFormsFunctions.loadImageFromStorage(engine2,2,CARID,Config.underhoodimg+"engine");
         }else{
             OLDCOST=0f;
             values0=null;
@@ -216,31 +223,75 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
         editTextreplacement = (EditText)rootView.findViewById( R.id.editTextreplacement );
         saveunderhood = (Button)rootView.findViewById( R.id.saveunderhood );
         db = dbHelper.getWritableDatabase();
+        helperFormsFunctions=new HelperFormsFunctions(getActivity(),this);
+        engine1=(ImageView)rootView.findViewById(R.id.engine1Image);
+        engine2=(ImageView)rootView.findViewById(R.id.engine2Image);
+        plusengine1=(ImageView)rootView.findViewById(R.id.plusengine1);
+        plusengine2=(ImageView)rootView.findViewById(R.id.plusengine2);
+        engine1.setOnClickListener(this);
+        engine2.setOnClickListener(this);
+        plusengine1.setOnClickListener(this);
+        plusengine2.setOnClickListener(this);
         saveunderhood.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
-        mapvalues();
-        mapcarprogressvalues();
-        UnderhoodModal underhoodModal=new UnderhoodModal(CARID,ENGINEOIL,CHASISTUBE,COOLANT,BRAKEFLUID,TRANSAXLEFLUID,
-                TRANSFERCASEFUID,DRIVEAXLEFLUID,POWERSTEERINGFLUID,MANUALTRANSFLUID,WASHERFLUID,AIRCONDITIONINGSYSTEMCHARGE,
-                FLUIDLEAKS,HOSESLINESFITTINGS,BELTS,WIRING,OILINAIRCLEANSER,WATERSLUDGEOIL,OILPRESSURE,RELATIVECYLENDIRCOMPRESSION,TIMINGBELT
-                ,ENGINEMOUNTS,TURBOCHARGERAIRCOOLER,RADIATOR,RADIATORCAP,COOLINGFANS,WATERPUMP,COOLANTRECOVERYTANK,CABINAIRFILTER,
-                FUELPUMPNOISENORMAL,FUELPUMPPRESSURE,FUELFILTER,ENGINEAIRFILTER,STARTEROPERATION,IGNITIONSYSTEM,BATTERY,
-                ALTERNATOROUTPUT,DIESELGLOWPLUGSYSTEM,REPAIRINGCOSTUNDERHOOD,COMMENTUNDERHOOD);
-        UnderhoodModal underhoodModalold = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection( "CARID = ?", "1").get();
-        if(underhoodModalold==null) {
-            Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
-            cupboard().withDatabase(db).put(underhoodModal);
-        }else{
-            Toast.makeText(getActivity(),"Changes Made Sucessfully",Toast.LENGTH_SHORT).show();
-            cupboard().withDatabase(db).delete(UnderhoodModal.class, "CARID = ?", "1");
-            cupboard().withDatabase(db).put(underhoodModal);
+        if(v==saveunderhood) {
+            mapvalues();
+            mapcarprogressvalues();
+            UnderhoodModal underhoodModal = new UnderhoodModal(CARID, ENGINEOIL, CHASISTUBE, COOLANT, BRAKEFLUID, TRANSAXLEFLUID,
+                    TRANSFERCASEFUID, DRIVEAXLEFLUID, POWERSTEERINGFLUID, MANUALTRANSFLUID, WASHERFLUID, AIRCONDITIONINGSYSTEMCHARGE,
+                    FLUIDLEAKS, HOSESLINESFITTINGS, BELTS, WIRING, OILINAIRCLEANSER, WATERSLUDGEOIL, OILPRESSURE, RELATIVECYLENDIRCOMPRESSION, TIMINGBELT
+                    , ENGINEMOUNTS, TURBOCHARGERAIRCOOLER, RADIATOR, RADIATORCAP, COOLINGFANS, WATERPUMP, COOLANTRECOVERYTANK, CABINAIRFILTER,
+                    FUELPUMPNOISENORMAL, FUELPUMPPRESSURE, FUELFILTER, ENGINEAIRFILTER, STARTEROPERATION, IGNITIONSYSTEM, BATTERY,
+                    ALTERNATOROUTPUT, DIESELGLOWPLUGSYSTEM, REPAIRINGCOSTUNDERHOOD, COMMENTUNDERHOOD);
+            UnderhoodModal underhoodModalold = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection("CARID = ?", "1").get();
+            if (underhoodModalold == null) {
+                Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
+                cupboard().withDatabase(db).put(underhoodModal);
+            } else {
+                Toast.makeText(getActivity(), "Changes Made Sucessfully", Toast.LENGTH_SHORT).show();
+                cupboard().withDatabase(db).delete(UnderhoodModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).put(underhoodModal);
+            }
+            Intent resultIntent = new Intent();
+            getActivity().setResult(Activity.RESULT_OK, resultIntent);
+            db.close();
+            getActivity().finish();
+        }else if(v==engine1 || v==plusengine1) {
+            captureimage(1);
+        }else if(v==engine2 || v==plusengine2){
+            captureimage(2);
         }
-        Intent resultIntent = new Intent();
-        getActivity().setResult(Activity.RESULT_OK, resultIntent);
-        db.close();
-        getActivity().finish();
+    }
+
+    private void captureimage(int code) {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,"data");
+        startActivityForResult(cameraIntent, code);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {;
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            switch (requestCode){
+                case 1:
+                    engine1.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.underhoodimg+"engine");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 2:
+                    engine2.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,2,CARID,Config.underhoodimg+"engine");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }
+        }
     }
 
     private void mapvalues() {

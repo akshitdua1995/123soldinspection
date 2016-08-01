@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,8 @@ import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.HistoryModal;
+
+import java.io.IOException;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -65,8 +69,14 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(getActivity(),1);
         db = dbHelper.getWritableDatabase();
         savehistory.setOnClickListener(this);
+        plusImage.setOnClickListener(this);
+        chasisImage.setOnClickListener(this);
     }
-
+    private void captureimage(int code) {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,"data");
+        startActivityForResult(cameraIntent, code);
+    }
 
     @Override
     public void onClick(View v) {
@@ -88,6 +98,23 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
             getActivity().finish();
             db.close();
             getActivity().finish();
+        }else{
+            captureimage(1);
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {;
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            switch (requestCode){
+                case 1:
+                    chasisImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.historyimg+"chasis");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }
         }
     }
 
@@ -149,6 +176,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
             }else{
                 OLDCOST=0f;
             }
+            helperFormsFunctions.loadImageFromStorage(chasisImage,1,CARID,Config.historyimg+"chasis");
         }else{
             OLDCOST=0f;
         }

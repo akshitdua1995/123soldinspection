@@ -1,6 +1,5 @@
 package com.a123sold.a123soldinspection.Helpers;
 
-
 import com.a123sold.a123soldinspection.R;
 
 public class InspectionCategoryData {

@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.InteriorModal;
+
+import java.io.IOException;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -369,7 +373,18 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
         editTextreplacementcost = (EditText)rootView.findViewById( R.id.editTextreplacementcost );
         editTextreplacement = (EditText)rootView.findViewById( R.id.editTextreplacement );
         saveinterior = (Button)rootView.findViewById( R.id.saveinterior );
-        
+        plusacmetrecar.setOnClickListener(this);
+        pluscarcabin.setOnClickListener(this);
+        plusImagestepney.setOnClickListener(this);
+        plusstereocar.setOnClickListener(this);
+        plussuncompartmentImage.setOnClickListener(this);
+        plussunroofImage.setOnClickListener(this);
+        caracmetreImage.setOnClickListener(this);
+        carcabinImage.setOnClickListener(this);
+        carstereoImage.setOnClickListener(this);
+        stepneyImage.setOnClickListener(this);
+        sunroofImage.setOnClickListener(this);
+        compartmentImage.setOnClickListener(this);
         saveinterior.setOnClickListener( this );
     }
 
@@ -420,8 +435,27 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
             getActivity().setResult(Activity.RESULT_OK, resultIntent);
             getActivity().finish();
             db.close();
+        }else if(v==carcabinImage ||v==pluscarcabin){
+            captureimage(1);
+        }else if(v==carstereoImage ||v==plusstereocar){
+            captureimage(2);
+        }else if(v==caracmetreImage ||v==plusacmetrecar){
+            captureimage(3);
+        }else if(v==plussunroofImage ||v==sunroofImage){
+            captureimage(4);
+        }else if(v==plussuncompartmentImage ||v==compartmentImage){
+            captureimage(5);
+        }else if(v==stepneyImage ||v==plusImagestepney){
+            captureimage(6);
         }
     }
+
+    private void captureimage(int code) {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,"data");
+        startActivityForResult(cameraIntent, code);
+    }
+
 
     private void mapvalues(View rootView) {
         CARID=1;
@@ -570,7 +604,6 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
             helperFormsFunctions.setValueRadiobutton(radioButtonmoonroof,radioButtonmoonroofyes.getId(),radioButtonmoonroofno.getId(),interiorModal.getCONVERTIBLETOP());
             helperFormsFunctions.setValueRadiobutton(radioButtonrearcamera,radioButtonrearcamerayes.getId(),radioButtonrearcamerano.getId(),interiorModal.getREARCAMERA());
             helperFormsFunctions.setValueRadiobutton(radioButtonsnroof,radioButtonsnroofyes.getId(),radioButtonsunroofno.getId(),interiorModal.getSUNROOF());
-
             helperFormsFunctions.setValueRadiobutton(radioButtontilttelescopic,radioButtontilttelescopicyes.getId(),radioButtontilttelescopicno.getId(),interiorModal.getTILTSTEERINGWHEEL());
             helperFormsFunctions.setValueRadiobutton(radioButtonsafteybelts,radioButtonsafteybeltsyes.getId(),radioButtonsafteybeltsno.getId(),interiorModal.getSAFTEYBELTS());
             helperFormsFunctions.setValueRadiobutton(radioButtonpushbutton,radioButtonpushbuttonyes.getId(),radioButtonpushbuttonno.getId(),interiorModal.getPUSHBUTTONSTART());
@@ -579,6 +612,12 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
             helperFormsFunctions.setValueRadiobutton(radioButtonsteeringwheels,radioButtonsteeringwheelsyes.getId(),radioButtonsteeringwheelsno.getId(),interiorModal.getSTEERINGWHEELCONTROLS());
             helperFormsFunctions.setValueRadiobutton(radioButtonrearwiper,radioButtonrearwiperyes.getId(),radioButtonrearwiperno.getId(),interiorModal.getREARWINDOWWIPER());
             helperFormsFunctions.setValueRadiobutton(radioButtonrearentertainment,radioButtonrearentertainmentyes.getId(),radioButtonrearentertainmentsno.getId(),interiorModal.getREARENTERTAINMENTSYSTEM());
+            helperFormsFunctions.loadImageFromStorage(stepneyImage,1,CARID,Config.interiorimg+"stepney");
+            helperFormsFunctions.loadImageFromStorage(sunroofImage,1,CARID,Config.interiorimg+"sunroof");
+            helperFormsFunctions.loadImageFromStorage(carcabinImage,1,CARID,Config.interiorimg+"cabin");
+            helperFormsFunctions.loadImageFromStorage(compartmentImage,1,CARID,Config.interiorimg+"compartment");
+            helperFormsFunctions.loadImageFromStorage(carstereoImage,1,CARID,Config.interiorimg+"stereo");
+            helperFormsFunctions.loadImageFromStorage(caracmetreImage,1,CARID,Config.interiorimg+"acmetre");
         }else{
             OLDCOST=0f;
         }
@@ -615,5 +654,62 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {;
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            switch (requestCode){
+                case 1:
+                    carcabinImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"cabin");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 2:
+                    carstereoImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"stereo");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 3:
+                    caracmetreImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"acmetre");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4:
+                    sunroofImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"sunroof");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 5:
+                    compartmentImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"compartment");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 6:
+                    stepneyImage.setImageBitmap(photo);
+                    try {
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"stepney");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        }
     }
 }

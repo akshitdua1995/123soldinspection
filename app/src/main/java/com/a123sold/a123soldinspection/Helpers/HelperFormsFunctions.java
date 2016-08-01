@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -14,6 +15,8 @@ import android.widget.RadioGroup;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by akshit on 26/7/16.
@@ -29,13 +32,13 @@ public class HelperFormsFunctions {
         this.fragment=fragment;
     }
 
-    public void loadImageFromStorage(ImageView img, int num, int CARID)
+    public void loadImageFromStorage(ImageView img, int num, int CARID,String name)
     {
 
         try {
             ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
             File directory = cw.getDir("images", Context.MODE_PRIVATE);
-            File f=new File(directory, "Conviencepic"+String.valueOf(num)+String.valueOf(CARID)+".jpg");
+            File f=new File(directory, name+String.valueOf(num)+String.valueOf(CARID)+".jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             img.setImageBitmap(b);
         }
@@ -105,5 +108,26 @@ public class HelperFormsFunctions {
             radioGroup.check(yesid);
         else if(value==0)
             radioGroup.check(noid);
+    }
+
+    public String saveToInternalStorage(Bitmap bitmapImage,int imgno,int CARID,String name) throws IOException {
+        ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("images", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,name+String.valueOf(imgno)+String.valueOf(CARID)+".jpg");
+        FileOutputStream fos = null;
+        Log.d("path",mypath.toString());
+        try {
+            fos = new FileOutputStream(mypath);
+            Log.d("path",fos.toString());
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            fos.close();
+        }
+        return directory.getAbsolutePath();
     }
 }
