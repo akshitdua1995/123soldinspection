@@ -31,4 +31,5 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile files('libs/cupboard-2.1.4.jar')
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

@@ -2,11 +2,18 @@ package com.a123sold.a123soldinspection.Helpers;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Created by akshit on 26/7/16.
@@ -22,6 +29,22 @@ public class HelperFormsFunctions {
         this.fragment=fragment;
     }
 
+    public void loadImageFromStorage(ImageView img, int num, int CARID)
+    {
+
+        try {
+            ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
+            File directory = cw.getDir("images", Context.MODE_PRIVATE);
+            File f=new File(directory, "Conviencepic"+String.valueOf(num)+String.valueOf(CARID)+".jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            img.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
     public int returnCheckboxValue(CheckBox checkBox){
         int val;
         boolean value=checkBox.isChecked();

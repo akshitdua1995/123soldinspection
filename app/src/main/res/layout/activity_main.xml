@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:background="@color/imageback">
+                android:background="@color/imagebacknew">
                 <com.github.siyamed.shapeimageview.CircularImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"

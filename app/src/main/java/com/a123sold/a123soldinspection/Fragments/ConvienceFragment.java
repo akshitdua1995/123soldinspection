@@ -2,9 +2,15 @@ package com.a123sold.a123soldinspection.Fragments;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +27,10 @@ import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.ConvienceModal;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -71,6 +81,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     private EditText editTextreplacementcost;
     private EditText editTextreplacement;
     private Button saveconvience;
+    private File output=null;
     Integer CARID;
     Integer OWNERSGUIDE ;
     Integer KEYREMOTECONTROLS ;
@@ -85,6 +96,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     Float REPAIRINGCOSTCONVIENCE ;
     String COMMENTCONVIENCE ;
     Float OLDCOST;
+    static int CAMERA_REQUEST;
     /**
      * Find the Views in the layout<br />
      * <br />
@@ -137,6 +149,20 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
         db = dbHelper.getWritableDatabase();
         helperFormsFunctions=new HelperFormsFunctions(getActivity(),this);
         saveconvience.setOnClickListener( this );
+        pluscar1.setOnClickListener(this);
+        carImage1.setOnClickListener(this);
+        pluscar2.setOnClickListener(this);
+        carImage2.setOnClickListener(this);
+        pluscar3.setOnClickListener(this);
+        carImage3.setOnClickListener(this);
+        pluscar4.setOnClickListener(this);
+        carImage4.setOnClickListener(this);
+        pluscar5.setOnClickListener(this);
+        carImage5.setOnClickListener(this);
+        pluscar6.setOnClickListener(this);
+        carImage6.setOnClickListener(this);
+        CAMERA_REQUEST=1;
+
     }
 
     /**
@@ -175,7 +201,37 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             getActivity().setResult(Activity.RESULT_OK, resultIntent);
             getActivity().finish();
             db.close();
+        }else if(v == pluscar1 || v == carImage1){
+            File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output=new File(dir, "Conviencepic1"+String.valueOf(CARID)+".jpeg");
+            captureimage(1);
+        }else if(v == pluscar2 || v == carImage2){
+            File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output=new File(dir, "Conviencepic2"+String.valueOf(CARID)+".jpeg");
+            captureimage(2);
+        }else if(v == pluscar3 || v == carImage3){
+            File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output=new File(dir, "Conviencepic3"+String.valueOf(CARID)+".jpeg");
+            captureimage(3);
+        }else if(v == pluscar4 || v == carImage4){
+            File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output=new File(dir, "Conviencepic4"+String.valueOf(CARID)+".jpeg");
+            captureimage(4);
+        }else if(v == pluscar5 || v == carImage5){
+            File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output=new File(dir, "Conviencepic5"+String.valueOf(CARID)+".jpeg");
+            captureimage(5);
+        }else if(v == pluscar6 || v == carImage6){
+            File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output=new File(dir, "Conviencepic6"+String.valueOf(CARID)+".jpeg");
+            captureimage(6);
         }
+    }
+
+    private void captureimage(int code) {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,"data");
+        startActivityForResult(cameraIntent, code);
     }
 
     private void mapcarprogressvalues() {
@@ -229,6 +285,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     void returnchanges(){
         ConvienceModal convienceModal = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("CARID=1").get();
         if(convienceModal!=null){
+            CARID=convienceModal.getCARID();
             helperFormsFunctions.setValueRadiobutton(radioGroupownerguide,radioButtonownerguideyes.getId(),radioButtonownerguideno.getId(),convienceModal.getOWNERSGUIDE());
             helperFormsFunctions.setValueRadiobutton(radioGroupcompany,radioButtoncompanyyes.getId(),radioButtoncompanyno.getId(),convienceModal.getCOMPANY());
             helperFormsFunctions.setValueRadiobutton(radioGrouphplease,radioButtonhpleaseyes.getId(),radioButtonhpleaseno.getId(),convienceModal.getLEASE());
@@ -246,8 +303,91 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
                 OLDCOST=0f;
             }
             editTextreplacement.setText(convienceModal.getCOMMENTCONVIENCE());
+            helperFormsFunctions.loadImageFromStorage(carImage1,1,CARID);
+            helperFormsFunctions.loadImageFromStorage(carImage2,2,CARID);
+            helperFormsFunctions.loadImageFromStorage(carImage3,3,CARID);
+            helperFormsFunctions.loadImageFromStorage(carImage4,4,CARID);
+            helperFormsFunctions.loadImageFromStorage(carImage5,5,CARID);
+            helperFormsFunctions.loadImageFromStorage(carImage6,6,CARID);
         }else{
             OLDCOST=0f;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {;
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            switch (requestCode){
+            case 1:
+                carImage1.setImageBitmap(photo);
+                try {
+                    saveToInternalStorage(photo,1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 2:
+                carImage2.setImageBitmap(photo);
+                try {
+                    saveToInternalStorage(photo,2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 3:
+                carImage3.setImageBitmap(photo);
+                try {
+                    saveToInternalStorage(photo,3);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 4:
+                carImage4.setImageBitmap(photo);
+                try {
+                    saveToInternalStorage(photo,4);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 5:
+                carImage5.setImageBitmap(photo);
+                try {
+                    saveToInternalStorage(photo,5);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 6:
+                carImage6.setImageBitmap(photo);
+                try {
+                    saveToInternalStorage(photo,6);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
+    private String saveToInternalStorage(Bitmap bitmapImage,int imgno) throws IOException {
+        ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("images", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,"Conviencepic"+String.valueOf(imgno)+String.valueOf(CARID)+".jpg");
+        FileOutputStream fos = null;
+        Log.d("path",mypath.toString());
+        try {
+            fos = new FileOutputStream(mypath);
+            Log.d("path",fos.toString());
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+                fos.close();
+        }
+        return directory.getAbsolutePath();
     }
 }

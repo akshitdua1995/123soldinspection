@@ -45,7 +45,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_width="90sp"
                         android:padding="30sp"
-                        android:src="@drawable/diagnostics"
+                        android:src="@drawable/underhood"
                         android:layout_height="90sp"
                         android:id="@+id/cateoryimage"
                         />

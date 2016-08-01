@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#980824</color>
-    <color name="colorPrimaryDark">#a22039</color>
-    <color name="colorAccent">#980824</color>
+    <color name="colorPrimary">#24173f</color>
+    <color name="colorPrimaryDark">#311b44</color>
+    <color name="colorAccent">#24173f</color>
     <color name="divider">#00ffffff</color>
     <color name="white">#ffffff</color>
     <color name="selecteditem">#cfcfcf</color>
-    <color name="lightgrey">#fbedf0</color>
+    <color name="lightgrey">#ede8f7</color>
     <color name="imageback">#737373</color>
-    <color name="buttoncolor">#d83957</color>
-    <color name="selectedradio">#e5798d</color>
+    <color name="imagebacknew">#34215c</color>
+    <color name="buttoncolor">#9d83d2</color>
+    <color name="selectedradio">#a081d2</color>
     <color name="backrecycle">#f2f2f2</color>
 </resources>
