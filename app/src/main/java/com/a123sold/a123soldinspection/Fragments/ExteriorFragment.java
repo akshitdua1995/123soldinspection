@@ -127,7 +127,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
     private EditText editTextreplacementcost;
     private EditText editTextreplacement;
     private Button saveexterior;
-
+    static int CAMERA_REQUEST;
     Integer CARID;
     Integer GRILLINSPECTION;
     Integer TRIMINSPECTION;
@@ -275,7 +275,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
         rightdoorImage.setOnClickListener(this);
         rearviewglassImage.setOnClickListener(this);
         windshieldglassImage.setOnClickListener(this);
-
+        CAMERA_REQUEST=1;
         saveexterior.setOnClickListener(this);
     }
 
@@ -366,7 +366,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 case 5:
                     rightdoorImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+rightdoorImage+"rightdoor");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"rightdoor");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -408,7 +408,9 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
 
     private void returnchanges() {
         ExteriorformModal exteriorformModal = cupboard().withDatabase(db).query(ExteriorformModal.class).withSelection("CARID=1").get();
+        CARID=1;
         if(exteriorformModal!=null) {
+            CARID=exteriorformModal.getCARID();
             helperFormsFunctions.setValueRadiobutton(radioButtonbackexteriorlight,radioButtonbackexteriorlightyes.getId(),radioButtonbackexteriorlightno.getId(),exteriorformModal.getBACKEXTLIGHTS());
             helperFormsFunctions.setValueRadiobutton(radioButtonbodypanel,radioButtonbodypanelyes.getId(),radioButtonbodypanelno.getId(),exteriorformModal.getBODYPANEL());
             helperFormsFunctions.setValueRadiobutton(radioButtonbumper,radioButtonbumperyes.getId(),radioButtonbumperno.getId(),exteriorformModal.getBUMPER());
@@ -451,9 +453,9 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
             editTextreplacement.setText(exteriorformModal.getCOMMENTEXTERIOR());
             helperFormsFunctions.loadImageFromStorage(windshieldglassImage,1,CARID,Config.exteriorimg+"windshield");
             helperFormsFunctions.loadImageFromStorage(rearviewglassImage,1,CARID,Config.exteriorimg+"rearglass");
-            helperFormsFunctions.loadImageFromStorage(bumperImage,1,CARID,Config.configimg+"bumper");
-            helperFormsFunctions.loadImageFromStorage(leftdoorImage,1,CARID,Config.configimg+"leftdoor");
-            helperFormsFunctions.loadImageFromStorage(rightdoorImage,1,CARID,Config.configimg+"rightdoor");
+            helperFormsFunctions.loadImageFromStorage(bumperImage,1,CARID,Config.exteriorimg+"bumper");
+            helperFormsFunctions.loadImageFromStorage(leftdoorImage,1,CARID,Config.exteriorimg+"leftdoor");
+            helperFormsFunctions.loadImageFromStorage(rightdoorImage,1,CARID,Config.exteriorimg+"rightdoor");
         }else{
             OLDCOST=0f;
         }

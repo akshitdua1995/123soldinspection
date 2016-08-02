@@ -266,6 +266,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     }
 
     void returnchanges(){
+        CARID=1;
         ConvienceModal convienceModal = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("CARID=1").get();
         if(convienceModal!=null){
             CARID=convienceModal.getCARID();

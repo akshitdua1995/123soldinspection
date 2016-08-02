@@ -7,9 +7,14 @@ package com.a123sold.a123soldinspection.modals;
 public class NewRequestDataModal {
     int image;
     String make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
-    public NewRequestDataModal(String make,String model,String version,String year,
-                               String kms,String fueltype,String transmission,String owner,
-                               String location,String customername,String customermobilenumber, int image) {
+    int assigned,pending,completed;
+    int CARID;
+
+
+    public NewRequestDataModal(int CARID, String make, String model, String version, String year,
+                               String kms, String fueltype, String transmission, String owner,
+                               String location, String customername, String customermobilenumber, int image, int assigned, int pending, int completed) {
+        this.CARID=CARID;
         this.make = make;
         this.model=model;
         this.version=version;
@@ -22,8 +27,26 @@ public class NewRequestDataModal {
         this.customername=customername;
         this.customermobilenumber=customermobilenumber;
         this.image=image;
+        this.assigned=assigned;
+        this.pending=pending;
+        this.completed=completed;
     }
 
+    public int getAssigned() {
+        return assigned;
+    }
+
+    public int getPending() {
+        return pending;
+    }
+
+    public int getCompleted() {
+        return completed;
+    }
+
+    public int getCARID() {
+        return CARID;
+    }
     public String getMake() {
         return make;
     }

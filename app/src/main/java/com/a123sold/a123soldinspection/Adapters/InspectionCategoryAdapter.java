@@ -72,7 +72,7 @@ private Activity activity;
         catname.setText(dataSet.get(listPosition).getCatname());
         imagecat.setImageResource(dataSet.get(listPosition).getImage());
         if(listPosition==5)
-            imagecat.setPadding(60,60,60,60);
+            imagecat.setPadding(30,30,30,30);
         if(checks.get(listPosition)==true) {
             imagetick.setVisibility(View.VISIBLE);
             relativeLayout.setVisibility(View.VISIBLE);

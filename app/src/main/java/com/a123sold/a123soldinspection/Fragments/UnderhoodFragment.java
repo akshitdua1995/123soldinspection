@@ -97,6 +97,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     }
 
     private void returnchanges() {
+        CARID=1;
         UnderhoodModal underhoodModal = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection("CARID=1").get();
         ArrayList<String> values0;
         ArrayList<String> values1;

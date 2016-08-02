@@ -22,11 +22,6 @@ public class InspectionFormDatabase extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION=1;
     public static final String DATABASE_NAME="inspectionform.db";
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String INT_TYPE = " INTEGER";
-    private static final String REAL_TYPE = " REAL";
-    private static final String COMMA_SEP = ",";
-
     static {
         // register our modals
         cupboard().register(ExteriorformModal.class);

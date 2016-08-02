@@ -43,7 +43,7 @@ public class NewRequests extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         data=new ArrayList<NewRequestDataModal>();
         for (int i = 0; i < TempData.modalArray.length; i++) {
-            data.add(new NewRequestDataModal(
+            data.add(new NewRequestDataModal(1,
                     TempData.makeArray[i],
             TempData.modalArray[i],
             TempData.versionArray[i],
@@ -55,7 +55,7 @@ public class NewRequests extends Fragment {
             TempData.localtionArray[i],
             TempData.customernameArray[i],
             TempData.customernumberArray[i],
-            TempData.carimageArray[i]
+            TempData.carimageArray[i],0,0,0
             ));
         }
         adapter = new NewRequestAdapter(data);

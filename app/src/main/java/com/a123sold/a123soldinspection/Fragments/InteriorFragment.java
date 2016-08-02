@@ -538,6 +538,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
 
     private void returnchanges() {
         InteriorModal interiorModal = cupboard().withDatabase(db).query(InteriorModal.class).withSelection("CARID=1").get();
+        CARID=1;
         if(interiorModal!=null){
             checkBoxactiveparkassist.setChecked(helperFormsFunctions.returnCheckboxValue(interiorModal.getACTIVEPARKASSIST()));
             checkBoxseatandhead.setChecked(helperFormsFunctions.returnCheckboxValue(interiorModal.getSEATANDHEAD()));

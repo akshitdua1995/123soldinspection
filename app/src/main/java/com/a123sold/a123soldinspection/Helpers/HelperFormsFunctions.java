@@ -1,16 +1,23 @@
 package com.a123sold.a123soldinspection.Helpers;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -129,5 +136,48 @@ public class HelperFormsFunctions {
             fos.close();
         }
         return directory.getAbsolutePath();
+    }
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (context.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("permission","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("permission","Permission is revoked");
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else {
+            Log.v("permsiion","Permission is granted");
+            return true;
+        }
+    }
+    public  boolean isReadStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (context.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("permission","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("permission","Permission is revoked");
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else {
+            Log.v("permsiion","Permission is granted");
+            return true;
+        }
+    }
+    public String ModalToJSON(Object modal)
+    {
+        Gson gson=new Gson();
+        String objTosend=null;
+        objTosend = gson.toJson(modal);
+        return  objTosend;
     }
 }

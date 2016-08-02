@@ -162,6 +162,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
 
 
     private void returnchanges() {
+        CARID=1;
         HistoryModal historyModal = cupboard().withDatabase(db).query(HistoryModal.class).withSelection("CARID=1").get();
         if(historyModal!=null){
             checkBoxvininspection.setChecked(helperFormsFunctions.returnCheckboxValue(historyModal.getVIN()));;

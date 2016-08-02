@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a123sold.a123soldinspection.Adapters.InspectionCategoryAdapter;
 import com.a123sold.a123soldinspection.Database.InspectionFormDatabase;
@@ -25,13 +26,21 @@ import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.Helpers.InspectionCategoryData;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.CategoryDataModal;
+import com.a123sold.a123soldinspection.modals.ConvienceModal;
+import com.a123sold.a123soldinspection.modals.ExteriorformModal;
+import com.a123sold.a123soldinspection.modals.HistoryModal;
+import com.a123sold.a123soldinspection.modals.HybridformModal;
+import com.a123sold.a123soldinspection.modals.InteriorModal;
+import com.a123sold.a123soldinspection.modals.RoadtestModal;
+import com.a123sold.a123soldinspection.modals.UnderbodyformModal;
+import com.a123sold.a123soldinspection.modals.UnderhoodModal;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
 import java.util.ArrayList;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
-public class InspectionCategories extends AppCompatActivity {
+public class InspectionCategories extends AppCompatActivity implements View.OnClickListener {
     private static final int STATIC_INTEGER_VALUE = 1;
     Toolbar toolbar;
     private InspectionCategoryAdapter adapter;
@@ -108,6 +117,7 @@ public class InspectionCategories extends AppCompatActivity {
         }
         adapter = new InspectionCategoryAdapter(data, checks, this);
         recyclerView.setAdapter(adapter);
+        buttonUpload.setOnClickListener(this);
         myOnClickListener = new MyOnClickListener(this);
 
     }
@@ -152,6 +162,25 @@ public class InspectionCategories extends AppCompatActivity {
             checks.add(carprogressModal.getCONVIENCECOMPLETED());
         }
     }
+    public void uploadmodal(Class modalclass,String TAG){
+        Object object=cupboard().withDatabase(db).query(modalclass).withSelection("CARID=1").get();
+        String conviencejson=helperFormsFunctions.ModalToJSON(object);
+        Log.d(TAG,conviencejson);
+    }
+    @Override
+    public void onClick(View v) {
+
+        if(v==buttonUpload){
+            uploadmodal(ConvienceModal.class,"Convience");
+            uploadmodal(ExteriorformModal.class,"Exterior");
+            uploadmodal(InteriorModal.class,"Interior");
+            uploadmodal(HistoryModal.class,"History");
+            uploadmodal(HybridformModal.class,"Hybrid");
+            uploadmodal(RoadtestModal.class,"Roadtest");
+            uploadmodal(UnderhoodModal.class,"Underhood");
+            uploadmodal(UnderbodyformModal.class,"Underbody");
+        }
+    }
 
     private class MyOnClickListener implements View.OnClickListener {
 
@@ -166,6 +195,13 @@ public class InspectionCategories extends AppCompatActivity {
             int pos = recyclerView.getChildPosition(v);
             Intent i = new Intent(InspectionCategories.this, FormsScrollingActivity.class);
             String name[] = {null};
+            if(v==buttonUpload)
+            {
+                Toast.makeText(getApplicationContext(),"hereinside",Toast.LENGTH_SHORT).show();
+                ConvienceModal convienceModal=cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("CARID=1").get();
+                String conviencejson=helperFormsFunctions.ModalToJSON(convienceModal);
+                Log.d("JSONCOVIENCE",conviencejson);
+            }
             switch (pos) {
                 case 0:
                     name[0] = "Vehicle Exterior";
@@ -231,5 +267,6 @@ public class InspectionCategories extends AppCompatActivity {
                 break;
             }
         }
+
     }
 }
