@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.a123sold.a123soldinspection.ContactusActivity">
+
+    <include layout="@layout/toolbar"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20sp"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
+            android:layout_gravity="center"
+            android:src="@drawable/contactus"
+            android:alpha=".6"
+            android:id="@+id/contactusimage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/imageback"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="For any support related to INSPECTION, mail at"
+            android:id="@+id/textmail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:text="support@sold123.com"
+            android:autoLink="email"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/textmaiid" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+
+            android:textColor="@color/imageback"
+            android:text="or call at"
+            android:id="@+id/textphone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:text="0124-4307745"
+            android:autoLink="phone"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/textcall" />
+    </LinearLayout>
+</RelativeLayout>

@@ -2,7 +2,9 @@ package com.a123sold.a123soldinspection;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -23,11 +26,13 @@ import com.a123sold.a123soldinspection.Adapters.NavigationListAdapter;
 import com.a123sold.a123soldinspection.Fragments.AssignedRequests;
 import com.a123sold.a123soldinspection.Fragments.NewRequests;
 import com.a123sold.a123soldinspection.Fragments.PendingRequests;
+import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, TabLayout.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, TabLayout.OnTabSelectedListener, View.OnClickListener {
     private NavigationListAdapter adapter;
     private ViewPager vp;
     TabLayout tabLayout;
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DrawerLayout drawerlayout;
     private RelativeLayout rl;
     private ListView navigationList;
+    private ImageView profileimage;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private android.support.v7.app.ActionBar actionBar;
     Activity activity;
@@ -57,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setSupportActionBar(toolbar);
         navigationList = (ListView) findViewById(R.id.navigationlist);
         drawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        profileimage=(ImageView) findViewById(R.id.profileimage);
+        profileimage.setOnClickListener(this);
         rl = (RelativeLayout) findViewById(R.id.menuholder);
         vp = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(vp);
@@ -93,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         navigationList.setItemChecked(0, true);
         navigationList.setSelection(0);
         actionBar.setDisplayShowHomeEnabled(true);
+        HelperFormsFunctions helperFormsFunctions = new HelperFormsFunctions(this, null);
+        helperFormsFunctions.loadImageFromStorage(profileimage, 1, 1, "profileimage");
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -132,6 +142,47 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v==profileimage){
+            captureimage(1);
+        }
+    }
+    private void captureimage(int code) {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("scale", true);
+        intent.putExtra("outputX", 256);
+        intent.putExtra("outputY", 256);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case 1:
+                    final Bundle extras = data.getExtras();
+                    if (extras != null) {
+                        //Get image
+                        Bitmap newProfilePic = extras.getParcelable("data");
+                        profileimage.setImageBitmap(newProfilePic);
+                        try {
+                            HelperFormsFunctions helperFormsFunctions = new HelperFormsFunctions(this, null);
+                            helperFormsFunctions.saveToInternalStorage(newProfilePic, 1, 1, "profileimage");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -181,6 +232,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 vp.setCurrentItem(2);
                 break;
             case 4:
+                Intent intent2=new Intent(MainActivity.this,ContactusActivity.class);
+                startActivity(intent2);
+                navigationList.setItemChecked(positioncurr, true);
+                navigationList.setSelection(positioncurr);
                 break;
             case 5:
                 break;

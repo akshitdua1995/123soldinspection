@@ -1,9 +1,11 @@
 package com.a123sold.a123soldinspection.Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,13 +17,14 @@ import java.util.ArrayList;
 public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.MyViewHolder> {
     private ArrayList<NewRequestDataModal> dataSet;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
+        TextView requestid,make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
         ImageView imagecar;
-
+        Button startbutton;
         public MyViewHolder(View itemView) {
             super(itemView);
+            this.requestid=(TextView)itemView.findViewById(R.id.requestid);
             this.make=(TextView)itemView.findViewById(R.id.carmaker);
             this.model=(TextView)itemView.findViewById(R.id.carmodel);
             this.version=(TextView)itemView.findViewById(R.id.carversion);
@@ -34,6 +37,16 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
             this.customername=(TextView)itemView.findViewById(R.id.customername);
             this.customermobilenumber=(TextView)itemView.findViewById(R.id.customernumber);
             this.imagecar=(ImageView)itemView.findViewById(R.id.carimage);
+            this.startbutton=(Button)itemView.findViewById(R.id.acceptbutton);
+            this.startbutton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v==this.startbutton){
+                int itemposition=getAdapterPosition();
+                Log.d("name",this.customername.getText().toString());
+            }
         }
     }
     public NewRequestAdapter(ArrayList<NewRequestDataModal> data) {
@@ -52,9 +65,10 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
-        TextView make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
+        TextView requestid,make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
         ImageView imagecar;
-
+        Button startbutton;
+        requestid=holder.requestid;
         make=holder.make;
         model=holder.model;
         version=holder.version;
@@ -67,7 +81,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         customername=holder.customername;
         customermobilenumber=holder.customermobilenumber;
         imagecar=holder.imagecar;
-
+        requestid.setText("#"+"1");
         make.setText(dataSet.get(listPosition).getMake());
         model.setText(dataSet.get(listPosition).getModel());
         version.setText(dataSet.get(listPosition).getversion());
