@@ -386,6 +386,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
         sunroofImage.setOnClickListener(this);
         compartmentImage.setOnClickListener(this);
         saveinterior.setOnClickListener( this );
+        HelperFormsFunctions.setButton(saveinterior);
     }
 
     private void mapcarprogressvalues() {

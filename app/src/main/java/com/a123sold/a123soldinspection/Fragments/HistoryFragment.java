@@ -71,6 +71,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
         savehistory.setOnClickListener(this);
         plusImage.setOnClickListener(this);
         chasisImage.setOnClickListener(this);
+        HelperFormsFunctions.setButton(savehistory);
     }
     private void captureimage(int code) {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);

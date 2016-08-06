@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +33,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 /**
  * Created by akshit on 24/7/16.
  */
-public class ConvienceFragment extends android.app.Fragment implements View.OnClickListener {
+public class ConvienceFragment extends android.app.Fragment implements View.OnClickListener{
     static SQLiteDatabase db;
     HelperFormsFunctions helperFormsFunctions;
     private ImageView pluscar1;
@@ -75,7 +76,18 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     private EditText editTextnamefinanceco;
     private EditText editTextreplacementcost;
     private EditText editTextreplacement;
+    private EditText editTextcubiccapacity;
+    private EditText editTextvehicleusedas;
+    private EditText editTextfinancername;
+    private EditText editTextviplicenseplate;
+    private RadioGroup radiogroupduplicatekey;
+    private RadioButton radioButtonduplicatekeyyes;
+    private RadioButton radioButtonduplicatekeyno;
+    private RadioGroup radioGroupunderhypothecation;
+    private RadioButton radioButtonunderhypothecationyes;
+    private RadioButton radioButtonunderhypothecationno;
     private Button saveconvience;
+
     private File output=null;
     Integer CARID;
     Integer OWNERSGUIDE ;
@@ -91,6 +103,12 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     Float REPAIRINGCOSTCONVIENCE ;
     String COMMENTCONVIENCE ;
     Float OLDCOST;
+    String CUBICCAPACITY;
+    String VEHICLEUSEDAS;
+    String FINANCERNAME;
+    String VIPLICENSEPLATE;
+    Integer DUPLICATEKEY;
+    Integer UNDERHYPOTHECATION;
     static int CAMERA_REQUEST;
     /**
      * Find the Views in the layout<br />
@@ -139,6 +157,16 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
         editTextnamefinanceco = (EditText)rootView.findViewById( R.id.editTextnamefinanceco );
         editTextreplacementcost = (EditText)rootView.findViewById( R.id.editTextreplacementcost );
         editTextreplacement = (EditText)rootView.findViewById( R.id.editTextreplacement );
+        editTextcubiccapacity =(EditText)rootView.findViewById( R.id.editTextcubiccapacity );
+        editTextvehicleusedas = (EditText)rootView.findViewById( R.id.editTextvehicleusedas );
+        editTextviplicenseplate = (EditText)rootView.findViewById( R.id.editTextviplicenseplate );
+        editTextfinancername = (EditText)rootView.findViewById( R.id.editTextfinancername );
+        radiogroupduplicatekey = (RadioGroup)rootView.findViewById( R.id.radioGroupdubkey );
+        radioButtonduplicatekeyyes = (RadioButton)rootView.findViewById( R.id.radioButtondubkeyyes );
+        radioButtonduplicatekeyno = (RadioButton)rootView.findViewById( R.id.radioButtondubkeyno );
+        radioGroupunderhypothecation = (RadioGroup)rootView.findViewById( R.id.radioGroupunderhypo );
+        radioButtonunderhypothecationyes = (RadioButton)rootView.findViewById( R.id.radioButtonunderhypoyes );
+        radioButtonunderhypothecationno = (RadioButton)rootView.findViewById( R.id.radioButtonunderhypono );
         saveconvience = (Button)rootView.findViewById( R.id.saveconvience );
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(getActivity(),1);
         db = dbHelper.getWritableDatabase();
@@ -157,7 +185,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
         pluscar6.setOnClickListener(this);
         carImage6.setOnClickListener(this);
         CAMERA_REQUEST=1;
-
+        HelperFormsFunctions.setButton(saveconvience);
     }
 
     /**
@@ -181,7 +209,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
                     LEASE,
                     NAMEFINANCIALCORPORATION,
                     REPAIRINGCOSTCONVIENCE,
-                    COMMENTCONVIENCE);
+                    COMMENTCONVIENCE,CUBICCAPACITY,VEHICLEUSEDAS,FINANCERNAME,VIPLICENSEPLATE,DUPLICATEKEY,UNDERHYPOTHECATION);
             ConvienceModal convienceModalold = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection( "CARID = ?", "1").get();
             if(convienceModalold==null) {
                 Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
@@ -252,6 +280,12 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
         LIFETAXPAID=helperFormsFunctions.returnRadioGroup(radioGrouplifetax,view);
         LEASE=helperFormsFunctions.returnRadioGroup(radioGrouphplease,view);
         NAMEFINANCIALCORPORATION=editTextnamefinanceco.getText().toString();
+        CUBICCAPACITY=editTextcubiccapacity.getText().toString();
+        VEHICLEUSEDAS=editTextvehicleusedas.getText().toString();
+        FINANCERNAME=editTextfinancername.getText().toString();
+        VIPLICENSEPLATE=editTextviplicenseplate.getText().toString();
+        DUPLICATEKEY=helperFormsFunctions.returnRadioGroup(radiogroupduplicatekey,view);
+        UNDERHYPOTHECATION=helperFormsFunctions.returnRadioGroup(radioGroupunderhypothecation,view);
         try {
             REPAIRINGCOSTCONVIENCE=Float.valueOf(editTextreplacementcost.getText().toString());
         }catch (Exception e){}
@@ -261,6 +295,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.convience_form,container, false);
         findViews(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -278,6 +313,9 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             helperFormsFunctions.setValueRadiobutton(radioGrouprc,radioButtonrcyes.getId(),radioButtonrcno.getId(),convienceModal.getRC());
             helperFormsFunctions.setValueRadiobutton(radioGroupuniversaltransmittor,radioButtonuniversaltransmittoryes.getId(),radioButtonuniversaltransmittorno.getId(),convienceModal.getUNIVERSALTRANSMITTER());
             helperFormsFunctions.setValueRadiobutton(radiogrouppollutioncertificate,radioButtonpollutioncertificateyes.getId(),radioButtonpollutioncertificateno.getId(),convienceModal.getPOLLUTIONCERTI());
+            helperFormsFunctions.setValueRadiobutton(radiogroupduplicatekey,radioButtonduplicatekeyyes.getId(),radioButtonduplicatekeyno.getId(),convienceModal.getDUPLICATEKEY());
+            helperFormsFunctions.setValueRadiobutton(radioGroupunderhypothecation,radioButtonunderhypothecationyes.getId(),radioButtonunderhypothecationno.getId(),convienceModal.getUNDERHYPOTHECATION());
+
             editTextinssurance.setText(convienceModal.getINSAURANCEVALIDITY());
             editTextnamefinanceco.setText(convienceModal.getNAMEFINANCIALCORPORATION());
             if(convienceModal.getREPAIRINGCOSTCONVIENCE()!=null) {
@@ -287,6 +325,10 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
                 OLDCOST=0f;
             }
             editTextreplacement.setText(convienceModal.getCOMMENTCONVIENCE());
+            editTextcubiccapacity.setText(convienceModal.getCUBICCAPACITY());
+            editTextfinancername.setText(convienceModal.getFINANCERNAME());
+            editTextviplicenseplate.setText(convienceModal.getVIPLICENSEPLATE());
+            editTextvehicleusedas.setText(convienceModal.getVEHICLEUSEDAS());
             helperFormsFunctions.loadImageFromStorage(carImage1,1,CARID,Config.configimg);
             helperFormsFunctions.loadImageFromStorage(carImage2,2,CARID,Config.configimg);
             helperFormsFunctions.loadImageFromStorage(carImage3,3,CARID,Config.configimg);
@@ -354,4 +396,15 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             }
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                saveconvience.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

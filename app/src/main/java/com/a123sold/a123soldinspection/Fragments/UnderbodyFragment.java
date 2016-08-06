@@ -165,6 +165,7 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(getActivity(),1);
         db = dbHelper.getWritableDatabase();
         saveunderbody.setOnClickListener(this);
+        HelperFormsFunctions.setButton(saveunderbody);
     }
 
 

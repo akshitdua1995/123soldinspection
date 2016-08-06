@@ -277,6 +277,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
         windshieldglassImage.setOnClickListener(this);
         CAMERA_REQUEST=1;
         saveexterior.setOnClickListener(this);
+        HelperFormsFunctions.setButton(saveexterior);
     }
 
     /**

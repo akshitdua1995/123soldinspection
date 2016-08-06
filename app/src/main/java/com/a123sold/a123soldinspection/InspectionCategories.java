@@ -250,6 +250,10 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.miCompose:
+                Button b=HelperFormsFunctions.getButton();
+                b.performClick();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

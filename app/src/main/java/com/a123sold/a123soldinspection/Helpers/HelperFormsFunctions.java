@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -31,6 +32,7 @@ import java.io.IOException;
 public class HelperFormsFunctions {
     Context context;
     Fragment fragment;
+    private static Button controlbutton;
     ImageView imageView;
     int resultcode;
     private final int SELECT_PHOTO = 1;
@@ -172,6 +174,13 @@ public class HelperFormsFunctions {
             Log.v("permsiion","Permission is granted");
             return true;
         }
+    }
+    public static void setButton(Button button){
+        controlbutton=button;
+    }
+
+    public static Button getButton(){
+        return controlbutton;
     }
     public String ModalToJSON(Object modal)
     {

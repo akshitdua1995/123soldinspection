@@ -64,6 +64,7 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
         savehybrid.setOnClickListener( this );
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(getActivity(),1);
         db = dbHelper.getWritableDatabase();
+        HelperFormsFunctions.setButton(savehybrid);
     }
 
     void returnchanges(){

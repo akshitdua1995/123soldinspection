@@ -234,6 +234,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
         plusengine1.setOnClickListener(this);
         plusengine2.setOnClickListener(this);
         saveunderhood.setOnClickListener(this);
+        HelperFormsFunctions.setButton(saveunderhood);
     }
     @Override
     public void onClick(View v) {

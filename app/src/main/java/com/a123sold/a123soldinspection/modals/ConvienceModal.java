@@ -17,8 +17,14 @@ public class ConvienceModal {
     String NAMEFINANCIALCORPORATION ;
     Float REPAIRINGCOSTCONVIENCE ;
     String COMMENTCONVIENCE ;
+    String CUBICCAPACITY;
+    String VEHICLEUSEDAS;
+    String FINANCERNAME;
+    String VIPLICENSEPLATE;
+    Integer DUPLICATEKEY;
+    Integer UNDERHYPOTHECATION;
 
-    public ConvienceModal(Integer CARID, Integer OWNERSGUIDE, Integer KEYREMOTECONTROLS, Integer UNIVERSALTRANSMITTER, Integer RC, Integer POLLUTIONCERTI, Integer COMPANY, String INSAURANCEVALIDITY, Integer LIFETAXPAID, Integer LEASE, String NAMEFINANCIALCORPORATION, Float REPAIRINGCOSTCONVIENCE, String COMMENTCONVIENCE) {
+    public ConvienceModal(Integer CARID, Integer OWNERSGUIDE, Integer KEYREMOTECONTROLS, Integer UNIVERSALTRANSMITTER, Integer RC, Integer POLLUTIONCERTI, Integer COMPANY, String INSAURANCEVALIDITY, Integer LIFETAXPAID, Integer LEASE, String NAMEFINANCIALCORPORATION, Float REPAIRINGCOSTCONVIENCE, String COMMENTCONVIENCE, String CUBICCAPACITY, String VEHICLEUSEDAS, String FINANCERNAME, String VIPLICENSEPLATE, Integer DUPLICATEKEY, Integer UNDERHYPOTHECATION) {
         this.CARID = CARID;
         this.OWNERSGUIDE = OWNERSGUIDE;
         this.KEYREMOTECONTROLS = KEYREMOTECONTROLS;
@@ -32,6 +38,12 @@ public class ConvienceModal {
         this.NAMEFINANCIALCORPORATION = NAMEFINANCIALCORPORATION;
         this.REPAIRINGCOSTCONVIENCE = REPAIRINGCOSTCONVIENCE;
         this.COMMENTCONVIENCE = COMMENTCONVIENCE;
+        this.CUBICCAPACITY = CUBICCAPACITY;
+        this.VEHICLEUSEDAS = VEHICLEUSEDAS;
+        this.FINANCERNAME = FINANCERNAME;
+        this.VIPLICENSEPLATE = VIPLICENSEPLATE;
+        this.DUPLICATEKEY = DUPLICATEKEY;
+        this.UNDERHYPOTHECATION = UNDERHYPOTHECATION;
     }
 
     public ConvienceModal(){
@@ -88,5 +100,29 @@ public class ConvienceModal {
 
     public String getCOMMENTCONVIENCE() {
         return COMMENTCONVIENCE;
+    }
+
+    public String getCUBICCAPACITY() {
+        return CUBICCAPACITY;
+    }
+
+    public String getVEHICLEUSEDAS() {
+        return VEHICLEUSEDAS;
+    }
+
+    public String getFINANCERNAME() {
+        return FINANCERNAME;
+    }
+
+    public String getVIPLICENSEPLATE() {
+        return VIPLICENSEPLATE;
+    }
+
+    public Integer getDUPLICATEKEY() {
+        return DUPLICATEKEY;
+    }
+
+    public Integer getUNDERHYPOTHECATION() {
+        return UNDERHYPOTHECATION;
     }
 }

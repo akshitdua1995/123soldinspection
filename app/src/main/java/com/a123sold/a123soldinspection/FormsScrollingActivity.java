@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.a123sold.a123soldinspection.Fragments.ConvienceFragment;
 import com.a123sold.a123soldinspection.Fragments.DiagnosticsFragment;
@@ -20,9 +21,9 @@ import com.a123sold.a123soldinspection.Fragments.UnderbodyFragment;
 import com.a123sold.a123soldinspection.Fragments.UnderhoodFragment;
 
 public class FormsScrollingActivity extends AppCompatActivity {
+    private View v;
     private Toolbar toolbar;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +93,7 @@ public class FormsScrollingActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

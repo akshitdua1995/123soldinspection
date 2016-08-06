@@ -99,6 +99,7 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
         db = dbHelper.getWritableDatabase();
         helperFormsFunctions=new HelperFormsFunctions(getActivity(),this);
         saveroadtest.setOnClickListener(this);
+        HelperFormsFunctions.setButton(saveroadtest);
     }
 
     
