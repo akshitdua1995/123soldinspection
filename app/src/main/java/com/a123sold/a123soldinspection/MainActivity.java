@@ -26,7 +26,11 @@ import com.a123sold.a123soldinspection.Adapters.NavigationListAdapter;
 import com.a123sold.a123soldinspection.Fragments.AssignedRequests;
 import com.a123sold.a123soldinspection.Fragments.NewRequests;
 import com.a123sold.a123soldinspection.Fragments.PendingRequests;
+import com.a123sold.a123soldinspection.Helpers.Config;
 import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
+import com.a123sold.a123soldinspection.Helpers.JsonRequest;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         profileimage.setOnClickListener(this);
         rl = (RelativeLayout) findViewById(R.id.menuholder);
         vp = (ViewPager) findViewById(R.id.viewpager);
+        vp.setOffscreenPageLimit(2);
         setupViewPager(vp);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(vp);
@@ -238,9 +243,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 navigationList.setSelection(positioncurr);
                 break;
             case 5:
+                JsonRequest request=new JsonRequest(this.getApplicationContext(),this);
+                try {
+                    request.LogoutResponse(Config.BASE_URL+"/api/123sold/inspection/logout");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
-
         drawerlayout.closeDrawer(rl);
     }
 

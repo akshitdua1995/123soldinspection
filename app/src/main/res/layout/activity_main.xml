@@ -5,14 +5,26 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <FrameLayout
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragmentholder"
         >
         <include layout="@layout/main_layout"/>
-        </FrameLayout>
 
+    </FrameLayout>
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress_custom"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/menuholder"
         android:layout_width="260dp"

@@ -16,17 +16,17 @@
         </activity>
         <activity android:name=".CompletedRequests" />
         <activity android:name=".InspectionCategories">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".FormsScrollingActivity"
             android:label="@string/title_activity_forms_scrolling"
             android:theme="@style/AppTheme" />
         <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ContactusActivity">
 

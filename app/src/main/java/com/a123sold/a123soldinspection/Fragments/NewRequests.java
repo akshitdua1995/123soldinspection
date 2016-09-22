@@ -9,11 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.a123sold.a123soldinspection.Adapters.NewRequestAdapter;
+import com.a123sold.a123soldinspection.Helpers.Config;
+import com.a123sold.a123soldinspection.Helpers.JsonRequest;
 import com.a123sold.a123soldinspection.R;
-import com.a123sold.a123soldinspection.TempData;
 import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -41,24 +45,12 @@ public class NewRequests extends Fragment {
         layoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        data=new ArrayList<NewRequestDataModal>();
-        for (int i = 0; i < TempData.modalArray.length; i++) {
-            data.add(new NewRequestDataModal(1,
-                    TempData.makeArray[i],
-            TempData.modalArray[i],
-            TempData.versionArray[i],
-            TempData.yearArray[i],
-            TempData.kmsArray[i],
-            TempData.fueltypeArray[i],
-            TempData.transmissionArray[i],
-            TempData.ownerArray[i],
-            TempData.localtionArray[i],
-            TempData.customernameArray[i],
-            TempData.customernumberArray[i],
-            TempData.carimageArray[i],0,0,0
-            ));
+        RelativeLayout relativeLayout= (RelativeLayout) view.findViewById(R.id.nonewview);
+        JsonRequest request=new JsonRequest(this.getActivity().getApplicationContext(),this.getActivity());
+        try {
+            request.LoadNewRequests(Config.BASE_URL+"/api/123sold/inspectionInfo/waitingForInspection",recyclerView,relativeLayout);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        adapter = new NewRequestAdapter(data);
-        recyclerView.setAdapter(adapter);
     }
 }

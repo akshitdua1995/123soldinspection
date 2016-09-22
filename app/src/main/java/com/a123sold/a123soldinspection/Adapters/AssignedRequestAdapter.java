@@ -14,7 +14,7 @@ import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
 
 import java.util.ArrayList;
 
-public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.MyViewHolder> {
+public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequestAdapter.MyViewHolder> {
     private ArrayList<NewRequestDataModal> dataSet;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -49,7 +49,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
             }
         }
     }
-    public NewRequestAdapter(ArrayList<NewRequestDataModal> data) {
+    public AssignedRequestAdapter(ArrayList<NewRequestDataModal> data) {
         this.dataSet = data;
     }
 
