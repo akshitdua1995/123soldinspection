@@ -46,6 +46,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
     private InspectionCategoryAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
+    private TextView requestid,name,make,model,version,email,phno;
     private static ArrayList<CategoryDataModal> data;
     private static ArrayList<Boolean> checks;
     private static Activity activity;
@@ -56,7 +57,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
     static SQLiteDatabase db;
     TextView textViewtotalrepairingcost;
     HelperFormsFunctions helperFormsFunctions;
-    Integer CARID;
+    String id;
     Float TOTAL_REPAIRING_COST;
     Integer PROGRESS;
     Boolean UNDERBODYCOMPLETED;
@@ -72,6 +73,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inspection_categories);
+       // Log.d("ID",dataModal.getId());
         TOTAL_REPAIRING_COST = 0.0f;
         PROGRESS = 0;
         UNDERBODYCOMPLETED = false;
@@ -86,10 +88,28 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
     }
 
     void initialize() {
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Inspection Categories");
         setSupportActionBar(toolbar);
+        id=getIntent().getExtras().getString("id");
+        String cname=getIntent().getExtras().getString("name");
+        String cmake=getIntent().getExtras().getString("make");
+        String cmodel=getIntent().getExtras().getString("model");
+        String cversion=getIntent().getExtras().getString("version");
+        name = (TextView) findViewById(R.id.customername);
+        make = (TextView) findViewById(R.id.carmaker);
+        model = (TextView) findViewById(R.id.carmodel);
+        version = (TextView) findViewById(R.id.carversion);
+        requestid = (TextView) findViewById(R.id.requestid);
+        email = (TextView) findViewById(R.id.email);
+        phno = (TextView) findViewById(R.id.customernumber);
+        phno.setText("");
+        email.setText("");
+        requestid.setText("#"+id);
+        name.setText(cname);
+        model.setText(cmodel);
+        make.setText(cmake);
+        version.setText(cversion);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -97,11 +117,11 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
         textViewtotalrepairingcost = (TextView) findViewById(R.id.totalcost);
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(this, 1);
         arcProgress = (ArcProgress) findViewById(R.id.arc_progress);
-        float f = 240.0f;
+        float f = 200.0f;
         arcProgress.setArcAngle(f);
         db = dbHelper.getWritableDatabase();
         helperFormsFunctions = new HelperFormsFunctions(this, null);
-        getValues();
+        getValues();//values updated from database
         recyclerView = (RecyclerView) findViewById(R.id.inspectioncategory_recycler_view);
         recyclerView.setHasFixedSize(true);
         activity = this;
@@ -123,7 +143,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
     }
 
     private void getValues() {
-        carprogressModal = cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        carprogressModal = cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id = ?",id).get();
         checks = new ArrayList<Boolean>();
         if (carprogressModal == null) {
             checks.add(false);
@@ -135,11 +155,13 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
             checks.add(false);
             checks.add(false);
             checks.add(false);
-            carprogressModal = new CarprogressModal(1, TOTAL_REPAIRING_COST, PROGRESS, UNDERBODYCOMPLETED, UNDERHOODCOMPLETED, INTERIORCOMPLETED
+            carprogressModal = new CarprogressModal(id, TOTAL_REPAIRING_COST, PROGRESS, UNDERBODYCOMPLETED, UNDERHOODCOMPLETED, INTERIORCOMPLETED
                     , EXTERIORCOMPLETED, HYBRIDCOMPLETED, CONVIENCECOMPLETED, ROADTESTCOMPLETED, HISTORYCOMPLETED);
             cupboard().withDatabase(db).put(carprogressModal);
+            Log.d("1","Not Init");
         } else {
             arcProgress.setProgress(carprogressModal.getPROGRESS());
+            Log.d("1",carprogressModal.getPROGRESS().toString());
             Log.d("cost",String.valueOf(carprogressModal.getTOTAL_REPAIRING_COST()));
             if (carprogressModal.getTOTAL_REPAIRING_COST() > 0 && carprogressModal.getTOTAL_REPAIRING_COST()!=null) {
                 textViewtotalrepairingcost.setVisibility(View.VISIBLE);
@@ -163,7 +185,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
         }
     }
     public void uploadmodal(Class modalclass,String TAG){
-        Object object=cupboard().withDatabase(db).query(modalclass).withSelection("CARID=1").get();
+        Object object=cupboard().withDatabase(db).query(modalclass).withSelection("id='1'").get();
         String conviencejson=helperFormsFunctions.ModalToJSON(object);
         Log.d(TAG,conviencejson);
     }
@@ -198,7 +220,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
             if(v==buttonUpload)
             {
                 Toast.makeText(getApplicationContext(),"hereinside",Toast.LENGTH_SHORT).show();
-                ConvienceModal convienceModal=cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("CARID=1").get();
+                ConvienceModal convienceModal=cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("id=1").get();
                 String conviencejson=helperFormsFunctions.ModalToJSON(convienceModal);
                 Log.d("JSONCOVIENCE",conviencejson);
             }
@@ -233,6 +255,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
             }
             i.putExtra("catposition", pos);
             i.putExtra("cattitle", name[0]);
+            i.putExtra("id",id);
             startActivityForResult(i, STATIC_INTEGER_VALUE);
             //startActivity(i);
         }

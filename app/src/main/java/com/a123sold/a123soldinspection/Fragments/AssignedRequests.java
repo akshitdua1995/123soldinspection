@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import com.a123sold.a123soldinspection.Adapters.AssignedRequestAdapter;
 import com.a123sold.a123soldinspection.Helpers.Config;
 import com.a123sold.a123soldinspection.Helpers.JsonRequest;
+import com.a123sold.a123soldinspection.Helpers.ViewsVisibility;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
 
@@ -32,7 +33,6 @@ public class AssignedRequests extends Fragment {
     private static Activity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.assignedrequests, container, false);
         initialize(rootView);
         return rootView;
@@ -42,6 +42,7 @@ public class AssignedRequests extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.assignedrequest_recycler_view);
         recyclerView.setHasFixedSize(true);
         activity=getActivity();
+        ViewsVisibility.AssignedrelativeLayout= (RelativeLayout) view.findViewById(R.id.NoAssignedView);
         layoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

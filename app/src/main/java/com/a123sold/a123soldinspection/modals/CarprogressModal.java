@@ -5,7 +5,7 @@ package com.a123sold.a123soldinspection.modals;
  */
 public class CarprogressModal {
 
-    Integer CARID;
+    String id;
     Float TOTAL_REPAIRING_COST;
     Integer PROGRESS;
     Boolean UNDERBODYCOMPLETED;
@@ -18,8 +18,8 @@ public class CarprogressModal {
     Boolean HISTORYCOMPLETED;
 
     public CarprogressModal(){}
-    public CarprogressModal(Integer CARID, Float TOTAL_REPAIRING_COST, Integer PROGRESS, Boolean UNDERBODYCOMPLETED, Boolean UNDERHOODCOMPLETED, Boolean INTERIORCOMPLETED, Boolean EXTERIORCOMPLETED, Boolean HYBRIDCOMPLETED, Boolean CONVIENCECOMPLETED, Boolean ROADTESTCOMPLETED, Boolean HISTORYCOMPLETED) {
-        this.CARID = CARID;
+    public CarprogressModal(String id, Float TOTAL_REPAIRING_COST, Integer PROGRESS, Boolean UNDERBODYCOMPLETED, Boolean UNDERHOODCOMPLETED, Boolean INTERIORCOMPLETED, Boolean EXTERIORCOMPLETED, Boolean HYBRIDCOMPLETED, Boolean CONVIENCECOMPLETED, Boolean ROADTESTCOMPLETED, Boolean HISTORYCOMPLETED) {
+        this.id = id;
         this.TOTAL_REPAIRING_COST = TOTAL_REPAIRING_COST;
         this.PROGRESS = PROGRESS;
         this.UNDERBODYCOMPLETED = UNDERBODYCOMPLETED;
@@ -32,8 +32,8 @@ public class CarprogressModal {
         this.HISTORYCOMPLETED = HISTORYCOMPLETED;
     }
 
-    public Integer getCARID() {
-        return CARID;
+    public String getId() {
+        return id;
     }
 
     public Float getTOTAL_REPAIRING_COST() {

@@ -1,6 +1,7 @@
 package com.a123sold.a123soldinspection.Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,24 +9,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.a123sold.a123soldinspection.Helpers.Config;
-import com.a123sold.a123soldinspection.Helpers.JsonRequest;
 import com.a123sold.a123soldinspection.Helpers.ViewsVisibility;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
-
-import org.json.JSONException;
+import com.github.lzyzsd.circleprogress.CircleProgress;
 
 import java.util.ArrayList;
 
-public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.MyViewHolder> {
+public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAdapter.MyViewHolder> {
     private static ArrayList<NewRequestDataModal> dataSet;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView requestid,make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
         ImageView imagecar;
         Button startbutton;
+        CircleProgress progress;
         public MyViewHolder(View itemView) {
             super(itemView);
             this.requestid=(TextView)itemView.findViewById(R.id.requestid);
@@ -44,26 +43,11 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
             this.startbutton=(Button)itemView.findViewById(R.id.acceptbutton);
             this.startbutton.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
-            if(v==this.startbutton){
-                JsonRequest request=new JsonRequest(v.getContext().getApplicationContext(),ViewsVisibility.conextActivity);
-                try {
-                    request.AcceptRequest(Config.BASE_URL+"/api/123sold/inspectionInfo/acceptTheAuctionInspection",dataSet.get(getAdapterPosition()).getId());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                NewRequestDataModal data=dataSet.get(getAdapterPosition());
-                removeAt(getAdapterPosition());
-                if(dataSet.size()==0){
-                    ViewsVisibility.NewrelativeLayout.setVisibility(View.VISIBLE);
-                }
-                ViewsVisibility.assignedRequestAdapter.addData(data);
-            }
         }
     }
-    public NewRequestAdapter(ArrayList<NewRequestDataModal> data) {
+    public PendingRequestAdapter(ArrayList<NewRequestDataModal> data) {
         this.dataSet = data;
     }
 
@@ -71,6 +55,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.inspection_card, parent, false);
+
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -91,8 +76,10 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         owner=holder.owner;
         location=holder.location;
         customername=holder.customername;
+        startbutton=holder.startbutton;
         customermobilenumber=holder.customermobilenumber;
         imagecar=holder.imagecar;
+        startbutton.setVisibility(View.GONE);
         requestid.setText(dataSet.get(listPosition).getId());
         requestid.setVisibility(View.GONE);
         make.setText(dataSet.get(listPosition).getMake());
@@ -108,16 +95,18 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         //customermobilenumber.setText(dataSet.get(listPosition).getCustomermobilenumber());
         //imagecar.setImageResource(dataSet.get(listPosition).getImage());
     }
-
+    public void addData(NewRequestDataModal data){
+        Log.d("beforeSize",String.valueOf((dataSet.size())));
+        dataSet.add(data);
+        notifyDataSetChanged();
+        notifyItemInserted(0);
+        notifyItemRangeChanged(0,dataSet.size());
+        ViewsVisibility.PendingrelativeLayout.setVisibility(View.GONE);
+        Log.d("Size",String.valueOf((dataSet.size())));
+    }
     @Override
     public int getItemCount() {
         return dataSet.size();
-    }
-
-    public void removeAt(int position) {
-        dataSet.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, dataSet.size());
     }
 }
 

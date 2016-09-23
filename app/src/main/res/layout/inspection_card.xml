@@ -257,7 +257,7 @@
                     android:orientation="horizontal"
                     >
                 <com.github.lzyzsd.circleprogress.ArcProgress
-                    android:id="@+id/arc_progress"
+                    android:id="@+id/arc_progress1"
                     android:layout_alignParentRight="true"
                     android:layout_width="50sp"
                     android:layout_centerVertical="true"

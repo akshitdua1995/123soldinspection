@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,7 +129,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
     private EditText editTextreplacement;
     private Button saveexterior;
     static int CAMERA_REQUEST;
-    Integer CARID;
+    String id;
     Integer GRILLINSPECTION;
     Integer TRIMINSPECTION;
     Integer ROOFRACKINSPECTION;
@@ -172,6 +173,8 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
      * (http://www.buzzingandroid.com/tools/android-layout-finder)
      */
     private void findViews(View rootView) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         helperFormsFunctions=new HelperFormsFunctions(getActivity(),this);
         InspectionFormDatabase dbHelper = new InspectionFormDatabase(getActivity(),1);
         db = dbHelper.getWritableDatabase();
@@ -291,17 +294,17 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
         if ( v == saveexterior ) {
             mapcarprogressvalues();
             mapvalues(v.getRootView());
-            ExteriorformModal exteriorformModal=new ExteriorformModal(CARID,GRILLINSPECTION,TRIMINSPECTION,ROOFRACKINSPECTION,DEPLOYABLERUNNINGBOARDS,WINDSHIELDGLASSINSPECTION
+            ExteriorformModal exteriorformModal=new ExteriorformModal(id,GRILLINSPECTION,TRIMINSPECTION,ROOFRACKINSPECTION,DEPLOYABLERUNNINGBOARDS,WINDSHIELDGLASSINSPECTION
             ,SIDEGLASSINSPECTION,REARWINDOWGLASSINSPECTION,WIPERBLADE,OUTSIDEMIRRORINSPECTION,OUTSIDEFOLDINGMIRRORINSPECTION,FRONTEXTLIGHTS,BACKEXTLIGHTS,SIDEEXTLIGHTS
             ,HAZARDLIGHTS,TRAILERLAMPCONNECTOR,ONOFFLIGHTING,FLOODDAMAGE,FIREDAMAGE,MAJORDAMAGE,HAILDAMAGE,BODYPANEL,BUMPER,DOORS,HOOD
             ,DECKLID,TAILGATE,ROOF,HOODRELEASE,HOODHINGES,DOORHINGES,TRUNKSTRUTS,POWERLIFTGATE,PAINTGAUGE,REPAIRINGCOSTEXTERIOR,COMMENTEXTERIOR);
-            ExteriorformModal exteriorformModalold = cupboard().withDatabase(db).query(ExteriorformModal.class).withSelection( "CARID = ?", "1").get();
+            ExteriorformModal exteriorformModalold = cupboard().withDatabase(db).query(ExteriorformModal.class).withSelection( "id = ?", id).get();
             if(exteriorformModalold==null) {
                 Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(exteriorformModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Sucessfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(ExteriorformModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(ExteriorformModal.class, "id = ?",id);
                 cupboard().withDatabase(db).put(exteriorformModal);
             }
             Intent resultIntent = new Intent();
@@ -335,7 +338,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 case 1:
                     windshieldglassImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"windshield");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.exteriorimg+"windshield");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -343,7 +346,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 case 2:
                     rearviewglassImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"rearglass");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.exteriorimg+"rearglass");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -351,7 +354,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 case 3:
                     bumperImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"bumper");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.exteriorimg+"bumper");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -359,7 +362,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 case 4:
                     leftdoorImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"leftdoor");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.exteriorimg+"leftdoor");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -367,7 +370,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 case 5:
                     rightdoorImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.exteriorimg+"rightdoor");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.exteriorimg+"rightdoor");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -376,13 +379,13 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
         }
     }
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id = ?",id).get();
         if(carprogressModal.getEXTERIORCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("EXTERIORCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }else{
 
         }
@@ -391,11 +394,11 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTEXTERIOR=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTEXTERIOR);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
 
@@ -408,10 +411,9 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
     }
 
     private void returnchanges() {
-        ExteriorformModal exteriorformModal = cupboard().withDatabase(db).query(ExteriorformModal.class).withSelection("CARID=1").get();
-        CARID=1;
+        ExteriorformModal exteriorformModal = cupboard().withDatabase(db).query(ExteriorformModal.class).withSelection("id= ?",id).get();
         if(exteriorformModal!=null) {
-            CARID=exteriorformModal.getCARID();
+            id=exteriorformModal.getid();
             helperFormsFunctions.setValueRadiobutton(radioButtonbackexteriorlight,radioButtonbackexteriorlightyes.getId(),radioButtonbackexteriorlightno.getId(),exteriorformModal.getBACKEXTLIGHTS());
             helperFormsFunctions.setValueRadiobutton(radioButtonbodypanel,radioButtonbodypanelyes.getId(),radioButtonbodypanelno.getId(),exteriorformModal.getBODYPANEL());
             helperFormsFunctions.setValueRadiobutton(radioButtonbumper,radioButtonbumperyes.getId(),radioButtonbumperno.getId(),exteriorformModal.getBUMPER());
@@ -452,18 +454,17 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
                 OLDCOST=0f;
             }
             editTextreplacement.setText(exteriorformModal.getCOMMENTEXTERIOR());
-            helperFormsFunctions.loadImageFromStorage(windshieldglassImage,1,CARID,Config.exteriorimg+"windshield");
-            helperFormsFunctions.loadImageFromStorage(rearviewglassImage,1,CARID,Config.exteriorimg+"rearglass");
-            helperFormsFunctions.loadImageFromStorage(bumperImage,1,CARID,Config.exteriorimg+"bumper");
-            helperFormsFunctions.loadImageFromStorage(leftdoorImage,1,CARID,Config.exteriorimg+"leftdoor");
-            helperFormsFunctions.loadImageFromStorage(rightdoorImage,1,CARID,Config.exteriorimg+"rightdoor");
+            helperFormsFunctions.loadImageFromStorage(windshieldglassImage,1,id,Config.exteriorimg+"windshield");
+            helperFormsFunctions.loadImageFromStorage(rearviewglassImage,1,id,Config.exteriorimg+"rearglass");
+            helperFormsFunctions.loadImageFromStorage(bumperImage,1,id,Config.exteriorimg+"bumper");
+            helperFormsFunctions.loadImageFromStorage(leftdoorImage,1,id,Config.exteriorimg+"leftdoor");
+            helperFormsFunctions.loadImageFromStorage(rightdoorImage,1,id,Config.exteriorimg+"rightdoor");
         }else{
             OLDCOST=0f;
         }
     }
 
     private void mapvalues(View view) {
-        CARID=1;
         GRILLINSPECTION=helperFormsFunctions.returnRadioGroup(radioButtongrill,view);
         TRIMINSPECTION=helperFormsFunctions.returnRadioGroup(radioButtontrim,view);
         ROOFRACKINSPECTION=helperFormsFunctions.returnRadioGroup(radioButtonroofrack,view);

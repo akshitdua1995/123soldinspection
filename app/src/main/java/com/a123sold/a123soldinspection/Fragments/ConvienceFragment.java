@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,7 +90,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     private Button saveconvience;
 
     private File output=null;
-    Integer CARID;
+    String id;
     Integer OWNERSGUIDE ;
     Integer KEYREMOTECONTROLS ;
     Integer UNIVERSALTRANSMITTER ;
@@ -117,6 +118,8 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
      * (http://www.buzzingandroid.com/tools/android-layout-finder)
      */
     private void findViews(View rootView) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         pluscar1 = (ImageView)rootView.findViewById( R.id.pluscar1 );
         carImage1 = (ImageView)rootView.findViewById( R.id.carImage1 );
         pluscar2 = (ImageView)rootView.findViewById( R.id.pluscar2 );
@@ -198,7 +201,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     public void onClick(View v) {
         if( v == saveconvience ) {
             mapvalues(v.getRootView());
-            ConvienceModal convienceModal = new ConvienceModal(CARID, OWNERSGUIDE,
+            ConvienceModal convienceModal = new ConvienceModal(id, OWNERSGUIDE,
                     KEYREMOTECONTROLS,
                     UNIVERSALTRANSMITTER,
                     RC,
@@ -210,13 +213,13 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
                     NAMEFINANCIALCORPORATION,
                     REPAIRINGCOSTCONVIENCE,
                     COMMENTCONVIENCE,CUBICCAPACITY,VEHICLEUSEDAS,FINANCERNAME,VIPLICENSEPLATE,DUPLICATEKEY,UNDERHYPOTHECATION);
-            ConvienceModal convienceModalold = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection( "CARID = ?", "1").get();
+            ConvienceModal convienceModalold = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection( "id = ?", id).get();
             if(convienceModalold==null) {
                 Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(convienceModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Sucessfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(ConvienceModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(ConvienceModal.class, "id = ?", id);
                 cupboard().withDatabase(db).put(convienceModal);
             }
             mapcarprogressvalues();
@@ -246,30 +249,28 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     }
 
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
-
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id = ?",id).get();
         if(carprogressModal.getCONVIENCECOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(3);
             values.put("CONVIENCECOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
 
         }
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTCONVIENCE=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTCONVIENCE);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
 
     void mapvalues(View view){
-        CARID=1;
         OWNERSGUIDE=helperFormsFunctions.returnRadioGroup(radioGroupownerguide,view);
         KEYREMOTECONTROLS=helperFormsFunctions.returnRadioGroup(radioGroupkeyremote,view);
         UNIVERSALTRANSMITTER=helperFormsFunctions.returnRadioGroup(radioGroupuniversaltransmittor,view);
@@ -301,10 +302,9 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     }
 
     void returnchanges(){
-        CARID=1;
-        ConvienceModal convienceModal = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("CARID=1").get();
+        ConvienceModal convienceModal = cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("id = ?",id).get();
         if(convienceModal!=null){
-            CARID=convienceModal.getCARID();
+            id=convienceModal.getid();
             helperFormsFunctions.setValueRadiobutton(radioGroupownerguide,radioButtonownerguideyes.getId(),radioButtonownerguideno.getId(),convienceModal.getOWNERSGUIDE());
             helperFormsFunctions.setValueRadiobutton(radioGroupcompany,radioButtoncompanyyes.getId(),radioButtoncompanyno.getId(),convienceModal.getCOMPANY());
             helperFormsFunctions.setValueRadiobutton(radioGrouphplease,radioButtonhpleaseyes.getId(),radioButtonhpleaseno.getId(),convienceModal.getLEASE());
@@ -329,12 +329,12 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             editTextfinancername.setText(convienceModal.getFINANCERNAME());
             editTextviplicenseplate.setText(convienceModal.getVIPLICENSEPLATE());
             editTextvehicleusedas.setText(convienceModal.getVEHICLEUSEDAS());
-            helperFormsFunctions.loadImageFromStorage(carImage1,1,CARID,Config.configimg);
-            helperFormsFunctions.loadImageFromStorage(carImage2,2,CARID,Config.configimg);
-            helperFormsFunctions.loadImageFromStorage(carImage3,3,CARID,Config.configimg);
-            helperFormsFunctions.loadImageFromStorage(carImage4,4,CARID,Config.configimg);
-            helperFormsFunctions.loadImageFromStorage(carImage5,5,CARID,Config.configimg);
-            helperFormsFunctions.loadImageFromStorage(carImage6,6,CARID,Config.configimg);
+            helperFormsFunctions.loadImageFromStorage(carImage1,1,id,Config.configimg);
+            helperFormsFunctions.loadImageFromStorage(carImage2,2,id,Config.configimg);
+            helperFormsFunctions.loadImageFromStorage(carImage3,3,id,Config.configimg);
+            helperFormsFunctions.loadImageFromStorage(carImage4,4,id,Config.configimg);
+            helperFormsFunctions.loadImageFromStorage(carImage5,5,id,Config.configimg);
+            helperFormsFunctions.loadImageFromStorage(carImage6,6,id,Config.configimg);
         }else{
             OLDCOST=0f;
         }
@@ -348,7 +348,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             case 1:
                 carImage1.setImageBitmap(photo);
                 try {
-                    helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.configimg);
+                    helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.configimg);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -356,7 +356,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             case 2:
                 carImage2.setImageBitmap(photo);
                 try {
-                    helperFormsFunctions.saveToInternalStorage(photo,2,CARID,Config.configimg);
+                    helperFormsFunctions.saveToInternalStorage(photo,2,id,Config.configimg);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -364,7 +364,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             case 3:
                 carImage3.setImageBitmap(photo);
                 try {
-                    helperFormsFunctions.saveToInternalStorage(photo,3,CARID,Config.configimg);
+                    helperFormsFunctions.saveToInternalStorage(photo,3,id,Config.configimg);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -372,7 +372,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             case 4:
                 carImage4.setImageBitmap(photo);
                 try {
-                    helperFormsFunctions.saveToInternalStorage(photo,4,CARID,Config.configimg);
+                    helperFormsFunctions.saveToInternalStorage(photo,4,id,Config.configimg);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -380,7 +380,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             case 5:
                 carImage5.setImageBitmap(photo);
                 try {
-                    helperFormsFunctions.saveToInternalStorage(photo,5,CARID,Config.configimg);
+                    helperFormsFunctions.saveToInternalStorage(photo,5,id,Config.configimg);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -388,7 +388,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
             case 6:
                 carImage6.setImageBitmap(photo);
                 try {
-                    helperFormsFunctions.saveToInternalStorage(photo,6,CARID,Config.configimg);
+                    helperFormsFunctions.saveToInternalStorage(photo,6,id,Config.configimg);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

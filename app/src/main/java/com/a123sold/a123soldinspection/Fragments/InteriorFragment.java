@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,7 +169,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     private RadioButton radioButtonheadlineryes;
     private RadioButton radioButtonheadlinerno;
 
-    Integer CARID;
+    String id;
     Integer AIRBAGS;
     Integer SAFTEYBELTS ;
     Integer STEREOANDSPEAKERS ;
@@ -244,6 +245,8 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
      * (http://www.buzzingandroid.com/tools/android-layout-finder)
      */
     private void findViews(View rootView) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         radioButtonheadliner = (RadioGroup)rootView.findViewById( R.id.radioButtonheadliner );
         radioButtonheadlineryes = (RadioButton)rootView.findViewById( R.id.radioButtonheadlineryes );
         radioButtonheadlinerno = (RadioButton)rootView.findViewById( R.id.radioButtonheadlinerno );
@@ -390,31 +393,31 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     }
 
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id=?",id).get();
         if(carprogressModal.getINTERIORCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("INTERIORCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
 
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTINTERIOR=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTINTERIOR);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
     @Override
     public void onClick(View v) {
         if ( v == saveinterior ) {
             mapvalues(v.getRootView());
-            InteriorModal interiorModal =new InteriorModal(CARID,AIRBAGS,SAFTEYBELTS,STEREOANDSPEAKERS,ANTENNA,ALARMSYSTEM
+            InteriorModal interiorModal =new InteriorModal(id,AIRBAGS,SAFTEYBELTS,STEREOANDSPEAKERS,ANTENNA,ALARMSYSTEM
             ,NAVIGATIONSYSTEM,AIRCONDITIONINGSYSTEM,HEATINGSYSTEM,DEFOG,CLOCK,TILTSTEERINGWHEEL,STEERINGCOLUMNLOCK,STEERINGWHEELCONTROLS
             ,HORN,WARNINGCHIMES,INSTRUMENTPANELANDWARNINGLIGHT,WINDSHEILDWIPERS,REARWINDOWWIPER,WASHERS,MAPLIGHTS,OUTSIDEREARVIEWMIRRORS
             ,AUTODIMMINGREARVIEW,BLINDSPOT,REARCAMERA,ACTIVEPARKASSIST,REARENTERTAINMENTSYSTEM,POWEROUTLETS,LIGHTER,ASHTRAYS,GLOVEBOX,
@@ -422,13 +425,13 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                     SEATUPHOLDSTERY,SEATANDHEAD,FOLDINGSEATS,HEATEDSEATS,COOLEDSEATS,CONVERTIBLETOP,SUNROOF,DOORHANDLES,REMOTEENTRY,PUSHBUTTONSTART
             ,DOORLOCKS,CHILDSAFTEYLOCKS,WINDOWCONTROLS,REMOTEDECKLID,FUELFILLERDOOR,CARPETLUGGAGE,CARGONET,CARGOAREALIGHT,JACKTOOLKIT,SIDEWALLINS
             ,PRESSUREINS,TIREKIT,LIDRELEASE,REPAIRINGCOSTINTERIOR,COMMENTINTERIOR);
-            InteriorModal interiorModalold = cupboard().withDatabase(db).query(InteriorModal.class).withSelection( "CARID = ?", "1").get();
+            InteriorModal interiorModalold = cupboard().withDatabase(db).query(InteriorModal.class).withSelection( "id = ?", "1").get();
             if(interiorModalold==null) {
                 Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(interiorModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Sucessfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(InteriorModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(InteriorModal.class, "id = ?", id);
                 cupboard().withDatabase(db).put(interiorModal);
             }
             mapcarprogressvalues();
@@ -459,7 +462,6 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
 
 
     private void mapvalues(View rootView) {
-        CARID=1;
         AIRBAGS=helperFormsFunctions.returnRadioGroup(radioButtonairbags,rootView);
         SAFTEYBELTS=helperFormsFunctions.returnRadioGroup(radioButtonsafteybelts,rootView);
         STEREOANDSPEAKERS=helperFormsFunctions.returnCheckboxValue(checkBoxstereospeakers);
@@ -538,8 +540,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     }
 
     private void returnchanges() {
-        InteriorModal interiorModal = cupboard().withDatabase(db).query(InteriorModal.class).withSelection("CARID=1").get();
-        CARID=1;
+        InteriorModal interiorModal = cupboard().withDatabase(db).query(InteriorModal.class).withSelection("id=?",id).get();
         if(interiorModal!=null){
             checkBoxactiveparkassist.setChecked(helperFormsFunctions.returnCheckboxValue(interiorModal.getACTIVEPARKASSIST()));
             checkBoxseatandhead.setChecked(helperFormsFunctions.returnCheckboxValue(interiorModal.getSEATANDHEAD()));
@@ -614,12 +615,12 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
             helperFormsFunctions.setValueRadiobutton(radioButtonsteeringwheels,radioButtonsteeringwheelsyes.getId(),radioButtonsteeringwheelsno.getId(),interiorModal.getSTEERINGWHEELCONTROLS());
             helperFormsFunctions.setValueRadiobutton(radioButtonrearwiper,radioButtonrearwiperyes.getId(),radioButtonrearwiperno.getId(),interiorModal.getREARWINDOWWIPER());
             helperFormsFunctions.setValueRadiobutton(radioButtonrearentertainment,radioButtonrearentertainmentyes.getId(),radioButtonrearentertainmentsno.getId(),interiorModal.getREARENTERTAINMENTSYSTEM());
-            helperFormsFunctions.loadImageFromStorage(stepneyImage,1,CARID,Config.interiorimg+"stepney");
-            helperFormsFunctions.loadImageFromStorage(sunroofImage,1,CARID,Config.interiorimg+"sunroof");
-            helperFormsFunctions.loadImageFromStorage(carcabinImage,1,CARID,Config.interiorimg+"cabin");
-            helperFormsFunctions.loadImageFromStorage(compartmentImage,1,CARID,Config.interiorimg+"compartment");
-            helperFormsFunctions.loadImageFromStorage(carstereoImage,1,CARID,Config.interiorimg+"stereo");
-            helperFormsFunctions.loadImageFromStorage(caracmetreImage,1,CARID,Config.interiorimg+"acmetre");
+            helperFormsFunctions.loadImageFromStorage(stepneyImage,1,id,Config.interiorimg+"stepney");
+            helperFormsFunctions.loadImageFromStorage(sunroofImage,1,id,Config.interiorimg+"sunroof");
+            helperFormsFunctions.loadImageFromStorage(carcabinImage,1,id,Config.interiorimg+"cabin");
+            helperFormsFunctions.loadImageFromStorage(compartmentImage,1,id,Config.interiorimg+"compartment");
+            helperFormsFunctions.loadImageFromStorage(carstereoImage,1,id,Config.interiorimg+"stereo");
+            helperFormsFunctions.loadImageFromStorage(caracmetreImage,1,id,Config.interiorimg+"acmetre");
         }else{
             OLDCOST=0f;
         }
@@ -666,7 +667,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 case 1:
                     carcabinImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"cabin");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.interiorimg+"cabin");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -674,7 +675,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 case 2:
                     carstereoImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"stereo");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.interiorimg+"stereo");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -682,7 +683,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 case 3:
                     caracmetreImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"acmetre");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.interiorimg+"acmetre");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -690,7 +691,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 case 4:
                     sunroofImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"sunroof");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.interiorimg+"sunroof");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -698,7 +699,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 case 5:
                     compartmentImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"compartment");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.interiorimg+"compartment");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -706,7 +707,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 case 6:
                     stepneyImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.interiorimg+"stepney");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.interiorimg+"stepney");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

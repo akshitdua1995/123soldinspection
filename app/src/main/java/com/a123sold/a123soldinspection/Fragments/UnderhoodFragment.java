@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     private EditText editTextreplacement;
     private Button saveunderhood;
     private ImageView engine1,engine2,plusengine1,plusengine2;
-    Integer CARID;
+    String id;
     Integer ENGINEOIL ;
     Integer CHASISTUBE ;
     Integer COOLANT ;
@@ -97,8 +98,9 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     }
 
     private void returnchanges() {
-        CARID=1;
-        UnderhoodModal underhoodModal = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection("CARID=1").get();
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
+        UnderhoodModal underhoodModal = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection("id=?",id).get();
         ArrayList<String> values0;
         ArrayList<String> values1;
         ArrayList<String> values2;
@@ -171,8 +173,8 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
                 OLDCOST=0f;
             }
             editTextreplacement.setText(underhoodModal.getCOMMENTUNDERHOOD());
-            helperFormsFunctions.loadImageFromStorage(engine1,1,CARID,Config.underhoodimg+"engine");
-            helperFormsFunctions.loadImageFromStorage(engine2,2,CARID,Config.underhoodimg+"engine");
+            helperFormsFunctions.loadImageFromStorage(engine1,1,id,Config.underhoodimg+"engine");
+            helperFormsFunctions.loadImageFromStorage(engine2,2,id,Config.underhoodimg+"engine");
         }else{
             OLDCOST=0f;
             values0=null;
@@ -194,23 +196,23 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     }
 
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id=?",id).get();
         if(carprogressModal.getUNDERHOODCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("UNDERHOODCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTUNDERHOOD=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTUNDERHOOD);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
     void initialize(View rootView){
@@ -241,19 +243,19 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
         if(v==saveunderhood) {
             mapvalues();
             mapcarprogressvalues();
-            UnderhoodModal underhoodModal = new UnderhoodModal(CARID, ENGINEOIL, CHASISTUBE, COOLANT, BRAKEFLUID, TRANSAXLEFLUID,
+            UnderhoodModal underhoodModal = new UnderhoodModal(id, ENGINEOIL, CHASISTUBE, COOLANT, BRAKEFLUID, TRANSAXLEFLUID,
                     TRANSFERCASEFUID, DRIVEAXLEFLUID, POWERSTEERINGFLUID, MANUALTRANSFLUID, WASHERFLUID, AIRCONDITIONINGSYSTEMCHARGE,
                     FLUIDLEAKS, HOSESLINESFITTINGS, BELTS, WIRING, OILINAIRCLEANSER, WATERSLUDGEOIL, OILPRESSURE, RELATIVECYLENDIRCOMPRESSION, TIMINGBELT
                     , ENGINEMOUNTS, TURBOCHARGERAIRCOOLER, RADIATOR, RADIATORCAP, COOLINGFANS, WATERPUMP, COOLANTRECOVERYTANK, CABINAIRFILTER,
                     FUELPUMPNOISENORMAL, FUELPUMPPRESSURE, FUELFILTER, ENGINEAIRFILTER, STARTEROPERATION, IGNITIONSYSTEM, BATTERY,
                     ALTERNATOROUTPUT, DIESELGLOWPLUGSYSTEM, REPAIRINGCOSTUNDERHOOD, COMMENTUNDERHOOD);
-            UnderhoodModal underhoodModalold = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection("CARID = ?", "1").get();
+            UnderhoodModal underhoodModalold = cupboard().withDatabase(db).query(UnderhoodModal.class).withSelection("id = ?", id).get();
             if (underhoodModalold == null) {
                 Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(underhoodModal);
             } else {
                 Toast.makeText(getActivity(), "Changes Made Sucessfully", Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(UnderhoodModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(UnderhoodModal.class, "id = ?", id);
                 cupboard().withDatabase(db).put(underhoodModal);
             }
             Intent resultIntent = new Intent();
@@ -280,7 +282,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
                 case 1:
                     engine1.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.underhoodimg+"engine");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.underhoodimg+"engine");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -288,7 +290,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
                 case 2:
                     engine2.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,2,CARID,Config.underhoodimg+"engine");
+                        helperFormsFunctions.saveToInternalStorage(photo,2,id,Config.underhoodimg+"engine");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -298,7 +300,6 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
 
     private void mapvalues() {
         SeekBarListAdapter adapter= (SeekBarListAdapter) listViewFluids.getAdapter();
-        CARID=1;
         ENGINEOIL=Integer.valueOf(adapter.values.get(0)) ;
         CHASISTUBE=Integer.valueOf(adapter.values.get(1));
         COOLANT=Integer.valueOf(adapter.values.get(2));

@@ -4,7 +4,7 @@ package com.a123sold.a123soldinspection.modals;
  * Created by akshit on 29/7/16.
  */
 public class ConvienceModal {
-    Integer CARID;
+    String id;
     Integer OWNERSGUIDE ;
     Integer KEYREMOTECONTROLS ;
     Integer UNIVERSALTRANSMITTER ;
@@ -24,8 +24,8 @@ public class ConvienceModal {
     Integer DUPLICATEKEY;
     Integer UNDERHYPOTHECATION;
 
-    public ConvienceModal(Integer CARID, Integer OWNERSGUIDE, Integer KEYREMOTECONTROLS, Integer UNIVERSALTRANSMITTER, Integer RC, Integer POLLUTIONCERTI, Integer COMPANY, String INSAURANCEVALIDITY, Integer LIFETAXPAID, Integer LEASE, String NAMEFINANCIALCORPORATION, Float REPAIRINGCOSTCONVIENCE, String COMMENTCONVIENCE, String CUBICCAPACITY, String VEHICLEUSEDAS, String FINANCERNAME, String VIPLICENSEPLATE, Integer DUPLICATEKEY, Integer UNDERHYPOTHECATION) {
-        this.CARID = CARID;
+    public ConvienceModal(String id, Integer OWNERSGUIDE, Integer KEYREMOTECONTROLS, Integer UNIVERSALTRANSMITTER, Integer RC, Integer POLLUTIONCERTI, Integer COMPANY, String INSAURANCEVALIDITY, Integer LIFETAXPAID, Integer LEASE, String NAMEFINANCIALCORPORATION, Float REPAIRINGCOSTCONVIENCE, String COMMENTCONVIENCE, String CUBICCAPACITY, String VEHICLEUSEDAS, String FINANCERNAME, String VIPLICENSEPLATE, Integer DUPLICATEKEY, Integer UNDERHYPOTHECATION) {
+        this.id = id;
         this.OWNERSGUIDE = OWNERSGUIDE;
         this.KEYREMOTECONTROLS = KEYREMOTECONTROLS;
         this.UNIVERSALTRANSMITTER = UNIVERSALTRANSMITTER;
@@ -50,8 +50,8 @@ public class ConvienceModal {
 
     }
 
-    public Integer getCARID() {
-        return CARID;
+    public String getid() {
+        return id;
     }
 
     public Integer getOWNERSGUIDE() {

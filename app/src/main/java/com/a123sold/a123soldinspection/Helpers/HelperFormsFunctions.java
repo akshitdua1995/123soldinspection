@@ -41,7 +41,7 @@ public class HelperFormsFunctions {
         this.fragment=fragment;
     }
 
-    public void loadImageFromStorage(ImageView img, int num, int CARID,String name)
+    public void loadImageFromStorage(ImageView img, int num, String CARID,String name)
     {
 
         try {
@@ -119,7 +119,7 @@ public class HelperFormsFunctions {
             radioGroup.check(noid);
     }
 
-    public String saveToInternalStorage(Bitmap bitmapImage,int imgno,int CARID,String name) throws IOException {
+    public String saveToInternalStorage(Bitmap bitmapImage,int imgno,String CARID,String name) throws IOException {
         ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
         // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("images", Context.MODE_PRIVATE);

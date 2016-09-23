@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
     private EditText editTextreplacement;
     private Button saveroadtest;
 
-    Integer CARID;
+    String id;
     Integer ENGINESTARTPROPERLY ;
     Integer ENGINEIDLESPROPERLY ;
     Integer REMOTESTARTSYSTEM ;
@@ -74,6 +75,8 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
     Float OLDCOST;
 
     private void findViews(View rootView) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         checkBoxenginestart = (CheckBox)rootView.findViewById( R.id.checkBoxenginestart );
         checkBoxengineidle = (CheckBox)rootView.findViewById( R.id.checkBoxengineidle );
         checkBoxremortstartsystem = (CheckBox)rootView.findViewById( R.id.checkBoxremortstartsystem );
@@ -109,16 +112,16 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
             mapvalues();
             mapcarprogressvalues();
             RoadtestModal roadtestModal=new    
-            RoadtestModal(CARID,ENGINESTARTPROPERLY,ENGINEIDLESPROPERLY,REMOTESTARTSYSTEM,ENGINEACCELERATES,ENGINENOISE
+            RoadtestModal(id,ENGINESTARTPROPERLY,ENGINEIDLESPROPERLY,REMOTESTARTSYSTEM,ENGINEACCELERATES,ENGINENOISE
                 ,TRANSAXLEOPERATION,TRANSAXLENOISENORMAL,SHIFTINTERLOCK,DRIVEAXLE,CLUTCHOPERATE,STEERSNORMALLY,BODYSQUEAKS
                 ,SHOCKESOPERATES,BRAKESOPERATES,CRUISECONTROL,GAUGESOPERATEPROPERLY,MEMORYPROFILESYSTEM,NOWINDNOISE,REPAIRINGCOSTROADTEST,COMMENTROADTEST);
-            RoadtestModal roadtestModalold = cupboard().withDatabase(db).query(RoadtestModal.class).withSelection( "CARID = ?", "1").get();
+            RoadtestModal roadtestModalold = cupboard().withDatabase(db).query(RoadtestModal.class).withSelection( "id = ?", id).get();
             if(roadtestModalold==null) {
                 Toast.makeText(getActivity(),"Save Successfully",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(roadtestModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Successfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(RoadtestModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(RoadtestModal.class, "id = ?", id);
                 cupboard().withDatabase(db).put(roadtestModal);
             }
             Intent resultIntent = new Intent();
@@ -136,7 +139,7 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
         return rootView;
     }
     void returnchanges(){
-        RoadtestModal roadtestModal = cupboard().withDatabase(db).query(RoadtestModal.class).withSelection("CARID=1").get();
+        RoadtestModal roadtestModal = cupboard().withDatabase(db).query(RoadtestModal.class).withSelection("id=?",id).get();
         if(roadtestModal!=null){
             checkBoxenginestart.setChecked(helperFormsFunctions.returnCheckboxValue(roadtestModal.getENGINESTARTPROPERLY()));
             checkBoxengineidle.setChecked(helperFormsFunctions.returnCheckboxValue(roadtestModal.getENGINEIDLESPROPERLY()));
@@ -170,27 +173,26 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
     }
 
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id=?",id).get();
         if(carprogressModal.getROADTESTCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("ROADTESTCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTROADTEST=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTROADTEST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
     void mapvalues(){
-        CARID=1;
         ENGINESTARTPROPERLY = helperFormsFunctions.returnCheckboxValue(checkBoxenginestart);
         ENGINEIDLESPROPERLY = helperFormsFunctions.returnCheckboxValue(checkBoxengineidle);
         REMOTESTARTSYSTEM = helperFormsFunctions.returnCheckboxValue(checkBoxremortstartsystem);

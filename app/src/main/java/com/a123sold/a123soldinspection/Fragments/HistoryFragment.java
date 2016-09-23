@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
     private Button savehistory;
 
     Float OLDCOST;
-    Integer CARID;
+    String id;
     Integer VIN ;
     Integer SERVICERECALL ;
     Integer VEHICLEHISTORYREPORT ;
@@ -55,6 +56,8 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
     String COMMENTHISTORY ;
 
     private void findViews(View rootView) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         plusImage = (ImageView)rootView.findViewById( R.id.plusImage );
         chasisImage = (ImageView)rootView.findViewById( R.id.chasisImage );
         checkBoxvininspection = (CheckBox)rootView.findViewById( R.id.checkBoxvininspection );
@@ -84,14 +87,14 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
         if ( v == savehistory ) {
             mapvalues();
             mapcarprogressvalues();
-            HistoryModal historyModal=new HistoryModal(CARID,VIN,SERVICERECALL,VEHICLEHISTORYREPORT,SCHEDULEDMAINTENANCE,VEHICLEEMISSIONS,REPAIRINGCOSTHISTORY,COMMENTHISTORY);
-            HistoryModal historyModalold = cupboard().withDatabase(db).query(HistoryModal.class).withSelection( "CARID = ?", "1").get();
+            HistoryModal historyModal=new HistoryModal(id,VIN,SERVICERECALL,VEHICLEHISTORYREPORT,SCHEDULEDMAINTENANCE,VEHICLEEMISSIONS,REPAIRINGCOSTHISTORY,COMMENTHISTORY);
+            HistoryModal historyModalold = cupboard().withDatabase(db).query(HistoryModal.class).withSelection( "id = ?",id).get();
             if(historyModalold==null) {
                 Toast.makeText(getActivity(),"Save Successfully",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(historyModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Successfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(HistoryModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(HistoryModal.class, "id = ?",id);
                 cupboard().withDatabase(db).put(historyModal);
             }
             Intent resultIntent = new Intent();
@@ -111,7 +114,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
                 case 1:
                     chasisImage.setImageBitmap(photo);
                     try {
-                        helperFormsFunctions.saveToInternalStorage(photo,1,CARID,Config.historyimg+"chasis");
+                        helperFormsFunctions.saveToInternalStorage(photo,1,id,Config.historyimg+"chasis");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -120,28 +123,27 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
     }
 
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id=?",id).get();
         if(carprogressModal.getHISTORYCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("HISTORYCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTHISTORY=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTHISTORY);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
 
     void mapvalues(){
-        CARID=1;
         VIN=helperFormsFunctions.returnCheckboxValue(checkBoxvininspection);
         SERVICERECALL=helperFormsFunctions.returnCheckboxValue(checkBoxservicerecall);
         VEHICLEHISTORYREPORT=helperFormsFunctions.returnCheckboxValue(checkBoxhistoryreport);
@@ -163,8 +165,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
 
 
     private void returnchanges() {
-        CARID=1;
-        HistoryModal historyModal = cupboard().withDatabase(db).query(HistoryModal.class).withSelection("CARID=1").get();
+        HistoryModal historyModal = cupboard().withDatabase(db).query(HistoryModal.class).withSelection("id=?",id).get();
         if(historyModal!=null){
             checkBoxvininspection.setChecked(helperFormsFunctions.returnCheckboxValue(historyModal.getVIN()));;
             checkBoxservicerecall.setChecked(helperFormsFunctions.returnCheckboxValue(historyModal.getSERVICERECALL()));;
@@ -178,7 +179,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
             }else{
                 OLDCOST=0f;
             }
-            helperFormsFunctions.loadImageFromStorage(chasisImage,1,CARID,Config.historyimg+"chasis");
+            helperFormsFunctions.loadImageFromStorage(chasisImage,1,id,Config.historyimg+"chasis");
         }else{
             OLDCOST=0f;
         }

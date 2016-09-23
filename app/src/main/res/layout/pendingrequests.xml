@@ -5,6 +5,7 @@
     <RelativeLayout
         android:background="@color/white"
         android:layout_width="match_parent"
+        android:id="@+id/nopendingview"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,4 +35,10 @@
 
         </LinearLayout>
     </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pendingrequest_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        />
 </LinearLayout>

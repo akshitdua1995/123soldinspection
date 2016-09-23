@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
     private Button savehybrid;
     HelperFormsFunctions helperFormsFunctions;
 
-    Integer CARID;
+    String id;
     Integer HYBRIDCOOLINGSYSTEM;
     Integer SWITCHABLEPOWERTRAINMOUNT;
     Integer HYBRIDENTERTAINMENTANDINFORMATIONDISPLAY;
@@ -52,7 +53,10 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
         returnchanges();
         return rootView;
     }
+
     private void findViews(View rootview) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         helperFormsFunctions=new HelperFormsFunctions(getActivity(),this);
         checkBoxhybridcoolingsystem = (CheckBox)rootview.findViewById( R.id.checkBoxhybridcoolingsystem );
         checkBoxswitchableport = (CheckBox)rootview.findViewById( R.id.checkBoxswitchableport );
@@ -68,7 +72,7 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
     }
 
     void returnchanges(){
-        HybridformModal hybridformModal = cupboard().withDatabase(db).query(HybridformModal.class).withSelection("CARID=1").get();
+        HybridformModal hybridformModal = cupboard().withDatabase(db).query(HybridformModal.class).withSelection("id=?",id).get();
         if(hybridformModal!=null){
             checkBoxhybridcoolingsystem.setChecked(helperFormsFunctions.returnCheckboxValue(hybridformModal.getHYBRIDCOOLINGSYSTEM()));
             checkBoxswitchableport.setChecked(helperFormsFunctions.returnCheckboxValue(hybridformModal.getSWITCHABLEPOWERTRAINMOUNT()));
@@ -87,42 +91,42 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
 
     }
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id=?",id).get();
         if(carprogressModal.getHYBRIDCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("HYBRIDCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTHYBRID=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTHYBRID);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
     @Override
     public void onClick(View v) {
         if ( v == savehybrid ) {
             mapvalues();
-            HybridformModal hybridformModal=new HybridformModal(CARID, HYBRIDCOOLINGSYSTEM,
+            HybridformModal hybridformModal=new HybridformModal(id, HYBRIDCOOLINGSYSTEM,
             SWITCHABLEPOWERTRAINMOUNT,
             HYBRIDENTERTAINMENTANDINFORMATIONDISPLAY,
             POWEROUTLET,
             REPAIRINGCOSTHYBRID,
             COMMENTHYBRID);
-            HybridformModal hybridModalold = cupboard().withDatabase(db).query(HybridformModal.class).withSelection( "CARID = ?", "1").get();
+            HybridformModal hybridModalold = cupboard().withDatabase(db).query(HybridformModal.class).withSelection( "id = ?", id).get();
             if(hybridModalold==null) {
                 Toast.makeText(getActivity(),"Save Successfully",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(hybridformModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Successfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(HybridformModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(HybridformModal.class, "id = ?", id);
                 cupboard().withDatabase(db).put(hybridformModal);
             }
             mapcarprogressvalues();
@@ -134,7 +138,6 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
     }
 
     void mapvalues(){
-        CARID=1;
         HYBRIDCOOLINGSYSTEM=helperFormsFunctions.returnCheckboxValue(checkBoxhybridcoolingsystem);
         SWITCHABLEPOWERTRAINMOUNT=helperFormsFunctions.returnCheckboxValue(checkBoxswitchableport);
         HYBRIDENTERTAINMENTANDINFORMATIONDISPLAY=helperFormsFunctions.returnCheckboxValue(checkBoxhybridentertainment);

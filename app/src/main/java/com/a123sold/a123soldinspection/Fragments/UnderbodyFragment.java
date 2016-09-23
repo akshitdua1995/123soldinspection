@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,7 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     private EditText editTextreplacement;
     private Button saveunderbody;
 
-    Integer CARID;
+    String id;
     Integer FRAMEDAMAGE ;
     Integer FUELSUPPLYSYSTEM ;
     Integer EXHAUSTSYSTEMCONDITION ;
@@ -115,6 +116,8 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     Float OLDCOST;
 
     private void findViews(View view) {
+        id=getActivity().getIntent().getExtras().getString("id");
+        Log.d("id",id);
         radioButtonframedamage = (RadioGroup)view.findViewById( R.id.radioButtonframedamage );
         radioButtonframedamageyes = (RadioButton)view.findViewById( R.id.radioButtonframedamageyes );
         radioButtonframedamageno = (RadioButton)view.findViewById( R.id.radioButtonframedamageno );
@@ -174,18 +177,18 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
         if ( v == saveunderbody ) {
             mapvalues(v.getRootView());
             mapcarprogressvalues();
-            UnderbodyformModal underbodyformModal=new UnderbodyformModal(CARID,FRAMEDAMAGE,FUELSUPPLYSYSTEM,EXHAUSTSYSTEMCONDITION
+            UnderbodyformModal underbodyformModal=new UnderbodyformModal(id,FRAMEDAMAGE,FUELSUPPLYSYSTEM,EXHAUSTSYSTEMCONDITION
             ,EMISSIONSCONTROLTEST,AUTOMATICTRANSMISSION,MANUALTRANSMISSION,HUBOPERATION,UNIVERSALJOINTS,TRANSMISSIONMOUNTS,DIFFERNTIALDRIVEAXLE
             ,TIRESMATCH,WHEELSMATCH,TIREDEPTHFRONT,TIREDEPTHREAR,NORMALTIREWEAR,TIREPRESSUREFRONT,TIREPRESSUREBACK,TIREPRESSUREMONITOR,WHEELS,WHEELCOVERANDCENTERCAPS
             ,RACKPINION,CONTROLARMS,TIERODS,SWAYBARS,SPRINGS,STRUTSANDSHOCKS,WHEELALIGNMENT,POWERSTEERINGPUMP,WHEELSCYLENDIRS
             ,BRAKEPADFRONT,BRAKEPADREAR,ROTORSANDDRUMS,BRAKELINES,PARKINGBRAKE,MASTERCYLENDIRBOOSTER,REPAIRINGCOSTUNDERBODY,COMMENTUNDERBODY);
-            UnderbodyformModal underbodyformModalold = cupboard().withDatabase(db).query(UnderbodyformModal.class).withSelection( "CARID = ?", "1").get();
+            UnderbodyformModal underbodyformModalold = cupboard().withDatabase(db).query(UnderbodyformModal.class).withSelection( "id = ?", id).get();
             if(underbodyformModalold==null) {
                 Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(underbodyformModal);
             }else{
                 Toast.makeText(getActivity(),"Changes Made Sucessfully",Toast.LENGTH_SHORT).show();
-                cupboard().withDatabase(db).delete(UnderbodyformModal.class, "CARID = ?", "1");
+                cupboard().withDatabase(db).delete(UnderbodyformModal.class, "id = ?", id);
                 cupboard().withDatabase(db).put(underbodyformModal);
             }
             Intent resultIntent = new Intent();
@@ -196,28 +199,27 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     }
 
     private void mapcarprogressvalues() {
-        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("CARID=1").get();
+        CarprogressModal carprogressModal=cupboard().withDatabase(db).query(CarprogressModal.class).withSelection("id=?",id).get();
         if(carprogressModal.getUNDERBODYCOMPLETED()==false) {
             int progress=carprogressModal.getPROGRESS()+ Config.progress_per_category;
             ContentValues values = new ContentValues(2);
             values.put("UNDERBODYCOMPLETED", true);
             values.put("PROGRESS",progress);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
         try {
             ContentValues values = new ContentValues(1);
             REPAIRINGCOSTUNDERBODY=Float.valueOf(editTextreplacementcost.getText().toString());
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST+REPAIRINGCOSTUNDERBODY);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }catch (Exception e){
             ContentValues values = new ContentValues(1);
             values.put("TOTAL_REPAIRING_COST",carprogressModal.getTOTAL_REPAIRING_COST()-OLDCOST);
-            cupboard().withDatabase(db).update(CarprogressModal.class, values, "CARID = ?", "1");
+            cupboard().withDatabase(db).update(CarprogressModal.class, values, "id = ?", id);
         }
     }
     
     void mapvalues(View view){
-        CARID=1;
         FRAMEDAMAGE= helperFormsFunctions.returnRadioGroup(radioButtonframedamage,view);
         FUELSUPPLYSYSTEM=helperFormsFunctions.returnCheckboxValue(checkBoxFuelSupply); 
         EXHAUSTSYSTEMCONDITION=helperFormsFunctions.returnCheckboxValue(checkBoxexhaustsystemcondition);
@@ -289,7 +291,7 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     }
 
     void returnchanges(){
-        UnderbodyformModal underbodyformModal = cupboard().withDatabase(db).query(UnderbodyformModal.class).withSelection("CARID=1").get();
+        UnderbodyformModal underbodyformModal = cupboard().withDatabase(db).query(UnderbodyformModal.class).withSelection("id=?",id).get();
         if(underbodyformModal!=null){
             helperFormsFunctions.setValueRadiobutton(radioButtonframedamage,radioButtonframedamageyes.getId(),radioButtonframedamageno.getId(),underbodyformModal.getFRAMEDAMAGE());
             checkBoxFuelSupply.setChecked(helperFormsFunctions.returnCheckboxValue(underbodyformModal.getFUELSUPPLYSYSTEM()));

@@ -4,7 +4,7 @@ package com.a123sold.a123soldinspection.modals;
  * Created by akshit on 29/7/16.
  */
 public class RoadtestModal {
-    Integer CARID;
+    String id;
     Integer ENGINESTARTPROPERLY ;
     Integer ENGINEIDLESPROPERLY ;
     Integer REMOTESTARTSYSTEM ;
@@ -27,8 +27,8 @@ public class RoadtestModal {
     String COMMENTROADTEST ;
 
     public RoadtestModal(){}
-    public RoadtestModal(Integer CARID, Integer ENGINESTARTPROPERLY, Integer ENGINEIDLESPROPERLY, Integer REMOTESTARTSYSTEM, Integer ENGINEACCELERATES, Integer ENGINENOISE, Integer TRANSAXLEOPERATION, Integer TRANSAXLENOISENORMAL, Integer SHIFTINTERLOCK, Integer DRIVEAXLE, Integer CLUTCHOPERATE, Integer STEERSNORMALLY, Integer BODYSQUEAKS, Integer SHOCKESOPERATES, Integer BRAKESOPERATES, Integer CRUISECONTROL, Integer GAUGESOPERATEPROPERLY, Integer MEMORYPROFILESYSTEM, Integer NOWINDNOISE, Float REPAIRINGCOSTROADTEST, String COMMENTROADTEST) {
-        this.CARID = CARID;
+    public RoadtestModal(String id, Integer ENGINESTARTPROPERLY, Integer ENGINEIDLESPROPERLY, Integer REMOTESTARTSYSTEM, Integer ENGINEACCELERATES, Integer ENGINENOISE, Integer TRANSAXLEOPERATION, Integer TRANSAXLENOISENORMAL, Integer SHIFTINTERLOCK, Integer DRIVEAXLE, Integer CLUTCHOPERATE, Integer STEERSNORMALLY, Integer BODYSQUEAKS, Integer SHOCKESOPERATES, Integer BRAKESOPERATES, Integer CRUISECONTROL, Integer GAUGESOPERATEPROPERLY, Integer MEMORYPROFILESYSTEM, Integer NOWINDNOISE, Float REPAIRINGCOSTROADTEST, String COMMENTROADTEST) {
+        this.id = id;
         this.ENGINESTARTPROPERLY = ENGINESTARTPROPERLY;
         this.ENGINEIDLESPROPERLY = ENGINEIDLESPROPERLY;
         this.REMOTESTARTSYSTEM = REMOTESTARTSYSTEM;
@@ -51,8 +51,8 @@ public class RoadtestModal {
         this.COMMENTROADTEST = COMMENTROADTEST;
     }
 
-    public Integer getCARID() {
-        return CARID;
+    public String getid() {
+        return id;
     }
 
     public Integer getENGINESTARTPROPERLY() {

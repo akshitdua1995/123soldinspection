@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         navigationList.setSelection(0);
         actionBar.setDisplayShowHomeEnabled(true);
         HelperFormsFunctions helperFormsFunctions = new HelperFormsFunctions(this, null);
-        helperFormsFunctions.loadImageFromStorage(profileimage, 1, 1, "profileimage");
+        helperFormsFunctions.loadImageFromStorage(profileimage, 1, "1", "profileimage");
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         profileimage.setImageBitmap(newProfilePic);
                         try {
                             HelperFormsFunctions helperFormsFunctions = new HelperFormsFunctions(this, null);
-                            helperFormsFunctions.saveToInternalStorage(newProfilePic, 1, 1, "profileimage");
+                            helperFormsFunctions.saveToInternalStorage(newProfilePic, 1, "1", "profileimage");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

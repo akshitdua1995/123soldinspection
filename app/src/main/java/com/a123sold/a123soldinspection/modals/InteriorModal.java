@@ -4,7 +4,7 @@ package com.a123sold.a123soldinspection.modals;
  * Created by akshit on 29/7/16.
  */
 public class InteriorModal {
-    Integer CARID;
+    String id;
     Integer AIRBAGS;
     Integer SAFTEYBELTS ;
     Integer STEREOANDSPEAKERS ;
@@ -71,7 +71,7 @@ public class InteriorModal {
     String COMMENTINTERIOR ;
 
     public InteriorModal(){}
-    public InteriorModal(Integer CARID, Integer AIRBAGS, Integer SAFTEYBELTS, Integer STEREOANDSPEAKERS,
+    public InteriorModal(String id, Integer AIRBAGS, Integer SAFTEYBELTS, Integer STEREOANDSPEAKERS,
                          Integer ANTENNA, Integer ALARMSYSTEM, Integer NAVIGATIONSYSTEM, Integer AIRCONDITIONINGSYSTEM,
                          Integer HEATINGSYSTEM, Integer DEFOG, Integer CLOCK, Integer TILTSTEERINGWHEEL,
                          Integer STEERINGCOLUMNLOCK, Integer STEERINGWHEELCONTROLS, Integer HORN, Integer WARNINGCHIMES,
@@ -87,7 +87,7 @@ public class InteriorModal {
                          Integer REMOTEDECKLID, Integer FUELFILLERDOOR, Integer CARPETLUGGAGE, Integer CARGONET,
                          Integer CARGOAREALIGHT, Integer JACKTOOLKIT, Integer SIDEWALLINS, Integer PRESSUREINS,
                          Integer TIREKIT, Integer LIDRELEASE, Float REPAIRINGCOSTINTERIOR, String COMMENTINTERIOR) {
-        this.CARID = CARID;
+        this.id = id;
         this.AIRBAGS = AIRBAGS;
         this.SAFTEYBELTS = SAFTEYBELTS;
         this.STEREOANDSPEAKERS = STEREOANDSPEAKERS;
@@ -154,8 +154,8 @@ public class InteriorModal {
         this.COMMENTINTERIOR = COMMENTINTERIOR;
     }
 
-    public Integer getCARID() {
-        return CARID;
+    public String getid() {
+        return id;
     }
 
     public Integer getAIRBAGS() {

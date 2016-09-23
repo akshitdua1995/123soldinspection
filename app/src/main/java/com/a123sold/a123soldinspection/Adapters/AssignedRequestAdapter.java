@@ -1,5 +1,6 @@
 package com.a123sold.a123soldinspection.Adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,15 +10,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.a123sold.a123soldinspection.Helpers.ViewsVisibility;
+import com.a123sold.a123soldinspection.InspectionCategories;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
 
 import java.util.ArrayList;
 
 public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequestAdapter.MyViewHolder> {
-    private ArrayList<NewRequestDataModal> dataSet;
+    private static ArrayList<NewRequestDataModal> dataSet;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView requestid,make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
         ImageView imagecar;
@@ -40,14 +43,26 @@ public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequest
             this.startbutton=(Button)itemView.findViewById(R.id.acceptbutton);
             this.startbutton.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
             if(v==this.startbutton){
-                int itemposition=getAdapterPosition();
-                Log.d("name",this.customername.getText().toString());
+                NewRequestDataModal data=dataSet.get(getAdapterPosition());
+                removeAt(getAdapterPosition());
+                if(dataSet.size()==0){
+                    ViewsVisibility.PendingrelativeLayout.setVisibility(View.VISIBLE);
+                }
+                ViewsVisibility.pendingRequestAdapter.addData(data);
+                Intent i=new Intent(ViewsVisibility.conextActivity, InspectionCategories.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("id", data.getId());
+                i.putExtra("name",data.getOwnerName());
+                i.putExtra("make",data.getMake());
+                i.putExtra("model",data.getModel());
+                i.putExtra("version",data.getVersion());
+                ViewsVisibility.conextActivity.startActivity(i);
             }
         }
+
     }
     public AssignedRequestAdapter(ArrayList<NewRequestDataModal> data) {
         this.dataSet = data;
@@ -79,8 +94,10 @@ public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequest
         owner=holder.owner;
         location=holder.location;
         customername=holder.customername;
+        startbutton=holder.startbutton;
         customermobilenumber=holder.customermobilenumber;
         imagecar=holder.imagecar;
+        startbutton.setText("Start");
         requestid.setText(dataSet.get(listPosition).getId());
         requestid.setVisibility(View.GONE);
         make.setText(dataSet.get(listPosition).getMake());
@@ -96,10 +113,24 @@ public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequest
         //customermobilenumber.setText(dataSet.get(listPosition).getCustomermobilenumber());
         //imagecar.setImageResource(dataSet.get(listPosition).getImage());
     }
-
+    public void addData(NewRequestDataModal data){
+        Log.d("beforeSize",String.valueOf((dataSet.size())));
+        dataSet.add(data);
+        notifyDataSetChanged();
+        notifyItemInserted(0);
+        notifyItemRangeChanged(0,dataSet.size());
+        ViewsVisibility.AssignedrelativeLayout.setVisibility(View.GONE);
+        Log.d("Size",String.valueOf((dataSet.size())));
+    }
     @Override
     public int getItemCount() {
         return dataSet.size();
+    }
+
+    public void removeAt(int position) {
+        dataSet.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, dataSet.size());
     }
 }
 

@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.a123sold.a123soldinspection.Adapters.AssignedRequestAdapter;
 import com.a123sold.a123soldinspection.Adapters.NewRequestAdapter;
 import com.a123sold.a123soldinspection.LoginActivity;
 import com.a123sold.a123soldinspection.MainActivity;
@@ -209,6 +211,44 @@ public class JsonRequest {
         ServerSingleton.getInstance(context).addToRequestQueue(req);
     }
 
+    public void AcceptRequest(String URL, String auctionId) throws JSONException {
+        progressBar.setVisibility(View.VISIBLE);
+        JSONObject params = new JSONObject();
+        SharedPreferences sharedpreferences = activity.getSharedPreferences(Config.localUserDB, activity.MODE_PRIVATE);
+        String userId = sharedpreferences.getString("userId", null);
+        params.put("userId", userId);
+        params.put("auctionId",auctionId);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Log.d("acceptresponse",response.toString());
+                            progressBar.setVisibility(View.GONE);
+                        } catch (Exception e) {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(activity.getApplicationContext(), "Invalid Response", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(activity.getApplicationContext(), "Invalid Response", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                SharedPreferences sharedpreferences = activity.getSharedPreferences(Config.localUserDB, activity.MODE_PRIVATE);
+                String authToken = sharedpreferences.getString("authToken", null);
+                params.put("authToken", authToken);
+                return params;
+            }
+        };
+        ServerSingleton.getInstance(context).addToRequestQueue(req);
+    }
+
 
 
     //Parsing the json response for new requests and setting them to recycler view.
@@ -231,14 +271,16 @@ public class JsonRequest {
     }
 
     void parseAcceptedRequests(JSONObject response,RecyclerView recyclerView, RelativeLayout relativeLayout) throws JSONException{
+        Log.d("auctionsaccepted",response.toString());
         if(response.has("auctions")){
             jsonresponseaccepted =new JSONObject(response.toString());
             Gson gson=new Gson();
             AcceptedRequestList list= gson.fromJson(jsonresponseaccepted.toString(), AcceptedRequestList.class);
             ArrayList<NewRequestDataModal> auctionDetails = list.getAuctionsData();
             fillCardView(auctionDetails);
-            NewRequestAdapter adapter = new NewRequestAdapter(data);
+            AssignedRequestAdapter adapter = new AssignedRequestAdapter(data);
             recyclerView.setAdapter(adapter);
+            ViewsVisibility.assignedRequestAdapter=adapter;
             if(data.size()!=0)
                 relativeLayout.setVisibility(View.GONE);
         }else{
@@ -246,7 +288,7 @@ public class JsonRequest {
         }
     }
 
-    //Fir the card views data.
+    //Fill the card views data.
     void fillCardView(ArrayList<NewRequestDataModal> auctionDetails){
         data=new ArrayList<NewRequestDataModal>();
         for (int i = 0; i < auctionDetails.size(); i++) {

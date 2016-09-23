@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import com.a123sold.a123soldinspection.Adapters.NewRequestAdapter;
 import com.a123sold.a123soldinspection.Helpers.Config;
 import com.a123sold.a123soldinspection.Helpers.JsonRequest;
+import com.a123sold.a123soldinspection.Helpers.ViewsVisibility;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
 
@@ -32,17 +33,19 @@ public class NewRequests extends Fragment {
     private static Activity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.newrequests, container, false);
         initialize(rootView);
         return rootView;
     }
 
     void initialize(View view){
+
         recyclerView = (RecyclerView) view.findViewById(R.id.newrequest_recycler_view);
         recyclerView.setHasFixedSize(true);
         activity=getActivity();
+        ViewsVisibility.NewrelativeLayout= (RelativeLayout) view.findViewById(R.id.nonewview);
         layoutManager = new LinearLayoutManager(activity);
+        ViewsVisibility.conextActivity=activity;
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         RelativeLayout relativeLayout= (RelativeLayout) view.findViewById(R.id.nonewview);

@@ -4,7 +4,7 @@ package com.a123sold.a123soldinspection.modals;
  * Created by akshit on 29/7/16.
  */
 public class HistoryModal {
-    Integer CARID;
+    String id;
     Integer VIN ;
     Integer SERVICERECALL ;
     Integer VEHICLEHISTORYREPORT ;
@@ -15,8 +15,8 @@ public class HistoryModal {
 
     public HistoryModal(){}
 
-    public HistoryModal(Integer CARID, Integer VIN, Integer SERVICERECALL, Integer VEHICLEHISTORYREPORT, Integer SCHEDULEDMAINTENANCE, Integer VEHICLEEMISSIONS, Float REPAIRINGCOSTHISTORY, String COMMENTHISTORY) {
-        this.CARID = CARID;
+    public HistoryModal(String id, Integer VIN, Integer SERVICERECALL, Integer VEHICLEHISTORYREPORT, Integer SCHEDULEDMAINTENANCE, Integer VEHICLEEMISSIONS, Float REPAIRINGCOSTHISTORY, String COMMENTHISTORY) {
+        this.id = id;
         this.VIN = VIN;
         this.SERVICERECALL = SERVICERECALL;
         this.VEHICLEHISTORYREPORT = VEHICLEHISTORYREPORT;
@@ -26,8 +26,8 @@ public class HistoryModal {
         this.COMMENTHISTORY = COMMENTHISTORY;
     }
 
-    public Integer getCARID() {
-        return CARID;
+    public String getid() {
+        return id;
     }
 
     public Integer getVIN() {
