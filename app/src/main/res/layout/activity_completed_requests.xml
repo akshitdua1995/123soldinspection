@@ -18,7 +18,7 @@
                 android:layout_width="140sp"
                 android:layout_height="140sp"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/imageView"
+                android:id="@+id/noCompleteview"
                 android:src="@drawable/completedgrey"
                 android:padding="20sp" />
 
@@ -28,11 +28,25 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="No request completed"
                 android:textSize="25dp"
-                android:id="@+id/textView"
+                android:id="@+id/textViewcompleted"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/selecteditem"
                 />
 
         </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/completedrequest_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            />
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress_custom"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
     </RelativeLayout>
 </LinearLayout>

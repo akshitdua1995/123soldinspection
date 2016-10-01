@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -52,24 +53,24 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
     private Button saveroadtest;
 
     String id;
-    Integer ENGINESTARTPROPERLY ;
-    Integer ENGINEIDLESPROPERLY ;
-    Integer REMOTESTARTSYSTEM ;
-    Integer ENGINEACCELERATES ;
-    Integer ENGINENOISE ;
-    Integer TRANSAXLEOPERATION ;
-    Integer TRANSAXLENOISENORMAL ;
-    Integer SHIFTINTERLOCK ;
-    Integer DRIVEAXLE ;
-    Integer CLUTCHOPERATE ;
-    Integer STEERSNORMALLY ;
-    Integer BODYSQUEAKS ;
-    Integer SHOCKESOPERATES ;
-    Integer BRAKESOPERATES ;
-    Integer CRUISECONTROL ;
-    Integer GAUGESOPERATEPROPERLY ;
-    Integer MEMORYPROFILESYSTEM ;
-    Integer NOWINDNOISE ;
+    String ENGINESTARTPROPERLY ;
+    String ENGINEIDLESPROPERLY ;
+    String REMOTESTARTSYSTEM ;
+    String ENGINEACCELERATES ;
+    String ENGINENOISE ;
+    String TRANSAXLEOPERATION ;
+    String TRANSAXLENOISENORMAL ;
+    String SHIFTINTERLOCK ;
+    String DRIVEAXLE ;
+    String CLUTCHOPERATE ;
+    String STEERSNORMALLY ;
+    String BODYSQUEAKS ;
+    String SHOCKESOPERATES ;
+    String BRAKESOPERATES ;
+    String CRUISECONTROL ;
+    String GAUGESOPERATEPROPERLY ;
+    String MEMORYPROFILESYSTEM ;
+    String NOWINDNOISE ;
     Float REPAIRINGCOSTROADTEST ;
     String COMMENTROADTEST ;
     Float OLDCOST;
@@ -135,6 +136,7 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.roadtest_form,container, false);
         findViews(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -215,5 +217,16 @@ public class RoadtestFragment extends android.app.Fragment implements View.OnCli
             REPAIRINGCOSTROADTEST=Float.valueOf(editTextreplacementcost.getText().toString());
         }catch (Exception e){}
         COMMENTROADTEST=editTextreplacement.getText().toString();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                saveroadtest.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

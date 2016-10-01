@@ -8,20 +8,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.a123sold.a123soldinspection.Helpers.Config;
 import com.a123sold.a123soldinspection.Helpers.JsonRequest;
 import com.a123sold.a123soldinspection.Helpers.ViewsVisibility;
 import com.a123sold.a123soldinspection.R;
 import com.a123sold.a123soldinspection.modals.NewRequestDataModal;
 
-import org.json.JSONException;
-
 import java.util.ArrayList;
 
-public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.MyViewHolder> {
+public class CompleteRequestAdapter extends RecyclerView.Adapter<CompleteRequestAdapter.MyViewHolder> {
     private static ArrayList<NewRequestDataModal> dataSet;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView requestid,make,model,version,year,kms,fueltype,transmission,owner,location,customername,customermobilenumber;
         ImageView imagecar;
@@ -42,28 +39,10 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
             this.customermobilenumber=(TextView)itemView.findViewById(R.id.customernumber);
             this.imagecar=(ImageView)itemView.findViewById(R.id.carimage);
             this.startbutton=(Button)itemView.findViewById(R.id.acceptbutton);
-            this.startbutton.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            if(v==this.startbutton){
-                JsonRequest request=new JsonRequest(v.getContext().getApplicationContext(),ViewsVisibility.conextActivity);
-                try {
-                    request.AcceptRequest(Config.BASE_URL+"/api/123sold/inspectionInfo/acceptTheAuctionInspection",dataSet.get(getAdapterPosition()).getId());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                NewRequestDataModal data=dataSet.get(getAdapterPosition());
-                removeAt(getAdapterPosition());
-                if(dataSet.size()==0){
-                    ViewsVisibility.NewrelativeLayout.setVisibility(View.VISIBLE);
-                }
-                ViewsVisibility.assignedRequestAdapter.addData(data);
-            }
-        }
     }
-    public NewRequestAdapter(ArrayList<NewRequestDataModal> data) {
+    public CompleteRequestAdapter(ArrayList<NewRequestDataModal> data) {
         this.dataSet = data;
     }
 
@@ -93,6 +72,8 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         customername=holder.customername;
         customermobilenumber=holder.customermobilenumber;
         imagecar=holder.imagecar;
+        startbutton=holder.startbutton;
+        startbutton.setVisibility(View.GONE);
         requestid.setText(dataSet.get(listPosition).getId());
         requestid.setVisibility(View.GONE);
         make.setText(dataSet.get(listPosition).getMake());
@@ -106,9 +87,8 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         location.setText(dataSet.get(listPosition).getAddress());
         customername.setText(dataSet.get(listPosition).getUserName());
         customermobilenumber.setText(dataSet.get(listPosition).getMobileNumber());
-        JsonRequest jsonRequest=new JsonRequest(ViewsVisibility.conextActivity.getApplicationContext(),ViewsVisibility.conextActivity);
+        JsonRequest jsonRequest=new JsonRequest(ViewsVisibility.conextcompletedActivity.getApplicationContext(),ViewsVisibility.conextcompletedActivity);
         jsonRequest.LoadImage(dataSet.get(listPosition).getImageUrl(),imagecar);
-        //imagecar.setImageResource(dataSet.get(listPosition).getImage());
     }
 
     @Override
@@ -116,10 +96,5 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         return dataSet.size();
     }
 
-    public void removeAt(int position) {
-        dataSet.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, dataSet.size());
-    }
 }
 

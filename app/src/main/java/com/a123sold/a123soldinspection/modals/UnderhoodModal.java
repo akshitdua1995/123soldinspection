@@ -1,53 +1,96 @@
 package com.a123sold.a123soldinspection.modals;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by akshit on 29/7/16.
  */
 public class UnderhoodModal {
+    @Expose(deserialize = false)
     String id;
-    Integer ENGINEOIL ;
-    Integer CHASISTUBE ;
-    Integer COOLANT ;
-    Integer BRAKEFLUID ;
-    Integer TRANSAXLEFLUID ;
-    Integer TRANSFERCASEFUID ;
-    Integer DRIVEAXLEFLUID ;
-    Integer POWERSTEERINGFLUID ;
-    Integer MANUALTRANSFLUID ;
-    Integer WASHERFLUID ;
-    Integer AIRCONDITIONINGSYSTEMCHARGE ;
-    Integer FLUIDLEAKS ;
-    Integer HOSESLINESFITTINGS ;
-    Integer BELTS ;
-    Integer WIRING ;
-    Integer OILINAIRCLEANSER ;
-    Integer WATERSLUDGEOIL ;
-    Integer OILPRESSURE ;
-    Integer RELATIVECYLENDIRCOMPRESSION ;
-    Integer TIMINGBELT ;
-    Integer ENGINEMOUNTS ;
-    Integer TURBOCHARGERAIRCOOLER ;
-    Integer RADIATOR ;
-    Integer RADIATORCAP ;
-    Integer COOLINGFANS ;
-    Integer WATERPUMP ;
-    Integer COOLANTRECOVERYTANK ;
-    Integer CABINAIRFILTER ;
-    Integer FUELPUMPNOISENORMAL ;
-    Integer FUELPUMPPRESSURE ;
-    Integer FUELFILTER ;
-    Integer ENGINEAIRFILTER ;
-    Integer STARTEROPERATION ;
-    Integer IGNITIONSYSTEM ;
-    Integer BATTERY ;
-    Integer ALTERNATOROUTPUT ;
-    Integer DIESELGLOWPLUGSYSTEM ;
+    @SerializedName("Engine Oil/Filter Change")
+    String ENGINEOIL ;
+    @SerializedName("Chassis Tube")
+    String CHASISTUBE ;
+    @SerializedName("Coolant")
+    String COOLANT ;
+    @SerializedName("Brake Fluid")
+    String BRAKEFLUID ;
+    @SerializedName("EAutomatic Trans axle/Transmission Fluid")
+    String TRANSAXLEFLUID ;
+    @SerializedName("Transfer Case Fluid")
+    String TRANSFERCASEFUID ;
+    @SerializedName("Drive Axle Fluid")
+    String DRIVEAXLEFLUID ;
+    @SerializedName("Power Sheering Fluid")
+    String POWERSTEERINGFLUID ;
+    @SerializedName("Manual Trans axle/Transmission Hydraulic Clutch Fluid")
+    String MANUALTRANSFLUID ;
+    @SerializedName("Washer Fluid")
+    String WASHERFLUID ;
+    @SerializedName("Air Conditioning System Charge")
+    String AIRCONDITIONINGSYSTEMCHARGE ;
+    @SerializedName("Fluid Leaks")
+    String FLUIDLEAKS ;
+    @SerializedName("Hoses,Lines and Fittings")
+    String HOSESLINESFITTINGS ;
+    @SerializedName("Belts")
+    String BELTS ;
+    @SerializedName("Wiring")
+    String WIRING ;
+    @SerializedName("Oil in Air Cleanser Housing")
+    String OILINAIRCLEANSER ;
+    @SerializedName("Water Sludge or Engine Coolant in Oil")
+    String WATERSLUDGEOIL ;
+    @SerializedName("Oil Pressure")
+    String OILPRESSURE ;
+    @SerializedName("Relative Cylinder Compression Test/Power Balance Readings(check if necessary)")
+    String RELATIVECYLENDIRCOMPRESSION ;
+    @SerializedName("Timing Belt")
+    String TIMINGBELT ;
+    @SerializedName("Engine Mounts")
+    String ENGINEMOUNTS ;
+    @SerializedName("Inspect Turbo charger Air Cooler")
+    String TURBOCHARGERAIRCOOLER ;
+    @SerializedName("Radiator")
+    String RADIATOR ;
+    @SerializedName("Pressure-Test Radiator Cap")
+    String RADIATORCAP ;
+    @SerializedName("Cooling Fans , Clutches and Motors")
+    String COOLINGFANS ;
+    @SerializedName("Water Pump")
+    String WATERPUMP ;
+    @SerializedName("Coolant Recovery Tank")
+    String COOLANTRECOVERYTANK;
+    @SerializedName("Cabin Air Filter")
+    String CABINAIRFILTER ;
+    @SerializedName("Fuel Pump Noise Normal")
+    String FUELPUMPNOISENORMAL ;
+    @SerializedName("Fuel Pump Pressure")
+    String FUELPUMPPRESSURE ;
+    @SerializedName("Fuel Filter")
+    String FUELFILTER ;
+    @SerializedName("Engine Air Filter")
+    String ENGINEAIRFILTER ;
+    @SerializedName("Starter Operation")
+    String STARTEROPERATION ;
+    @SerializedName("Ignition System")
+    String IGNITIONSYSTEM ;
+    @SerializedName("Battery")
+    String BATTERY ;
+    @SerializedName("Alternator Output")
+    String ALTERNATOROUTPUT ;
+    @SerializedName("Diesel Glow Plug System")
+    String DIESELGLOWPLUGSYSTEM ;
+    @SerializedName("Repairing Cost")
     Float REPAIRINGCOSTUNDERHOOD ;
+    @SerializedName("Comment")
     String COMMENTUNDERHOOD ;
 
 
     public UnderhoodModal(){}
-    public UnderhoodModal(String id, Integer ENGINEOIL, Integer CHASISTUBE, Integer COOLANT, Integer BRAKEFLUID, Integer TRANSAXLEFLUID, Integer TRANSFERCASEFUID, Integer DRIVEAXLEFLUID, Integer POWERSTEERINGFLUID, Integer MANUALTRANSFLUID, Integer WASHERFLUID, Integer AIRCONDITIONINGSYSTEMCHARGE, Integer FLUIDLEAKS, Integer HOSESLINESFITTINGS, Integer BELTS, Integer WIRING, Integer OILINAIRCLEANSER, Integer WATERSLUDGEOIL, Integer OILPRESSURE, Integer RELATIVECYLENDIRCOMPRESSION, Integer TIMINGBELT, Integer ENGINEMOUNTS, Integer TURBOCHARGERAIRCOOLER, Integer RADIATOR, Integer RADIATORCAP, Integer COOLINGFANS, Integer WATERPUMP, Integer COOLANTRECOVERYTANK, Integer CABINAIRFILTER, Integer FUELPUMPNOISENORMAL, Integer FUELPUMPPRESSURE, Integer FUELFILTER, Integer ENGINEAIRFILTER, Integer STARTEROPERATION, Integer IGNITIONSYSTEM, Integer BATTERY, Integer ALTERNATOROUTPUT, Integer DIESELGLOWPLUGSYSTEM, Float REPAIRINGCOSTUNDERHOOD, String COMMENTUNDERHOOD) {
+    public UnderhoodModal(String id, String ENGINEOIL, String CHASISTUBE, String COOLANT, String BRAKEFLUID, String TRANSAXLEFLUID, String TRANSFERCASEFUID, String DRIVEAXLEFLUID, String POWERSTEERINGFLUID, String MANUALTRANSFLUID, String WASHERFLUID, String AIRCONDITIONINGSYSTEMCHARGE, String FLUIDLEAKS, String HOSESLINESFITTINGS, String BELTS, String WIRING, String OILINAIRCLEANSER, String WATERSLUDGEOIL, String OILPRESSURE, String RELATIVECYLENDIRCOMPRESSION, String TIMINGBELT, String ENGINEMOUNTS, String TURBOCHARGERAIRCOOLER, String RADIATOR, String RADIATORCAP, String COOLINGFANS, String WATERPUMP, String COOLANTRECOVERYTANK, String CABINAIRFILTER, String FUELPUMPNOISENORMAL, String FUELPUMPPRESSURE, String FUELFILTER, String ENGINEAIRFILTER, String STARTEROPERATION, String IGNITIONSYSTEM, String BATTERY, String ALTERNATOROUTPUT, String DIESELGLOWPLUGSYSTEM, Float REPAIRINGCOSTUNDERHOOD, String COMMENTUNDERHOOD) {
         this.id = id;
         this.ENGINEOIL = ENGINEOIL;
         this.CHASISTUBE = CHASISTUBE;
@@ -94,151 +137,151 @@ public class UnderhoodModal {
         return id;
     }
 
-    public Integer getENGINEOIL() {
+    public String getENGINEOIL() {
         return ENGINEOIL;
     }
 
-    public Integer getCHASISTUBE() {
+    public String getCHASISTUBE() {
         return CHASISTUBE;
     }
 
-    public Integer getCOOLANT() {
+    public String getCOOLANT() {
         return COOLANT;
     }
 
-    public Integer getBRAKEFLUID() {
+    public String getBRAKEFLUID() {
         return BRAKEFLUID;
     }
 
-    public Integer getTRANSAXLEFLUID() {
+    public String getTRANSAXLEFLUID() {
         return TRANSAXLEFLUID;
     }
 
-    public Integer getTRANSFERCASEFUID() {
+    public String getTRANSFERCASEFUID() {
         return TRANSFERCASEFUID;
     }
 
-    public Integer getDRIVEAXLEFLUID() {
+    public String getDRIVEAXLEFLUID() {
         return DRIVEAXLEFLUID;
     }
 
-    public Integer getPOWERSTEERINGFLUID() {
+    public String getPOWERSTEERINGFLUID() {
         return POWERSTEERINGFLUID;
     }
 
-    public Integer getMANUALTRANSFLUID() {
+    public String getMANUALTRANSFLUID() {
         return MANUALTRANSFLUID;
     }
 
-    public Integer getWASHERFLUID() {
+    public String getWASHERFLUID() {
         return WASHERFLUID;
     }
 
-    public Integer getAIRCONDITIONINGSYSTEMCHARGE() {
+    public String getAIRCONDITIONINGSYSTEMCHARGE() {
         return AIRCONDITIONINGSYSTEMCHARGE;
     }
 
-    public Integer getFLUIDLEAKS() {
+    public String getFLUIDLEAKS() {
         return FLUIDLEAKS;
     }
 
-    public Integer getHOSESLINESFITTINGS() {
+    public String getHOSESLINESFITTINGS() {
         return HOSESLINESFITTINGS;
     }
 
-    public Integer getBELTS() {
+    public String getBELTS() {
         return BELTS;
     }
 
-    public Integer getWIRING() {
+    public String getWIRING() {
         return WIRING;
     }
 
-    public Integer getOILINAIRCLEANSER() {
+    public String getOILINAIRCLEANSER() {
         return OILINAIRCLEANSER;
     }
 
-    public Integer getWATERSLUDGEOIL() {
+    public String getWATERSLUDGEOIL() {
         return WATERSLUDGEOIL;
     }
 
-    public Integer getOILPRESSURE() {
+    public String getOILPRESSURE() {
         return OILPRESSURE;
     }
 
-    public Integer getRELATIVECYLENDIRCOMPRESSION() {
+    public String getRELATIVECYLENDIRCOMPRESSION() {
         return RELATIVECYLENDIRCOMPRESSION;
     }
 
-    public Integer getTIMINGBELT() {
+    public String getTIMINGBELT() {
         return TIMINGBELT;
     }
 
-    public Integer getENGINEMOUNTS() {
+    public String getENGINEMOUNTS() {
         return ENGINEMOUNTS;
     }
 
-    public Integer getTURBOCHARGERAIRCOOLER() {
+    public String getTURBOCHARGERAIRCOOLER() {
         return TURBOCHARGERAIRCOOLER;
     }
 
-    public Integer getRADIATOR() {
+    public String getRADIATOR() {
         return RADIATOR;
     }
 
-    public Integer getRADIATORCAP() {
+    public String getRADIATORCAP() {
         return RADIATORCAP;
     }
 
-    public Integer getCOOLINGFANS() {
+    public String getCOOLINGFANS() {
         return COOLINGFANS;
     }
 
-    public Integer getWATERPUMP() {
+    public String getWATERPUMP() {
         return WATERPUMP;
     }
 
-    public Integer getCOOLANTRECOVERYTANK() {
+    public String getCOOLANTRECOVERYTANK() {
         return COOLANTRECOVERYTANK;
     }
 
-    public Integer getCABINAIRFILTER() {
+    public String getCABINAIRFILTER() {
         return CABINAIRFILTER;
     }
 
-    public Integer getFUELPUMPNOISENORMAL() {
+    public String getFUELPUMPNOISENORMAL() {
         return FUELPUMPNOISENORMAL;
     }
 
-    public Integer getFUELPUMPPRESSURE() {
+    public String getFUELPUMPPRESSURE() {
         return FUELPUMPPRESSURE;
     }
 
-    public Integer getFUELFILTER() {
+    public String getFUELFILTER() {
         return FUELFILTER;
     }
 
-    public Integer getENGINEAIRFILTER() {
+    public String getENGINEAIRFILTER() {
         return ENGINEAIRFILTER;
     }
 
-    public Integer getSTARTEROPERATION() {
+    public String getSTARTEROPERATION() {
         return STARTEROPERATION;
     }
 
-    public Integer getIGNITIONSYSTEM() {
+    public String getIGNITIONSYSTEM() {
         return IGNITIONSYSTEM;
     }
 
-    public Integer getBATTERY() {
+    public String getBATTERY() {
         return BATTERY;
     }
 
-    public Integer getALTERNATOROUTPUT() {
+    public String getALTERNATOROUTPUT() {
         return ALTERNATOROUTPUT;
     }
 
-    public Integer getDIESELGLOWPLUGSYSTEM() {
+    public String getDIESELGLOWPLUGSYSTEM() {
         return DIESELGLOWPLUGSYSTEM;
     }
 

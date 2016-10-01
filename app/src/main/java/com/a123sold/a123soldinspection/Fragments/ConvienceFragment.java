@@ -91,15 +91,15 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
 
     private File output=null;
     String id;
-    Integer OWNERSGUIDE ;
-    Integer KEYREMOTECONTROLS ;
-    Integer UNIVERSALTRANSMITTER ;
-    Integer RC ;
-    Integer POLLUTIONCERTI ;
-    Integer COMPANY ;
+    String OWNERSGUIDE ;
+    String KEYREMOTECONTROLS ;
+    String UNIVERSALTRANSMITTER ;
+    String RC ;
+    String POLLUTIONCERTI ;
+    String COMPANY ;
     String INSAURANCEVALIDITY ;
-    Integer LIFETAXPAID ;
-    Integer LEASE ;
+    String LIFETAXPAID ;
+    String LEASE ;
     String NAMEFINANCIALCORPORATION ;
     Float REPAIRINGCOSTCONVIENCE ;
     String COMMENTCONVIENCE ;
@@ -108,8 +108,8 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     String VEHICLEUSEDAS;
     String FINANCERNAME;
     String VIPLICENSEPLATE;
-    Integer DUPLICATEKEY;
-    Integer UNDERHYPOTHECATION;
+    String DUPLICATEKEY;
+    String UNDERHYPOTHECATION;
     static int CAMERA_REQUEST;
     /**
      * Find the Views in the layout<br />
@@ -401,6 +401,7 @@ public class ConvienceFragment extends android.app.Fragment implements View.OnCl
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.miCompose:
+                Log.d("here","here");
                 saveconvience.performClick();
                 return true;
         }

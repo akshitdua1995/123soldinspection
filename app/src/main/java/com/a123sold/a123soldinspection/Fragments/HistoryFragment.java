@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -47,11 +48,11 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
 
     Float OLDCOST;
     String id;
-    Integer VIN ;
-    Integer SERVICERECALL ;
-    Integer VEHICLEHISTORYREPORT ;
-    Integer SCHEDULEDMAINTENANCE ;
-    Integer VEHICLEEMISSIONS ;
+    String VIN ;
+    String SERVICERECALL ;
+    String VEHICLEHISTORYREPORT ;
+    String SCHEDULEDMAINTENANCE ;
+    String VEHICLEEMISSIONS ;
     Float REPAIRINGCOSTHISTORY ;
     String COMMENTHISTORY ;
 
@@ -159,6 +160,7 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.history_form,container, false);
         findViews(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -185,5 +187,14 @@ public class HistoryFragment extends android.app.Fragment implements View.OnClic
         }
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                savehistory.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

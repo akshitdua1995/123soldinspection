@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -76,41 +77,41 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     private Button saveunderbody;
 
     String id;
-    Integer FRAMEDAMAGE ;
-    Integer FUELSUPPLYSYSTEM ;
-    Integer EXHAUSTSYSTEMCONDITION ;
-    Integer EMISSIONSCONTROLTEST ;
-    Integer AUTOMATICTRANSMISSION ;
-    Integer MANUALTRANSMISSION;
-    Integer HUBOPERATION ;
-    Integer UNIVERSALJOINTS ;
-    Integer TRANSMISSIONMOUNTS ;
-    Integer DIFFERNTIALDRIVEAXLE ;
-    Integer TIRESMATCH ;
-    Integer WHEELSMATCH ;
+    String FRAMEDAMAGE ;
+    String FUELSUPPLYSYSTEM ;
+    String EXHAUSTSYSTEMCONDITION ;
+    String EMISSIONSCONTROLTEST ;
+    String AUTOMATICTRANSMISSION ;
+    String MANUALTRANSMISSION;
+    String HUBOPERATION ;
+    String UNIVERSALJOINTS ;
+    String TRANSMISSIONMOUNTS ;
+    String DIFFERNTIALDRIVEAXLE ;
+    String TIRESMATCH ;
+    String WHEELSMATCH ;
     String TIREDEPTHFRONT ;
     String TIREDEPTHREAR ;
     String NORMALTIREWEAR ;
-    Integer TIREPRESSUREFRONT ;
-    Integer TIREPRESSUREBACK ;
+    String TIREPRESSUREFRONT ;
+    String TIREPRESSUREBACK ;
     String TIREPRESSUREMONITOR ;
-    Integer WHEELS ;
-    Integer WHEELCOVERANDCENTERCAPS ;
-    Integer RACKPINION ;
-    Integer CONTROLARMS ;
-    Integer TIERODS ;
-    Integer SWAYBARS ;
-    Integer SPRINGS ;
-    Integer STRUTSANDSHOCKS ;
-    Integer WHEELALIGNMENT ;
-    Integer POWERSTEERINGPUMP ;
-    Integer WHEELSCYLENDIRS ;
-    Integer BRAKEPADFRONT ;
-    Integer BRAKEPADREAR ;
-    Integer ROTORSANDDRUMS;
-    Integer BRAKELINES ;
-    Integer PARKINGBRAKE ;
-    Integer MASTERCYLENDIRBOOSTER ;
+    String WHEELS ;
+    String WHEELCOVERANDCENTERCAPS ;
+    String RACKPINION ;
+    String CONTROLARMS ;
+    String TIERODS ;
+    String SWAYBARS ;
+    String SPRINGS ;
+    String STRUTSANDSHOCKS ;
+    String WHEELALIGNMENT ;
+    String POWERSTEERINGPUMP ;
+    String WHEELSCYLENDIRS ;
+    String BRAKEPADFRONT ;
+    String BRAKEPADREAR ;
+    String ROTORSANDDRUMS;
+    String BRAKELINES ;
+    String PARKINGBRAKE ;
+    String MASTERCYLENDIRBOOSTER ;
     Float REPAIRINGCOSTUNDERBODY ;
     String COMMENTUNDERBODY ;
     Float OLDCOST;
@@ -235,8 +236,8 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
         TIREDEPTHFRONT=editTexttirethreaddepthfront.getText().toString();
         TIREDEPTHREAR=editTexttirethreaddepthrear.getText().toString();
         NORMALTIREWEAR=editTextnormaltierwear.getText().toString();
-        TIREPRESSUREFRONT=seekBarAirpressureFrontTires.getProgress();
-        TIREPRESSUREBACK=seekBarAirpressureBackTires.getProgress();
+        TIREPRESSUREFRONT= String.valueOf(seekBarAirpressureFrontTires.getProgress());
+        TIREPRESSUREBACK= String.valueOf(seekBarAirpressureBackTires.getProgress());
         TIREPRESSUREMONITOR=editTexttirePressureMonitoring.getText().toString();
         WHEELS=helperFormsFunctions.returnCheckboxValue(checkBoxWheels);
         WHEELCOVERANDCENTERCAPS=helperFormsFunctions.returnCheckboxValue(checkBoxwheelcovers);
@@ -265,6 +266,7 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.underbody_form, container, false);
         findViews(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -273,10 +275,10 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if(seekBar.getId()==seekBarAirpressureFrontTires.getId()){
             progress1.setText(String.valueOf(progress));
-            feedbackprogress1.setText(helperFormsFunctions.returnFeedbackSeekBar(progress));
+            feedbackprogress1.setText(helperFormsFunctions.returnFeedbackSeekBar(String.valueOf(progress)));
         }else{
             progress2.setText(String.valueOf(progress));
-            feedbackprogress2.setText(helperFormsFunctions.returnFeedbackSeekBar(progress));
+            feedbackprogress2.setText(helperFormsFunctions.returnFeedbackSeekBar(String.valueOf(progress)));
         }
     }
 
@@ -333,8 +335,8 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
                 OLDCOST=0f;
             }
             editTextreplacement.setText(underbodyformModal.getCOMMENTUNDERBODY());
-            seekBarAirpressureFrontTires.setProgress(underbodyformModal.getTIREPRESSUREFRONT());
-            seekBarAirpressureBackTires.setProgress(underbodyformModal.getTIREPRESSUREBACK());
+            seekBarAirpressureFrontTires.setProgress(Integer.parseInt(underbodyformModal.getTIREPRESSUREFRONT()));
+            seekBarAirpressureBackTires.setProgress(Integer.parseInt(underbodyformModal.getTIREPRESSUREBACK()));
             progress1.setText(String.valueOf(underbodyformModal.getTIREPRESSUREFRONT()));
             progress2.setText(String.valueOf(underbodyformModal.getTIREPRESSUREBACK()));
             feedbackprogress1.setText(helperFormsFunctions.returnFeedbackSeekBar(underbodyformModal.getTIREPRESSUREFRONT()));
@@ -343,5 +345,16 @@ public class UnderbodyFragment extends android.app.Fragment implements SeekBar.O
         else{
             OLDCOST=0f;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                saveunderbody.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

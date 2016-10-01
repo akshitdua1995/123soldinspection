@@ -1,92 +1,160 @@
 package com.a123sold.a123soldinspection.modals;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by akshit on 29/7/16.
  */
 public class InteriorModal {
+    @Expose(deserialize = false)
     String id;
-    Integer AIRBAGS;
-    Integer SAFTEYBELTS ;
-    Integer STEREOANDSPEAKERS ;
-    Integer ANTENNA ;
-    Integer ALARMSYSTEM ;
-    Integer NAVIGATIONSYSTEM ;
-    Integer AIRCONDITIONINGSYSTEM ;
-    Integer HEATINGSYSTEM ;
-    Integer DEFOG ;
-    Integer CLOCK ;
-    Integer TILTSTEERINGWHEEL ;
-    Integer STEERINGCOLUMNLOCK ;
-    Integer STEERINGWHEELCONTROLS;
-    Integer HORN ;
-    Integer WARNINGCHIMES ;
-    Integer INSTRUMENTPANELANDWARNINGLIGHT ;
-    Integer WINDSHEILDWIPERS;
-    Integer REARWINDOWWIPER ;
-    Integer WASHERS ;
-    Integer MAPLIGHTS ;
-    Integer OUTSIDEREARVIEWMIRRORS ;
-    Integer AUTODIMMINGREARVIEW ;
-    Integer BLINDSPOT;
-    Integer REARCAMERA ;
-    Integer ACTIVEPARKASSIST ;
-    Integer REARENTERTAINMENTSYSTEM;
-    Integer POWEROUTLETS ;
-    Integer LIGHTER ;
-    Integer ASHTRAYS ;
-    Integer GLOVEBOX ;
-    Integer CENTERCONSOLEFRONT;
-    Integer CENTERCONSOLEFREAR;
-    Integer SUNVISORS ;
-    Integer ADJUSTABLEPEDALS ;
-    Integer INTERIORODOR ;
-    Integer CARPET ;
-    Integer FLOODMATS;
-    Integer DOORTRIM ;
-    Integer HEADLINER ;
-    Integer SEATUPHOLDSTERY ;
-    Integer SEATANDHEAD ;
-    Integer FOLDINGSEATS;
-    Integer HEATEDSEATS ;
-    Integer COOLEDSEATS ;
-    Integer CONVERTIBLETOP;
-    Integer SUNROOF ;
-    Integer DOORHANDLES ;
-    Integer REMOTEENTRY ;
-    Integer PUSHBUTTONSTART ;
-    Integer DOORLOCKS;
-    Integer CHILDSAFTEYLOCKS ;
-    Integer WINDOWCONTROLS ;
-    Integer REMOTEDECKLID ;
-    Integer FUELFILLERDOOR ;
-    Integer CARPETLUGGAGE ;
-    Integer CARGONET;
-    Integer CARGOAREALIGHT ;
-    Integer JACKTOOLKIT ;
-    Integer SIDEWALLINS ;
-    Integer PRESSUREINS ;
-    Integer TIREKIT;
-    Integer LIDRELEASE ;
+    @SerializedName("Airbags Available")
+    String AIRBAGS;
+    @SerializedName("Safety Belts")
+    String SAFTEYBELTS ;
+    @SerializedName("Stereo and Speakers")
+    String STEREOANDSPEAKERS ;
+    @SerializedName("Antenna")
+    String ANTENNA ;
+    @SerializedName("Alarm/Theft-Deferrent System")
+    String ALARMSYSTEM ;
+    @SerializedName("Navigation System(Available)")
+    String NAVIGATIONSYSTEM ;
+    @SerializedName("Air Conditioning System-(Scale 1-5)")
+    String AIRCONDITIONINGSYSTEM ;
+    @SerializedName("Heating System-(Scale 1-5)")
+    String HEATINGSYSTEM ;
+    @SerializedName("Defog/Defrost (Available)")
+    String DEFOG ;
+    @SerializedName("Clock(Available)")
+    String CLOCK ;
+    @SerializedName("Tilt/Telescopic Steering Wheel(Available)")
+    String TILTSTEERINGWHEEL ;
+    @SerializedName("Steering Column Lock(Available)")
+    String STEERINGCOLUMNLOCK ;
+    @SerializedName("Steering Wheel Controls")
+    String STEERINGWHEELCONTROLS;
+    @SerializedName("Horn")
+    String HORN ;
+    @SerializedName("Warning Chimes")
+    String WARNINGCHIMES ;
+    @SerializedName("Instrument Panel and Warning Lights")
+    String INSTRUMENTPANELANDWARNINGLIGHT ;
+    @SerializedName("Winshield Wipers(Working)")
+    String WINDSHEILDWIPERS;
+    @SerializedName("Rear Window Wiper(Working)")
+    String REARWINDOWWIPER ;
+    @SerializedName("Washers(Working)")
+    String WASHERS ;
+    @SerializedName("Interior Courtesy,Dorne and Map Lights")
+    String MAPLIGHTS ;
+    @SerializedName("Outside Rear View Mirrors")
+    String OUTSIDEREARVIEWMIRRORS ;
+    @SerializedName("Auto-Dimming Rear View Mirror(Premium cars -Available)")
+    String AUTODIMMINGREARVIEW ;
+    @SerializedName("BindSpot Information System (BLIS) (Premium cars - Available)")
+    String BLINDSPOT;
+    @SerializedName("Rear View Camera System (Available)")
+    String REARCAMERA;
+    @SerializedName("Active Park Assist")
+    String ACTIVEPARKASSIST ;
+    @SerializedName("Rear Entertainment System(Premium cars)")
+    String REARENTERTAINMENTSYSTEM;
+    @SerializedName("Power Outlets")
+    String POWEROUTLETS ;
+    @SerializedName("Lighter")
+    String LIGHTER ;
+    @SerializedName("Ashtrays")
+    String ASHTRAYS ;
+    @SerializedName("Glove Box")
+    String GLOVEBOX ;
+    @SerializedName("Center Armrest/Console Front")
+    String CENTERCONSOLEFRONT;
+    @SerializedName("Center Armrest/Console Rear")
+    String CENTERCONSOLEFREAR;
+    @SerializedName("Sun Visors,Vanity Mirror and Light")
+    String SUNVISORS ;
+    @SerializedName("Adjustable Pedals(if equipped)")
+    String ADJUSTABLEPEDALS ;
+    @SerializedName("Interior Odor Free")
+    String INTERIORODOR ;
+    @SerializedName("Carpet(Torn)")
+    String CARPET ;
+    @SerializedName("Floor Mats")
+    String FLOODMATS;
+    @SerializedName("Door Trim and Door Panels (Damage)")
+    String DOORTRIM ;
+    @SerializedName("Headliner")
+    String HEADLINER ;
+    @SerializedName("Seat Upholstery")
+    String SEATUPHOLDSTERY ;
+    @SerializedName("Seat and Head Restraint Adjustment")
+    String SEATANDHEAD ;
+    @SerializedName("Folding Seats(SUV)")
+    String FOLDINGSEATS;
+    @SerializedName("Heated Seats(Premium Cars)")
+    String HEATEDSEATS ;
+    @SerializedName("Cooled Seats(Premium Cars)")
+    String COOLEDSEATS ;
+    @SerializedName("SUNROOF/MOONROOF/CONVERTIBLE TOP")
+    String CONVERTIBLETOP;
+    @SerializedName("Sunroof Moon roof(Available)")
+    String SUNROOF;
+    @SerializedName("Door Handles and Release Mechanisms")
+    String DOORHANDLES;
+    @SerializedName("Remote Entry System(Available)")
+    String REMOTEENTRY;
+    @SerializedName("Push-Button Start System(Available)")
+    String PUSHBUTTONSTART ;
+    @SerializedName("Door Locks")
+    String DOORLOCKS;
+    @SerializedName("Child Saftey Locks")
+    String CHILDSAFTEYLOCKS ;
+    @SerializedName("Window Controls")
+    String WINDOWCONTROLS ;
+    @SerializedName("Remote Deck lid Release")
+    String REMOTEDECKLID ;
+    @SerializedName("Fuel Filler Door Release")
+    String FUELFILLERDOOR ;
+    @SerializedName("Luggage Compartment Carpet")
+    String CARPETLUGGAGE ;
+    @SerializedName("Luggage Compartment Trim and Cargo net(Available)")
+    String CARGONET;
+    @SerializedName("Luggage Compartment/Cargo Area Light(Available)")
+    String CARGOAREALIGHT ;
+    @SerializedName("Vehicle Jack and Tool Kit (Available)")
+    String JACKTOOLKIT ;
+    @SerializedName("Spare Tire Size/Type and Sidewall Inspection")
+    String SIDEWALLINS ;
+    @SerializedName("Spate Tire Thread Depth/Air Pressure Inspection")
+    String PRESSUREINS ;
+    @SerializedName("Tire Inflator Kit (Available)")
+    String TIREKIT;
+    @SerializedName("Emergency Trunk-Lid(Available)")
+    String LIDRELEASE ;
+    @SerializedName("Repairing Cost")
     Float REPAIRINGCOSTINTERIOR ;
+    @SerializedName("Comment")
     String COMMENTINTERIOR ;
 
     public InteriorModal(){}
-    public InteriorModal(String id, Integer AIRBAGS, Integer SAFTEYBELTS, Integer STEREOANDSPEAKERS,
-                         Integer ANTENNA, Integer ALARMSYSTEM, Integer NAVIGATIONSYSTEM, Integer AIRCONDITIONINGSYSTEM,
-                         Integer HEATINGSYSTEM, Integer DEFOG, Integer CLOCK, Integer TILTSTEERINGWHEEL,
-                         Integer STEERINGCOLUMNLOCK, Integer STEERINGWHEELCONTROLS, Integer HORN, Integer WARNINGCHIMES,
-                         Integer INSTRUMENTPANELANDWARNINGLIGHT, Integer WINDSHEILDWIPERS, Integer REARWINDOWWIPER,
-                         Integer WASHERS, Integer MAPLIGHTS, Integer OUTSIDEREARVIEWMIRRORS, Integer AUTODIMMINGREARVIEW,
-                         Integer BLINDSPOT, Integer REARCAMERA, Integer ACTIVEPARKASSIST, Integer REARENTERTAINMENTSYSTEM,
-                         Integer POWEROUTLETS, Integer LIGHTER, Integer ASHTRAYS, Integer GLOVEBOX, Integer CENTERCONSOLEFRONT,
-                         Integer CENTERCONSOLEFREAR, Integer SUNVISORS, Integer ADJUSTABLEPEDALS, Integer INTERIORODOR,
-                         Integer CARPET, Integer FLOODMATS, Integer DOORTRIM, Integer HEADLINER, Integer SEATUPHOLDSTERY,
-                         Integer SEATANDHEAD, Integer FOLDINGSEATS, Integer HEATEDSEATS, Integer COOLEDSEATS,
-                         Integer CONVERTIBLETOP, Integer SUNROOF, Integer DOORHANDLES, Integer REMOTEENTRY,
-                         Integer PUSHBUTTONSTART, Integer DOORLOCKS, Integer CHILDSAFTEYLOCKS, Integer WINDOWCONTROLS,
-                         Integer REMOTEDECKLID, Integer FUELFILLERDOOR, Integer CARPETLUGGAGE, Integer CARGONET,
-                         Integer CARGOAREALIGHT, Integer JACKTOOLKIT, Integer SIDEWALLINS, Integer PRESSUREINS,
-                         Integer TIREKIT, Integer LIDRELEASE, Float REPAIRINGCOSTINTERIOR, String COMMENTINTERIOR) {
+    public InteriorModal(String id, String AIRBAGS, String SAFTEYBELTS, String STEREOANDSPEAKERS,
+                         String ANTENNA, String ALARMSYSTEM, String NAVIGATIONSYSTEM, String AIRCONDITIONINGSYSTEM,
+                         String HEATINGSYSTEM, String DEFOG, String CLOCK, String TILTSTEERINGWHEEL,
+                         String STEERINGCOLUMNLOCK, String STEERINGWHEELCONTROLS, String HORN, String WARNINGCHIMES,
+                         String INSTRUMENTPANELANDWARNINGLIGHT, String WINDSHEILDWIPERS, String REARWINDOWWIPER,
+                         String WASHERS, String MAPLIGHTS, String OUTSIDEREARVIEWMIRRORS, String AUTODIMMINGREARVIEW,
+                         String BLINDSPOT, String REARCAMERA, String ACTIVEPARKASSIST, String REARENTERTAINMENTSYSTEM,
+                         String POWEROUTLETS, String LIGHTER, String ASHTRAYS, String GLOVEBOX, String CENTERCONSOLEFRONT,
+                         String CENTERCONSOLEFREAR, String SUNVISORS, String ADJUSTABLEPEDALS, String INTERIORODOR,
+                         String CARPET, String FLOODMATS, String DOORTRIM, String HEADLINER, String SEATUPHOLDSTERY,
+                         String SEATANDHEAD, String FOLDINGSEATS, String HEATEDSEATS, String COOLEDSEATS,
+                         String CONVERTIBLETOP, String SUNROOF, String DOORHANDLES, String REMOTEENTRY,
+                         String PUSHBUTTONSTART, String DOORLOCKS, String CHILDSAFTEYLOCKS, String WINDOWCONTROLS,
+                         String REMOTEDECKLID, String FUELFILLERDOOR, String CARPETLUGGAGE, String CARGONET,
+                         String CARGOAREALIGHT, String JACKTOOLKIT, String SIDEWALLINS, String PRESSUREINS,
+                         String TIREKIT, String LIDRELEASE, Float REPAIRINGCOSTINTERIOR, String COMMENTINTERIOR) {
         this.id = id;
         this.AIRBAGS = AIRBAGS;
         this.SAFTEYBELTS = SAFTEYBELTS;
@@ -158,251 +226,251 @@ public class InteriorModal {
         return id;
     }
 
-    public Integer getAIRBAGS() {
+    public String getAIRBAGS() {
         return AIRBAGS;
     }
 
-    public Integer getSAFTEYBELTS() {
+    public String getSAFTEYBELTS() {
         return SAFTEYBELTS;
     }
 
-    public Integer getSTEREOANDSPEAKERS() {
+    public String getSTEREOANDSPEAKERS() {
         return STEREOANDSPEAKERS;
     }
 
-    public Integer getANTENNA() {
+    public String getANTENNA() {
         return ANTENNA;
     }
 
-    public Integer getALARMSYSTEM() {
+    public String getALARMSYSTEM() {
         return ALARMSYSTEM;
     }
 
-    public Integer getNAVIGATIONSYSTEM() {
+    public String getNAVIGATIONSYSTEM() {
         return NAVIGATIONSYSTEM;
     }
 
-    public Integer getAIRCONDITIONINGSYSTEM() {
+    public String getAIRCONDITIONINGSYSTEM() {
         return AIRCONDITIONINGSYSTEM;
     }
 
-    public Integer getHEATINGSYSTEM() {
+    public String getHEATINGSYSTEM() {
         return HEATINGSYSTEM;
     }
 
-    public Integer getDEFOG() {
+    public String getDEFOG() {
         return DEFOG;
     }
 
-    public Integer getCLOCK() {
+    public String getCLOCK() {
         return CLOCK;
     }
 
-    public Integer getTILTSTEERINGWHEEL() {
+    public String getTILTSTEERINGWHEEL() {
         return TILTSTEERINGWHEEL;
     }
 
-    public Integer getSTEERINGCOLUMNLOCK() {
+    public String getSTEERINGCOLUMNLOCK() {
         return STEERINGCOLUMNLOCK;
     }
 
-    public Integer getSTEERINGWHEELCONTROLS() {
+    public String getSTEERINGWHEELCONTROLS() {
         return STEERINGWHEELCONTROLS;
     }
 
-    public Integer getHORN() {
+    public String getHORN() {
         return HORN;
     }
 
-    public Integer getWARNINGCHIMES() {
+    public String getWARNINGCHIMES() {
         return WARNINGCHIMES;
     }
 
-    public Integer getINSTRUMENTPANELANDWARNINGLIGHT() {
+    public String getINSTRUMENTPANELANDWARNINGLIGHT() {
         return INSTRUMENTPANELANDWARNINGLIGHT;
     }
 
-    public Integer getWINDSHEILDWIPERS() {
+    public String getWINDSHEILDWIPERS() {
         return WINDSHEILDWIPERS;
     }
 
-    public Integer getREARWINDOWWIPER() {
+    public String getREARWINDOWWIPER() {
         return REARWINDOWWIPER;
     }
 
-    public Integer getWASHERS() {
+    public String getWASHERS() {
         return WASHERS;
     }
 
-    public Integer getMAPLIGHTS() {
+    public String getMAPLIGHTS() {
         return MAPLIGHTS;
     }
 
-    public Integer getOUTSIDEREARVIEWMIRRORS() {
+    public String getOUTSIDEREARVIEWMIRRORS() {
         return OUTSIDEREARVIEWMIRRORS;
     }
 
-    public Integer getAUTODIMMINGREARVIEW() {
+    public String getAUTODIMMINGREARVIEW() {
         return AUTODIMMINGREARVIEW;
     }
 
-    public Integer getBLINDSPOT() {
+    public String getBLINDSPOT() {
         return BLINDSPOT;
     }
 
-    public Integer getREARCAMERA() {
+    public String getREARCAMERA() {
         return REARCAMERA;
     }
 
-    public Integer getACTIVEPARKASSIST() {
+    public String getACTIVEPARKASSIST() {
         return ACTIVEPARKASSIST;
     }
 
-    public Integer getREARENTERTAINMENTSYSTEM() {
+    public String getREARENTERTAINMENTSYSTEM() {
         return REARENTERTAINMENTSYSTEM;
     }
 
-    public Integer getPOWEROUTLETS() {
+    public String getPOWEROUTLETS() {
         return POWEROUTLETS;
     }
 
-    public Integer getLIGHTER() {
+    public String getLIGHTER() {
         return LIGHTER;
     }
 
-    public Integer getASHTRAYS() {
+    public String getASHTRAYS() {
         return ASHTRAYS;
     }
 
-    public Integer getGLOVEBOX() {
+    public String getGLOVEBOX() {
         return GLOVEBOX;
     }
 
-    public Integer getCENTERCONSOLEFRONT() {
+    public String getCENTERCONSOLEFRONT() {
         return CENTERCONSOLEFRONT;
     }
 
-    public Integer getCENTERCONSOLEFREAR() {
+    public String getCENTERCONSOLEFREAR() {
         return CENTERCONSOLEFREAR;
     }
 
-    public Integer getSUNVISORS() {
+    public String getSUNVISORS() {
         return SUNVISORS;
     }
 
-    public Integer getADJUSTABLEPEDALS() {
+    public String getADJUSTABLEPEDALS() {
         return ADJUSTABLEPEDALS;
     }
 
-    public Integer getINTERIORODOR() {
+    public String getINTERIORODOR() {
         return INTERIORODOR;
     }
 
-    public Integer getCARPET() {
+    public String getCARPET() {
         return CARPET;
     }
 
-    public Integer getFLOODMATS() {
+    public String getFLOODMATS() {
         return FLOODMATS;
     }
 
-    public Integer getDOORTRIM() {
+    public String getDOORTRIM() {
         return DOORTRIM;
     }
 
-    public Integer getHEADLINER() {
+    public String getHEADLINER() {
         return HEADLINER;
     }
 
-    public Integer getSEATUPHOLDSTERY() {
+    public String getSEATUPHOLDSTERY() {
         return SEATUPHOLDSTERY;
     }
 
-    public Integer getSEATANDHEAD() {
+    public String getSEATANDHEAD() {
         return SEATANDHEAD;
     }
 
-    public Integer getFOLDINGSEATS() {
+    public String getFOLDINGSEATS() {
         return FOLDINGSEATS;
     }
 
-    public Integer getHEATEDSEATS() {
+    public String getHEATEDSEATS() {
         return HEATEDSEATS;
     }
 
-    public Integer getCOOLEDSEATS() {
+    public String getCOOLEDSEATS() {
         return COOLEDSEATS;
     }
 
-    public Integer getCONVERTIBLETOP() {
+    public String getCONVERTIBLETOP() {
         return CONVERTIBLETOP;
     }
 
-    public Integer getSUNROOF() {
+    public String getSUNROOF() {
         return SUNROOF;
     }
 
-    public Integer getDOORHANDLES() {
+    public String getDOORHANDLES() {
         return DOORHANDLES;
     }
 
-    public Integer getREMOTEENTRY() {
+    public String getREMOTEENTRY() {
         return REMOTEENTRY;
     }
 
-    public Integer getPUSHBUTTONSTART() {
+    public String getPUSHBUTTONSTART() {
         return PUSHBUTTONSTART;
     }
 
-    public Integer getDOORLOCKS() {
+    public String getDOORLOCKS() {
         return DOORLOCKS;
     }
 
-    public Integer getCHILDSAFTEYLOCKS() {
+    public String getCHILDSAFTEYLOCKS() {
         return CHILDSAFTEYLOCKS;
     }
 
-    public Integer getWINDOWCONTROLS() {
+    public String getWINDOWCONTROLS() {
         return WINDOWCONTROLS;
     }
 
-    public Integer getREMOTEDECKLID() {
+    public String getREMOTEDECKLID() {
         return REMOTEDECKLID;
     }
 
-    public Integer getFUELFILLERDOOR() {
+    public String getFUELFILLERDOOR() {
         return FUELFILLERDOOR;
     }
 
-    public Integer getCARPETLUGGAGE() {
+    public String getCARPETLUGGAGE() {
         return CARPETLUGGAGE;
     }
 
-    public Integer getCARGONET() {
+    public String getCARGONET() {
         return CARGONET;
     }
 
-    public Integer getCARGOAREALIGHT() {
+    public String getCARGOAREALIGHT() {
         return CARGOAREALIGHT;
     }
 
-    public Integer getJACKTOOLKIT() {
+    public String getJACKTOOLKIT() {
         return JACKTOOLKIT;
     }
 
-    public Integer getSIDEWALLINS() {
+    public String getSIDEWALLINS() {
         return SIDEWALLINS;
     }
 
-    public Integer getPRESSUREINS() {
+    public String getPRESSUREINS() {
         return PRESSUREINS;
     }
 
-    public Integer getTIREKIT() {
+    public String getTIREKIT() {
         return TIREKIT;
     }
 
-    public Integer getLIDRELEASE() {
+    public String getLIDRELEASE() {
         return LIDRELEASE;
     }
 

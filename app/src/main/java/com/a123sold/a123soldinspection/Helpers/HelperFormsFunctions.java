@@ -20,6 +20,9 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -57,25 +60,26 @@ public class HelperFormsFunctions {
         }
 
     }
-    public int returnCheckboxValue(CheckBox checkBox){
-        int val;
+    public String returnCheckboxValue(CheckBox checkBox){
+        String val;
         boolean value=checkBox.isChecked();
-        if(value) val=1;
-        else    val=0;
+        if(value) val="yes";
+        else    val="no";
         return val;
     }
 
-    public boolean returnCheckboxValue(Integer val){
+    public boolean returnCheckboxValue(String val){
         boolean value;
-        if(val==1)
+        if(val.equals("yes"))
             value=true;
         else
             value=false;
         return value;
     }
-    public String returnFeedbackSeekBar(int progress){
+    public String returnFeedbackSeekBar(String progress){
         String feedback=null;
-        switch(progress){
+        int p= Integer.parseInt(progress);
+        switch(p){
             case 1:
                 feedback="Very Poor";
                 break;
@@ -98,24 +102,24 @@ public class HelperFormsFunctions {
         return feedback;
     }
 
-    public int returnRadioGroup(RadioGroup group,View view){
+    public String returnRadioGroup(RadioGroup group,View view){
 
         try {
             String radioValue = ((RadioButton) view.findViewById(group.getCheckedRadioButtonId())).getText().toString();
             if(radioValue.toUpperCase().equals("YES"))
-                return 1;
+                return "yes";
             else if(radioValue.toUpperCase().equals("NO"))
-                return 0;
+                return "no";
         }catch (Exception e){
-            return -1;
+            return "empty";
         }
-        return -1;
+        return "empty";
     }
 
-    public void setValueRadiobutton(RadioGroup radioGroup,int yesid,int noid,int value){
-        if(value==1)
+    public void setValueRadiobutton(RadioGroup radioGroup,int yesid,int noid,String value){
+        if(value.equalsIgnoreCase("yes"))
             radioGroup.check(yesid);
-        else if(value==0)
+        else if(value.equalsIgnoreCase("no"))
             radioGroup.check(noid);
     }
 
@@ -182,11 +186,14 @@ public class HelperFormsFunctions {
     public static Button getButton(){
         return controlbutton;
     }
-    public String ModalToJSON(Object modal)
-    {
+
+    public JSONObject ModalToJSON(String ModalName,Object modal) throws JSONException {
         Gson gson=new Gson();
-        String objTosend=null;
-        objTosend = gson.toJson(modal);
+        JSONObject objTosend=new JSONObject();
+        objTosend.put("name",ModalName);
+        String s=gson.toJson(modal);
+        JSONObject j=new JSONObject(s);
+        objTosend.put("data",j);
         return  objTosend;
     }
 }

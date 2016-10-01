@@ -36,18 +36,15 @@ public class PendingRequests extends Fragment{
     }
 
     void initialize(View view){
-
         recyclerView = (RecyclerView) view.findViewById(R.id.pendingrequest_recycler_view);
         recyclerView.setHasFixedSize(true);
         activity=getActivity();
-        ViewsVisibility.PendingrelativeLayout= (RelativeLayout) view.findViewById(R.id.nopendingview);
         layoutManager = new LinearLayoutManager(activity);
         ViewsVisibility.conextActivity=activity;
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        ArrayList<NewRequestDataModal> data=new ArrayList<NewRequestDataModal>();
-        ViewsVisibility.pendingRequestAdapter=new PendingRequestAdapter(data);
-        recyclerView.setAdapter(ViewsVisibility.pendingRequestAdapter);
         RelativeLayout relativeLayout= (RelativeLayout) view.findViewById(R.id.nopendingview);
+        ViewsVisibility.PendingrelativeLayout=relativeLayout;
+        ViewsVisibility.pendingrecyclerView=recyclerView;
     }
 }

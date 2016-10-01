@@ -1,51 +1,92 @@
 package com.a123sold.a123soldinspection.modals;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by akshit on 29/7/16.
  */
 public class UnderbodyformModal {
+    @Expose(deserialize = false)
     String id;
-    Integer FRAMEDAMAGE ;
-    Integer FUELSUPPLYSYSTEM ;
-    Integer EXHAUSTSYSTEMCONDITION ;
-    Integer EMISSIONSCONTROLTEST ;
-    Integer AUTOMATICTRANSMISSION ;
-    Integer MANUALTRANSMISSION;
-    Integer HUBOPERATION ;
-    Integer UNIVERSALJOINTS ;
-    Integer TRANSMISSIONMOUNTS ;
-    Integer DIFFERNTIALDRIVEAXLE ;
-    Integer TIRESMATCH ;
-    Integer WHEELSMATCH ;
+    @SerializedName("Frame Damage")
+    String FRAMEDAMAGE ;
+    @SerializedName("Fuel Supply System")
+    String FUELSUPPLYSYSTEM ;
+    @SerializedName("Exhaust System Condition")
+    String EXHAUSTSYSTEMCONDITION ;
+    @SerializedName("Emissions Control Test")
+    String EMISSIONSCONTROLTEST ;
+    @SerializedName("Automatic Transmission/Transaxle")
+    String AUTOMATICTRANSMISSION ;
+    @SerializedName("Manual Transmission/Transaxle,Differential and Transfer Case")
+    String MANUALTRANSMISSION;
+    @SerializedName("4x4 Hub Operation")
+    String HUBOPERATION ;
+    @SerializedName("Universal Joints,CV Joints and CV Joint Boots")
+    String UNIVERSALJOINTS ;
+    @SerializedName("Transmission Mounts(not cracked,broken or oil-soaked)")
+    String TRANSMISSIONMOUNTS ;
+    @SerializedName("Differential/Drive Axle")
+    String DIFFERNTIALDRIVEAXLE ;
+    @SerializedName("Tires Match and Are Correct Size")
+    String TIRESMATCH ;
+    @SerializedName("Wheels Match and Are Correct Size")
+    String WHEELSMATCH ;
+    @SerializedName("Tire Thread Depth - Front Tires(L/R)")
     String TIREDEPTHFRONT ;
+    @SerializedName("Tire Thread Depth - Rear Tires(L/R)")
     String TIREDEPTHREAR ;
+    @SerializedName("Normal Tire Wear")
     String NORMALTIREWEAR ;
-    Integer TIREPRESSUREFRONT ;
-    Integer TIREPRESSUREBACK ;
+    @SerializedName("Tire Pressure - Front Tires(L/R)-(Scale 1-5)")
+    String TIREPRESSUREFRONT ;
+    @SerializedName("Tire Pressure - Rear Tires(L/R)-(Scale 1-5)")
+    String TIREPRESSUREBACK ;
+    @SerializedName("Tire Pressure Monitoring System")
     String TIREPRESSUREMONITOR ;
-    Integer WHEELS ;
-    Integer WHEELCOVERANDCENTERCAPS ;
-    Integer RACKPINION ;
-    Integer CONTROLARMS ;
-    Integer TIERODS ;
-    Integer SWAYBARS ;
-    Integer SPRINGS ;
-    Integer STRUTSANDSHOCKS ;
-    Integer WHEELALIGNMENT ;
-    Integer POWERSTEERINGPUMP ;
-    Integer WHEELSCYLENDIRS ;
-    Integer BRAKEPADFRONT ;
-    Integer BRAKEPADREAR ;
-    Integer ROTORSANDDRUMS;
-    Integer BRAKELINES ;
-    Integer PARKINGBRAKE ;
-    Integer MASTERCYLENDIRBOOSTER ;
-    Float REPAIRINGCOSTUNDERBODY ;
-    String COMMENTUNDERBODY ;
+    @SerializedName("Wheels")
+    String WHEELS ;
+    @SerializedName("Wheel Covers and Center Caps")
+    String WHEELCOVERANDCENTERCAPS;
+    @SerializedName("Rack-and-Pinion, Linkage and Boots")
+    String RACKPINION;
+    @SerializedName("Control Arms, Bushings and Ball Joints")
+    String CONTROLARMS ;
+    @SerializedName("Tie Rods and Ider Arm")
+    String TIERODS ;
+    @SerializedName("Sway Bars,Links and Bushings")
+    String SWAYBARS ;
+    @SerializedName("Springs")
+    String SPRINGS ;
+    @SerializedName("Struts and Shocks")
+    String STRUTSANDSHOCKS ;
+    @SerializedName("Wheel Alignment(check if necessary)")
+    String WHEELALIGNMENT ;
+    @SerializedName("Power Steering Pump")
+    String POWERSTEERINGPUMP ;
+    @SerializedName("Capilers and Wheel Cylinders")
+    String WHEELSCYLENDIRS ;
+    @SerializedName("Brake Pads And Shoes - Front Brakes(L/R)")
+    String BRAKEPADFRONT ;
+    @SerializedName("Brake Pads And Shoes - Rear Brakes(L/R)")
+    String BRAKEPADREAR ;
+    @SerializedName("Rotors and Drums")
+    String ROTORSANDDRUMS;
+    @SerializedName("Brake Lines,Hoses and Fittings")
+    String BRAKELINES ;
+    @SerializedName("Parking Brake")
+    String PARKINGBRAKE ;
+    @SerializedName("Master Cylinder and Booster")
+    String MASTERCYLENDIRBOOSTER ;
+    @SerializedName("Repairing Cost")
+    Float REPAIRINGCOSTUNDERBODY;
+    @SerializedName("Comment")
+    String COMMENTUNDERBODY;
 
     public UnderbodyformModal(){};
 
-    public UnderbodyformModal(String id, Integer FRAMEDAMAGE, Integer FUELSUPPLYSYSTEM, Integer EXHAUSTSYSTEMCONDITION, Integer EMISSIONSCONTROLTEST, Integer AUTOMATICTRANSMISSION, Integer MANUALTRANSMISSION, Integer HUBOPERATION, Integer UNIVERSALJOINTS, Integer TRANSMISSIONMOUNTS, Integer DIFFERNTIALDRIVEAXLE, Integer TIRESMATCH, Integer WHEELSMATCH, String TIREDEPTHFRONT, String TIREDEPTHREAR, String NORMALTIREWEAR, Integer TIREPRESSUREFRONT, Integer TIREPRESSUREBACK, String TIREPRESSUREMONITOR, Integer WHEELS, Integer WHEELCOVERANDCENTERCAPS, Integer RACKPINION, Integer CONTROLARMS, Integer TIERODS, Integer SWAYBARS, Integer SPRINGS, Integer STRUTSANDSHOCKS, Integer WHEELALIGNMENT, Integer POWERSTEERINGPUMP, Integer WHEELSCYLENDIRS, Integer BRAKEPADFRONT, Integer BRAKEPADREAR, Integer ROTORSANDDRUMS, Integer BRAKELINES, Integer PARKINGBRAKE, Integer MASTERCYLENDIRBOOSTER, Float REPAIRINGCOSTUNDERBODY, String COMMENTUNDERBODY) {
+    public UnderbodyformModal(String id, String FRAMEDAMAGE, String FUELSUPPLYSYSTEM, String EXHAUSTSYSTEMCONDITION, String EMISSIONSCONTROLTEST, String AUTOMATICTRANSMISSION, String MANUALTRANSMISSION, String HUBOPERATION, String UNIVERSALJOINTS, String TRANSMISSIONMOUNTS, String DIFFERNTIALDRIVEAXLE, String TIRESMATCH, String WHEELSMATCH, String TIREDEPTHFRONT, String TIREDEPTHREAR, String NORMALTIREWEAR, String TIREPRESSUREFRONT, String TIREPRESSUREBACK, String TIREPRESSUREMONITOR, String WHEELS, String WHEELCOVERANDCENTERCAPS, String RACKPINION, String CONTROLARMS, String TIERODS, String SWAYBARS, String SPRINGS, String STRUTSANDSHOCKS, String WHEELALIGNMENT, String POWERSTEERINGPUMP, String WHEELSCYLENDIRS, String BRAKEPADFRONT, String BRAKEPADREAR, String ROTORSANDDRUMS, String BRAKELINES, String PARKINGBRAKE, String MASTERCYLENDIRBOOSTER, Float REPAIRINGCOSTUNDERBODY, String COMMENTUNDERBODY) {
         this.id = id;
         this.FRAMEDAMAGE = FRAMEDAMAGE;
         this.FUELSUPPLYSYSTEM = FUELSUPPLYSYSTEM;
@@ -90,51 +131,51 @@ public class UnderbodyformModal {
         return id;
     }
 
-    public Integer getFRAMEDAMAGE() {
+    public String getFRAMEDAMAGE() {
         return FRAMEDAMAGE;
     }
 
-    public Integer getFUELSUPPLYSYSTEM() {
+    public String getFUELSUPPLYSYSTEM() {
         return FUELSUPPLYSYSTEM;
     }
 
-    public Integer getEXHAUSTSYSTEMCONDITION() {
+    public String getEXHAUSTSYSTEMCONDITION() {
         return EXHAUSTSYSTEMCONDITION;
     }
 
-    public Integer getEMISSIONSCONTROLTEST() {
+    public String getEMISSIONSCONTROLTEST() {
         return EMISSIONSCONTROLTEST;
     }
 
-    public Integer getAUTOMATICTRANSMISSION() {
+    public String getAUTOMATICTRANSMISSION() {
         return AUTOMATICTRANSMISSION;
     }
 
-    public Integer getMANUALTRANSMISSION() {
+    public String getMANUALTRANSMISSION() {
         return MANUALTRANSMISSION;
     }
 
-    public Integer getHUBOPERATION() {
+    public String getHUBOPERATION() {
         return HUBOPERATION;
     }
 
-    public Integer getUNIVERSALJOINTS() {
+    public String getUNIVERSALJOINTS() {
         return UNIVERSALJOINTS;
     }
 
-    public Integer getTRANSMISSIONMOUNTS() {
+    public String getTRANSMISSIONMOUNTS() {
         return TRANSMISSIONMOUNTS;
     }
 
-    public Integer getDIFFERNTIALDRIVEAXLE() {
+    public String getDIFFERNTIALDRIVEAXLE() {
         return DIFFERNTIALDRIVEAXLE;
     }
 
-    public Integer getTIRESMATCH() {
+    public String getTIRESMATCH() {
         return TIRESMATCH;
     }
 
-    public Integer getWHEELSMATCH() {
+    public String getWHEELSMATCH() {
         return WHEELSMATCH;
     }
 
@@ -150,11 +191,11 @@ public class UnderbodyformModal {
         return NORMALTIREWEAR;
     }
 
-    public Integer getTIREPRESSUREFRONT() {
+    public String getTIREPRESSUREFRONT() {
         return TIREPRESSUREFRONT;
     }
 
-    public Integer getTIREPRESSUREBACK() {
+    public String getTIREPRESSUREBACK() {
         return TIREPRESSUREBACK;
     }
 
@@ -162,71 +203,71 @@ public class UnderbodyformModal {
         return TIREPRESSUREMONITOR;
     }
 
-    public Integer getWHEELS() {
+    public String getWHEELS() {
         return WHEELS;
     }
 
-    public Integer getWHEELCOVERANDCENTERCAPS() {
+    public String getWHEELCOVERANDCENTERCAPS() {
         return WHEELCOVERANDCENTERCAPS;
     }
 
-    public Integer getRACKPINION() {
+    public String getRACKPINION() {
         return RACKPINION;
     }
 
-    public Integer getCONTROLARMS() {
+    public String getCONTROLARMS() {
         return CONTROLARMS;
     }
 
-    public Integer getTIERODS() {
+    public String getTIERODS() {
         return TIERODS;
     }
 
-    public Integer getSWAYBARS() {
+    public String getSWAYBARS() {
         return SWAYBARS;
     }
 
-    public Integer getSPRINGS() {
+    public String getSPRINGS() {
         return SPRINGS;
     }
 
-    public Integer getSTRUTSANDSHOCKS() {
+    public String getSTRUTSANDSHOCKS() {
         return STRUTSANDSHOCKS;
     }
 
-    public Integer getWHEELALIGNMENT() {
+    public String getWHEELALIGNMENT() {
         return WHEELALIGNMENT;
     }
 
-    public Integer getPOWERSTEERINGPUMP() {
+    public String getPOWERSTEERINGPUMP() {
         return POWERSTEERINGPUMP;
     }
 
-    public Integer getWHEELSCYLENDIRS() {
+    public String getWHEELSCYLENDIRS() {
         return WHEELSCYLENDIRS;
     }
 
-    public Integer getBRAKEPADFRONT() {
+    public String getBRAKEPADFRONT() {
         return BRAKEPADFRONT;
     }
 
-    public Integer getBRAKEPADREAR() {
+    public String getBRAKEPADREAR() {
         return BRAKEPADREAR;
     }
 
-    public Integer getROTORSANDDRUMS() {
+    public String getROTORSANDDRUMS() {
         return ROTORSANDDRUMS;
     }
 
-    public Integer getBRAKELINES() {
+    public String getBRAKELINES() {
         return BRAKELINES;
     }
 
-    public Integer getPARKINGBRAKE() {
+    public String getPARKINGBRAKE() {
         return PARKINGBRAKE;
     }
 
-    public Integer getMASTERCYLENDIRBOOSTER() {
+    public String getMASTERCYLENDIRBOOSTER() {
         return MASTERCYLENDIRBOOSTER;
     }
 

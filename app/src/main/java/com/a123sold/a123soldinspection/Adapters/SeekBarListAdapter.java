@@ -55,7 +55,7 @@ public class SeekBarListAdapter extends ArrayAdapter<String> {
         titleText.setText(titles[position]);
         if(initvalues!=null){
             seekBarvalue.setText(initvalues.get(position));
-            seekBarfeedback.setText(helperFormsFunctions.returnFeedbackSeekBar(Integer.valueOf(initvalues.get(position))));
+            seekBarfeedback.setText(helperFormsFunctions.returnFeedbackSeekBar(String.valueOf(initvalues.get(position))));
             seekBar.setProgress(Integer.valueOf(initvalues.get(position)));
             values.add(initvalues.get(position));
         }else {
@@ -66,7 +66,7 @@ public class SeekBarListAdapter extends ArrayAdapter<String> {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                seekBarfeedback.setText(helperFormsFunctions.returnFeedbackSeekBar(progress));
+                seekBarfeedback.setText(helperFormsFunctions.returnFeedbackSeekBar(String.valueOf(progress)));
                 seekBarvalue.setText(String.valueOf(progress));
                 values.set(position,String.valueOf(progress));
             }

@@ -2,6 +2,7 @@ package com.a123sold.a123soldinspection;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.a123sold.a123soldinspection.Adapters.NavigationListAdapter;
 import com.a123sold.a123soldinspection.Fragments.AssignedRequests;
@@ -47,8 +49,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ViewPagerAdapter adapterpager;
     private DrawerLayout drawerlayout;
     private RelativeLayout rl;
+    private TextView textEmail;
     private ListView navigationList;
     private ImageView profileimage;
+    Fragment newf,pendingf,assignedf;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private android.support.v7.app.ActionBar actionBar;
     Activity activity;
@@ -65,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("123sold");
         setSupportActionBar(toolbar);
+        textEmail= (TextView) findViewById(R.id.personEmail);
+        SharedPreferences sharedpreferences = activity.getSharedPreferences(Config.localUserDB, activity.MODE_PRIVATE);
+        String email = sharedpreferences.getString("email", null);
+        textEmail.setText(email);
         navigationList = (ListView) findViewById(R.id.navigationlist);
         drawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         profileimage=(ImageView) findViewById(R.id.profileimage);
@@ -120,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Fragment pendingrequest = new PendingRequests();
         adapterpager.addFragment(pendingrequest,"Pending");
         viewPager.setAdapter(adapterpager);
+        newf=newrequest;
+        pendingf=pendingrequest;
+        assignedf=assignedrequest;
     }
 
     @Override
@@ -281,9 +292,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             } else {
                 drawerlayout.openDrawer(rl);
             }
+        }else if(id == R.id.refresh){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .detach(newf)
+                    .attach(newf)
+                    .commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .detach(pendingf)
+                    .attach(pendingf)
+                    .commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .detach(assignedf)
+                    .attach(assignedf)
+                    .commit();
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

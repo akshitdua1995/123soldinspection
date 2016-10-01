@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.a123sold.a123soldinspection.Helpers.JsonRequest;
 import com.a123sold.a123soldinspection.Helpers.ViewsVisibility;
 import com.a123sold.a123soldinspection.InspectionCategories;
 import com.a123sold.a123soldinspection.R;
@@ -55,10 +56,11 @@ public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequest
                 Intent i=new Intent(ViewsVisibility.conextActivity, InspectionCategories.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("id", data.getId());
-                i.putExtra("name",data.getOwnerName());
+                i.putExtra("name",data.getUserName());
                 i.putExtra("make",data.getMake());
                 i.putExtra("model",data.getModel());
                 i.putExtra("version",data.getVersion());
+                i.putExtra("number",data.getMobileNumber());
                 ViewsVisibility.conextActivity.startActivity(i);
             }
         }
@@ -104,13 +106,15 @@ public class AssignedRequestAdapter extends RecyclerView.Adapter<AssignedRequest
         model.setText(dataSet.get(listPosition).getModel());
         version.setText(dataSet.get(listPosition).getVersion());
         year.setText(String.valueOf(dataSet.get(listPosition).getYear()));
-        kms.setText(String.valueOf(dataSet.get(listPosition).getKmDriven()));
+        kms.setText(String.valueOf(dataSet.get(listPosition).getKmDriven())+"Kms");
         fueltype.setText(dataSet.get(listPosition).getFuelType());
         transmission.setText(dataSet.get(listPosition).getTransmission());
-        owner.setText(String.valueOf(dataSet.get(listPosition).getNumberOfOwners()));
+        owner.setText("Owners : "+String.valueOf(dataSet.get(listPosition).getNumberOfOwners()));
         location.setText(dataSet.get(listPosition).getAddress());
-        customername.setText(dataSet.get(listPosition).getOwnerName());
-        //customermobilenumber.setText(dataSet.get(listPosition).getCustomermobilenumber());
+        customername.setText(dataSet.get(listPosition).getUserName());
+        customermobilenumber.setText(dataSet.get(listPosition).getMobileNumber());
+        JsonRequest jsonRequest=new JsonRequest(ViewsVisibility.conextActivity.getApplicationContext(),ViewsVisibility.conextActivity);
+        jsonRequest.LoadImage(dataSet.get(listPosition).getImageUrl(),imagecar);
         //imagecar.setImageResource(dataSet.get(listPosition).getImage());
     }
     public void addData(NewRequestDataModal data){

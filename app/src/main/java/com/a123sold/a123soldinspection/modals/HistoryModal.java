@@ -1,21 +1,33 @@
 package com.a123sold.a123soldinspection.modals;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by akshit on 29/7/16.
  */
+
 public class HistoryModal {
+    @Expose(deserialize = false)
     String id;
-    Integer VIN ;
-    Integer SERVICERECALL ;
-    Integer VEHICLEHISTORYREPORT ;
-    Integer SCHEDULEDMAINTENANCE ;
-    Integer VEHICLEEMISSIONS ;
+    @SerializedName("VIN Inspection(or chasis number)")
+    String VIN;
+    @SerializedName("Service Recalls (OASIS) Performed")
+    String SERVICERECALL;
+    @SerializedName("Vehicle History Report Obtained(customer given)")
+    String VEHICLEHISTORYREPORT;
+    @SerializedName("Scheduled Maintenance Performed(customer given)")
+    String SCHEDULEDMAINTENANCE;
+    @SerializedName("Vehicle Emissions Sticker (ApplicableStates)")
+    String VEHICLEEMISSIONS;
+    @SerializedName("Repairing Cost")
     Float REPAIRINGCOSTHISTORY ;
+    @SerializedName("Comment")
     String COMMENTHISTORY ;
 
     public HistoryModal(){}
 
-    public HistoryModal(String id, Integer VIN, Integer SERVICERECALL, Integer VEHICLEHISTORYREPORT, Integer SCHEDULEDMAINTENANCE, Integer VEHICLEEMISSIONS, Float REPAIRINGCOSTHISTORY, String COMMENTHISTORY) {
+    public HistoryModal(String id, String VIN, String SERVICERECALL, String VEHICLEHISTORYREPORT, String SCHEDULEDMAINTENANCE, String VEHICLEEMISSIONS, Float REPAIRINGCOSTHISTORY, String COMMENTHISTORY) {
         this.id = id;
         this.VIN = VIN;
         this.SERVICERECALL = SERVICERECALL;
@@ -30,23 +42,23 @@ public class HistoryModal {
         return id;
     }
 
-    public Integer getVIN() {
+    public String getVIN() {
         return VIN;
     }
 
-    public Integer getSERVICERECALL() {
+    public String getSERVICERECALL() {
         return SERVICERECALL;
     }
 
-    public Integer getVEHICLEHISTORYREPORT() {
+    public String getVEHICLEHISTORYREPORT() {
         return VEHICLEHISTORYREPORT;
     }
 
-    public Integer getSCHEDULEDMAINTENANCE() {
+    public String getSCHEDULEDMAINTENANCE() {
         return SCHEDULEDMAINTENANCE;
     }
 
-    public Integer getVEHICLEEMISSIONS() {
+    public String getVEHICLEEMISSIONS() {
         return VEHICLEEMISSIONS;
     }
 

@@ -12,4 +12,13 @@ public final class Config {
     public static final String historyimg="HistoryImage";
     public static final String underhoodimg="UnderhoodImage";
     public static final String interiorimg="InteriorImage";
+
+    public static String getAnswer(int value){
+        if(value==1)
+            return "yes";
+        else if(value==0)
+            return  "no";
+        else
+            return "empty";
+    }
 }

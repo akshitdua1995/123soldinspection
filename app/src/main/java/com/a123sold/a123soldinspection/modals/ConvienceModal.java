@@ -1,30 +1,48 @@
 package com.a123sold.a123soldinspection.modals;
 
-/**
- * Created by akshit on 29/7/16.
- */
+import com.google.gson.annotations.SerializedName;
+
+
 public class ConvienceModal {
     String id;
-    Integer OWNERSGUIDE ;
-    Integer KEYREMOTECONTROLS ;
-    Integer UNIVERSALTRANSMITTER ;
-    Integer RC ;
-    Integer POLLUTIONCERTI ;
-    Integer COMPANY ;
-    String INSAURANCEVALIDITY ;
-    Integer LIFETAXPAID ;
-    Integer LEASE ;
-    String NAMEFINANCIALCORPORATION ;
-    Float REPAIRINGCOSTCONVIENCE ;
-    String COMMENTCONVIENCE ;
+    @SerializedName("Owner's Guide(Available)")
+    String OWNERSGUIDE;
+    @SerializedName("Keys and Remote Controls(Available)")
+    String KEYREMOTECONTROLS;
+    @SerializedName("Universal Transmitter(garage reate opener|Available)")
+    String UNIVERSALTRANSMITTER;
+    @SerializedName("RC")
+    String RC;
+    @SerializedName("Pollution Certificate")
+    String POLLUTIONCERTI;
+    @SerializedName("Company/3rd Party")
+    String COMPANY;
+    @SerializedName("Insurance validity")
+    String INSAURANCEVALIDITY;
+    @SerializedName("Life tax paid")
+    String LIFETAXPAID;
+    @SerializedName("HP/lease if any")
+    String LEASE;
+    @SerializedName("Name of Finance Co")
+    String NAMEFINANCIALCORPORATION;
+    @SerializedName("Repairing Cost")
+    Float REPAIRINGCOSTCONVIENCE;
+    @SerializedName("Comment")
+    String COMMENTCONVIENCE;
+    @SerializedName("Cubic Capacity")
     String CUBICCAPACITY;
+    @SerializedName("Vehicle Used As")
     String VEHICLEUSEDAS;
+    @SerializedName("Financer name")
     String FINANCERNAME;
+    @SerializedName("VIP License Plate")
     String VIPLICENSEPLATE;
-    Integer DUPLICATEKEY;
-    Integer UNDERHYPOTHECATION;
+    @SerializedName("Dublicate key")
+    String DUPLICATEKEY;
+    @SerializedName("Under Hypothecation")
+    String UNDERHYPOTHECATION;
 
-    public ConvienceModal(String id, Integer OWNERSGUIDE, Integer KEYREMOTECONTROLS, Integer UNIVERSALTRANSMITTER, Integer RC, Integer POLLUTIONCERTI, Integer COMPANY, String INSAURANCEVALIDITY, Integer LIFETAXPAID, Integer LEASE, String NAMEFINANCIALCORPORATION, Float REPAIRINGCOSTCONVIENCE, String COMMENTCONVIENCE, String CUBICCAPACITY, String VEHICLEUSEDAS, String FINANCERNAME, String VIPLICENSEPLATE, Integer DUPLICATEKEY, Integer UNDERHYPOTHECATION) {
+    public ConvienceModal(String id, String OWNERSGUIDE, String KEYREMOTECONTROLS, String UNIVERSALTRANSMITTER, String RC, String POLLUTIONCERTI, String COMPANY, String INSAURANCEVALIDITY, String LIFETAXPAID, String LEASE, String NAMEFINANCIALCORPORATION, Float REPAIRINGCOSTCONVIENCE, String COMMENTCONVIENCE, String CUBICCAPACITY, String VEHICLEUSEDAS, String FINANCERNAME, String VIPLICENSEPLATE, String DUPLICATEKEY, String UNDERHYPOTHECATION) {
         this.id = id;
         this.OWNERSGUIDE = OWNERSGUIDE;
         this.KEYREMOTECONTROLS = KEYREMOTECONTROLS;
@@ -54,27 +72,27 @@ public class ConvienceModal {
         return id;
     }
 
-    public Integer getOWNERSGUIDE() {
+    public String getOWNERSGUIDE() {
         return OWNERSGUIDE;
     }
 
-    public Integer getKEYREMOTECONTROLS() {
+    public String getKEYREMOTECONTROLS() {
         return KEYREMOTECONTROLS;
     }
 
-    public Integer getUNIVERSALTRANSMITTER() {
+    public String getUNIVERSALTRANSMITTER() {
         return UNIVERSALTRANSMITTER;
     }
 
-    public Integer getRC() {
+    public String getRC() {
         return RC;
     }
 
-    public Integer getPOLLUTIONCERTI() {
+    public String getPOLLUTIONCERTI() {
         return POLLUTIONCERTI;
     }
 
-    public Integer getCOMPANY() {
+    public String getCOMPANY() {
         return COMPANY;
     }
 
@@ -82,11 +100,11 @@ public class ConvienceModal {
         return INSAURANCEVALIDITY;
     }
 
-    public Integer getLIFETAXPAID() {
+    public String getLIFETAXPAID() {
         return LIFETAXPAID;
     }
 
-    public Integer getLEASE() {
+    public String getLEASE() {
         return LEASE;
     }
 
@@ -118,11 +136,11 @@ public class ConvienceModal {
         return VIPLICENSEPLATE;
     }
 
-    public Integer getDUPLICATEKEY() {
+    public String getDUPLICATEKEY() {
         return DUPLICATEKEY;
     }
 
-    public Integer getUNDERHYPOTHECATION() {
+    public String getUNDERHYPOTHECATION() {
         return UNDERHYPOTHECATION;
     }
 }

@@ -1,49 +1,86 @@
 package com.a123sold.a123soldinspection.modals;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by akshit on 29/7/16.
  */
 public class ExteriorformModal {
-
+    @Expose(deserialize = false)
     String id;
-    Integer GRILLINSPECTION;
-    Integer TRIMINSPECTION;
-    Integer ROOFRACKINSPECTION;
-    Integer DEPLOYABLERUNNINGBOARDS;
-    Integer WINDSHIELDGLASSINSPECTION;
-    Integer SIDEGLASSINSPECTION;
-    Integer REARWINDOWGLASSINSPECTION;
-    Integer WIPERBLADE;
-    Integer OUTSIDEMIRRORINSPECTION;
-    Integer OUTSIDEFOLDINGMIRRORINSPECTION;
-    Integer FRONTEXTLIGHTS;
-    Integer BACKEXTLIGHTS;
-    Integer SIDEEXTLIGHTS;
-    Integer HAZARDLIGHTS;
-    Integer TRAILERLAMPCONNECTOR;
-    Integer ONOFFLIGHTING;
-    Integer FLOODDAMAGE;
-    Integer FIREDAMAGE;
-    Integer MAJORDAMAGE;
-    Integer HAILDAMAGE;
-    Integer BODYPANEL;
-    Integer BUMPER;
-    Integer DOORS;
-    Integer HOOD;
-    Integer DECKLID;
-    Integer TAILGATE;
-    Integer ROOF;
-    Integer HOODRELEASE;
-    Integer HOODHINGES;
-    Integer DOORHINGES;
-    Integer TRUNKSTRUTS;
-    Integer POWERLIFTGATE;
-    Integer PAINTGAUGE;
+    @SerializedName("Grill Inspection (Damage)")
+    String GRILLINSPECTION;
+    @SerializedName("Trim Inspection (Damage)")
+    String TRIMINSPECTION;
+    @SerializedName("Roof Rack Inspection (Damage)")
+    String ROOFRACKINSPECTION;
+    @SerializedName("Deployable Running Boards (For SUV)")
+    String DEPLOYABLERUNNINGBOARDS;
+    @SerializedName("Windshield Glass Inspection (Crack)")
+    String WINDSHIELDGLASSINSPECTION;
+    @SerializedName("Side Glass Inspection (Damage)")
+    String SIDEGLASSINSPECTION;
+    @SerializedName("Rear Window/Tailgate Glass Inspection (Damage)")
+    String REARWINDOWGLASSINSPECTION;
+    @SerializedName("Wiper Blade (Damage)")
+    String WIPERBLADE;
+    @SerializedName("Outside Mirror Inspection (Damage)")
+    String OUTSIDEMIRRORINSPECTION;
+    @SerializedName("Outside Folding Mirror Inspection")
+    String OUTSIDEFOLDINGMIRRORINSPECTION;
+    @SerializedName("Front-End Exterior Lights (Damage)")
+    String FRONTEXTLIGHTS;
+    @SerializedName("Back-End Exterior Lights (Damage)")
+    String BACKEXTLIGHTS;
+    @SerializedName("Side Exterior Lights (Damage)")
+    String SIDEEXTLIGHTS;
+    @SerializedName("Hazards Light (Damage)")
+    String HAZARDLIGHTS;
+    @SerializedName("Trailer Lamp Connector Operation (Damage)")
+    String TRAILERLAMPCONNECTOR;
+    @SerializedName("Auto On/Off Lighting")
+    String ONOFFLIGHTING;
+    @SerializedName("Evidence of Flood Damage")
+    String FLOODDAMAGE;
+    @SerializedName("Evidence of Fire Damage")
+    String FIREDAMAGE;
+    @SerializedName("Evidence of Major Damage")
+    String MAJORDAMAGE;
+    @SerializedName("Evidence of Hail Damage")
+    String HAILDAMAGE;
+    @SerializedName("Body Panel Inspection")
+    String BODYPANEL;
+    @SerializedName("Bumper/Fascia Inspection")
+    String BUMPER;
+    @SerializedName("Door Inspection/Alignment")
+    String DOORS;
+    @SerializedName("Hood Inspection/Alignment")
+    String HOOD;
+    @SerializedName("Deck lid Inspection/Alignment(Available)")
+    String DECKLID;
+    @SerializedName("Tailgate Inspection/Alignment")
+    String TAILGATE;
+    @SerializedName("Roof Inspection")
+    String ROOF;
+    @SerializedName("Hood Release Mechanisms Operate Properly")
+    String HOODRELEASE;
+    @SerializedName("Hood Hinges, Prop Rod/Gas Struts Operate Properly")
+    String HOODHINGES;
+    @SerializedName("Door Hinges Operate Properly")
+    String DOORHINGES;
+    @SerializedName("Trunk/Tailgate Hinges/Gas Struts Operate Properly")
+    String TRUNKSTRUTS;
+    @SerializedName("Power Liftgate Operation")
+    String POWERLIFTGATE;
+    @SerializedName("Paint Gauge tool (RE-PAINT)")
+    String PAINTGAUGE;
+    @SerializedName("Repairing Cost")
     Float REPAIRINGCOSTEXTERIOR;
+    @SerializedName("Comment")
     String COMMENTEXTERIOR;
-
     public ExteriorformModal(){}
-    public ExteriorformModal(String id, Integer GRILLINSPECTION, Integer TRIMINSPECTION, Integer ROOFRACKINSPECTION, Integer DEPLOYABLERUNNINGBOARDS, Integer WINDSHIELDGLASSINSPECTION, Integer SIDEGLASSINSPECTION, Integer REARWINDOWGLASSINSPECTION, Integer WIPERBLADE, Integer OUTSIDEMIRRORINSPECTION, Integer OUTSIDEFOLDINGMIRRORINSPECTION, Integer FRONTEXTLIGHTS, Integer BACKEXTLIGHTS, Integer SIDEEXTLIGHTS, Integer HAZARDLIGHTS, Integer TRAILERLAMPCONNECTOR, Integer ONOFFLIGHTING, Integer FLOODDAMAGE, Integer FIREDAMAGE, Integer MAJORDAMAGE, Integer HAILDAMAGE, Integer BODYPANEL, Integer BUMPER, Integer DOORS, Integer HOOD, Integer DECKLID, Integer TAILGATE, Integer ROOF, Integer HOODRELEASE, Integer HOODHINGES, Integer DOORHINGES, Integer TRUNKSTRUTS, Integer POWERLIFTGATE, Integer PAINTGAUGE, Float REPAIRINGCOSTEXTERIOR, String COMMENTEXTERIOR) {
+    public ExteriorformModal(String id, String GRILLINSPECTION, String TRIMINSPECTION, String ROOFRACKINSPECTION, String DEPLOYABLERUNNINGBOARDS, String WINDSHIELDGLASSINSPECTION, String SIDEGLASSINSPECTION, String REARWINDOWGLASSINSPECTION, String WIPERBLADE, String OUTSIDEMIRRORINSPECTION, String OUTSIDEFOLDINGMIRRORINSPECTION, String FRONTEXTLIGHTS, String BACKEXTLIGHTS, String SIDEEXTLIGHTS, String HAZARDLIGHTS, String TRAILERLAMPCONNECTOR, String ONOFFLIGHTING, String FLOODDAMAGE, String FIREDAMAGE, String MAJORDAMAGE, String HAILDAMAGE, String BODYPANEL, String BUMPER, String DOORS, String HOOD, String DECKLID, String TAILGATE, String ROOF, String HOODRELEASE, String HOODHINGES, String DOORHINGES, String TRUNKSTRUTS, String POWERLIFTGATE, String PAINTGAUGE, Float REPAIRINGCOSTEXTERIOR, String COMMENTEXTERIOR) {
         this.id = id;
         this.GRILLINSPECTION = GRILLINSPECTION;
         this.TRIMINSPECTION = TRIMINSPECTION;
@@ -86,135 +123,135 @@ public class ExteriorformModal {
         return id;
     }
 
-    public Integer getGRILLINSPECTION() {
+    public String getGRILLINSPECTION() {
         return GRILLINSPECTION;
     }
 
-    public Integer getTRIMINSPECTION() {
+    public String getTRIMINSPECTION() {
         return TRIMINSPECTION;
     }
 
-    public Integer getROOFRACKINSPECTION() {
+    public String getROOFRACKINSPECTION() {
         return ROOFRACKINSPECTION;
     }
 
-    public Integer getDEPLOYABLERUNNINGBOARDS() {
+    public String getDEPLOYABLERUNNINGBOARDS() {
         return DEPLOYABLERUNNINGBOARDS;
     }
 
-    public Integer getWINDSHIELDGLASSINSPECTION() {
+    public String getWINDSHIELDGLASSINSPECTION() {
         return WINDSHIELDGLASSINSPECTION;
     }
 
-    public Integer getSIDEGLASSINSPECTION() {
+    public String getSIDEGLASSINSPECTION() {
         return SIDEGLASSINSPECTION;
     }
 
-    public Integer getREARWINDOWGLASSINSPECTION() {
+    public String getREARWINDOWGLASSINSPECTION() {
         return REARWINDOWGLASSINSPECTION;
     }
 
-    public Integer getWIPERBLADE() {
+    public String getWIPERBLADE() {
         return WIPERBLADE;
     }
 
-    public Integer getOUTSIDEMIRRORINSPECTION() {
+    public String getOUTSIDEMIRRORINSPECTION() {
         return OUTSIDEMIRRORINSPECTION;
     }
 
-    public Integer getOUTSIDEFOLDINGMIRRORINSPECTION() {
+    public String getOUTSIDEFOLDINGMIRRORINSPECTION() {
         return OUTSIDEFOLDINGMIRRORINSPECTION;
     }
 
-    public Integer getFRONTEXTLIGHTS() {
+    public String getFRONTEXTLIGHTS() {
         return FRONTEXTLIGHTS;
     }
 
-    public Integer getBACKEXTLIGHTS() {
+    public String getBACKEXTLIGHTS() {
         return BACKEXTLIGHTS;
     }
 
-    public Integer getSIDEEXTLIGHTS() {
+    public String getSIDEEXTLIGHTS() {
         return SIDEEXTLIGHTS;
     }
 
-    public Integer getHAZARDLIGHTS() {
+    public String getHAZARDLIGHTS() {
         return HAZARDLIGHTS;
     }
 
-    public Integer getTRAILERLAMPCONNECTOR() {
+    public String getTRAILERLAMPCONNECTOR() {
         return TRAILERLAMPCONNECTOR;
     }
 
-    public Integer getONOFFLIGHTING() {
+    public String getONOFFLIGHTING() {
         return ONOFFLIGHTING;
     }
 
-    public Integer getFLOODDAMAGE() {
+    public String getFLOODDAMAGE() {
         return FLOODDAMAGE;
     }
 
-    public Integer getFIREDAMAGE() {
+    public String getFIREDAMAGE() {
         return FIREDAMAGE;
     }
 
-    public Integer getMAJORDAMAGE() {
+    public String getMAJORDAMAGE() {
         return MAJORDAMAGE;
     }
 
-    public Integer getHAILDAMAGE() {
+    public String getHAILDAMAGE() {
         return HAILDAMAGE;
     }
 
-    public Integer getBODYPANEL() {
+    public String getBODYPANEL() {
         return BODYPANEL;
     }
 
-    public Integer getBUMPER() {
+    public String getBUMPER() {
         return BUMPER;
     }
 
-    public Integer getDOORS() {
+    public String getDOORS() {
         return DOORS;
     }
 
-    public Integer getHOOD() {
+    public String getHOOD() {
         return HOOD;
     }
 
-    public Integer getDECKLID() {
+    public String getDECKLID() {
         return DECKLID;
     }
 
-    public Integer getTAILGATE() {
+    public String getTAILGATE() {
         return TAILGATE;
     }
 
-    public Integer getROOF() {
+    public String getROOF() {
         return ROOF;
     }
 
-    public Integer getHOODRELEASE() {
+    public String getHOODRELEASE() {
         return HOODRELEASE;
     }
 
-    public Integer getHOODHINGES() {
+    public String getHOODHINGES() {
         return HOODHINGES;
     }
 
-    public Integer getDOORHINGES() {
+    public String getDOORHINGES() {
         return DOORHINGES;
     }
 
-    public Integer getTRUNKSTRUTS() {
+    public String getTRUNKSTRUTS() {
         return TRUNKSTRUTS;
     }
 
-    public Integer getPOWERLIFTGATE() {
+    public String getPOWERLIFTGATE() {
         return POWERLIFTGATE;
     }
 
-    public Integer getPAINTGAUGE() {
+    public String getPAINTGAUGE() {
         return PAINTGAUGE;
     }
 

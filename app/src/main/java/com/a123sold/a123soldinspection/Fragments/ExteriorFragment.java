@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -130,39 +131,39 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
     private Button saveexterior;
     static int CAMERA_REQUEST;
     String id;
-    Integer GRILLINSPECTION;
-    Integer TRIMINSPECTION;
-    Integer ROOFRACKINSPECTION;
-    Integer DEPLOYABLERUNNINGBOARDS;
-    Integer WINDSHIELDGLASSINSPECTION;
-    Integer SIDEGLASSINSPECTION;
-    Integer REARWINDOWGLASSINSPECTION;
-    Integer WIPERBLADE;
-    Integer OUTSIDEMIRRORINSPECTION;
-    Integer OUTSIDEFOLDINGMIRRORINSPECTION;
-    Integer FRONTEXTLIGHTS;
-    Integer BACKEXTLIGHTS;
-    Integer SIDEEXTLIGHTS;
-    Integer HAZARDLIGHTS;
-    Integer TRAILERLAMPCONNECTOR;
-    Integer ONOFFLIGHTING;
-    Integer FLOODDAMAGE;
-    Integer FIREDAMAGE;
-    Integer MAJORDAMAGE;
-    Integer HAILDAMAGE;
-    Integer BODYPANEL;
-    Integer BUMPER;
-    Integer DOORS;
-    Integer HOOD;
-    Integer DECKLID;
-    Integer TAILGATE;
-    Integer ROOF;
-    Integer HOODRELEASE;
-    Integer HOODHINGES;
-    Integer DOORHINGES;
-    Integer TRUNKSTRUTS;
-    Integer POWERLIFTGATE;
-    Integer PAINTGAUGE;
+    String GRILLINSPECTION;
+    String TRIMINSPECTION;
+    String ROOFRACKINSPECTION;
+    String DEPLOYABLERUNNINGBOARDS;
+    String WINDSHIELDGLASSINSPECTION;
+    String SIDEGLASSINSPECTION;
+    String REARWINDOWGLASSINSPECTION;
+    String WIPERBLADE;
+    String OUTSIDEMIRRORINSPECTION;
+    String OUTSIDEFOLDINGMIRRORINSPECTION;
+    String FRONTEXTLIGHTS;
+    String BACKEXTLIGHTS;
+    String SIDEEXTLIGHTS;
+    String HAZARDLIGHTS;
+    String TRAILERLAMPCONNECTOR;
+    String ONOFFLIGHTING;
+    String FLOODDAMAGE;
+    String FIREDAMAGE;
+    String MAJORDAMAGE;
+    String HAILDAMAGE;
+    String BODYPANEL;
+    String BUMPER;
+    String DOORS;
+    String HOOD;
+    String DECKLID;
+    String TAILGATE;
+    String ROOF;
+    String HOODRELEASE;
+    String HOODHINGES;
+    String DOORHINGES;
+    String TRUNKSTRUTS;
+    String POWERLIFTGATE;
+    String PAINTGAUGE;
     Float REPAIRINGCOSTEXTERIOR;
     String COMMENTEXTERIOR;
 
@@ -406,6 +407,7 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.exterior_form,container, false);
         findViews(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -502,5 +504,16 @@ public class ExteriorFragment extends android.app.Fragment implements View.OnCli
             REPAIRINGCOSTEXTERIOR=Float.valueOf(editTextreplacementcost.getText().toString());
         }catch (Exception e){}
         COMMENTEXTERIOR=editTextreplacement.getText().toString();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                saveexterior.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -170,68 +171,68 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     private RadioButton radioButtonheadlinerno;
 
     String id;
-    Integer AIRBAGS;
-    Integer SAFTEYBELTS ;
-    Integer STEREOANDSPEAKERS ;
-    Integer ANTENNA ;
-    Integer ALARMSYSTEM ;
-    Integer NAVIGATIONSYSTEM ;
-    Integer AIRCONDITIONINGSYSTEM ;
-    Integer HEATINGSYSTEM ;
-    Integer DEFOG ;
-    Integer CLOCK ;
-    Integer TILTSTEERINGWHEEL ;
-    Integer STEERINGCOLUMNLOCK ;
-    Integer STEERINGWHEELCONTROLS;
-    Integer HORN ;
-    Integer WARNINGCHIMES ;
-    Integer INSTRUMENTPANELANDWARNINGLIGHT ;
-    Integer WINDSHEILDWIPERS;
-    Integer REARWINDOWWIPER ;
-    Integer WASHERS ;
-    Integer MAPLIGHTS ;
-    Integer OUTSIDEREARVIEWMIRRORS ;
-    Integer AUTODIMMINGREARVIEW ;
-    Integer BLINDSPOT;
-    Integer REARCAMERA ;
-    Integer ACTIVEPARKASSIST ;
-    Integer REARENTERTAINMENTSYSTEM;
-    Integer POWEROUTLETS ;
-    Integer LIGHTER ;
-    Integer ASHTRAYS ;
-    Integer GLOVEBOX ;
-    Integer CENTERCONSOLEFRONT;
-    Integer CENTERCONSOLEFREAR;
-    Integer SUNVISORS ;
-    Integer ADJUSTABLEPEDALS ;
-    Integer INTERIORODOR ;
-    Integer CARPET ;
-    Integer FLOODMATS;
-    Integer DOORTRIM ;
-    Integer HEADLINER ;
-    Integer SEATUPHOLDSTERY ;
-    Integer SEATANDHEAD ;
-    Integer FOLDINGSEATS;
-    Integer HEATEDSEATS ;
-    Integer COOLEDSEATS ;
-    Integer CONVERTIBLETOP;
-    Integer SUNROOF ;
-    Integer DOORHANDLES ;
-    Integer REMOTEENTRY ;
-    Integer PUSHBUTTONSTART ;
-    Integer DOORLOCKS;
-    Integer CHILDSAFTEYLOCKS ;
-    Integer WINDOWCONTROLS ;
-    Integer REMOTEDECKLID ;
-    Integer FUELFILLERDOOR ;
-    Integer CARPETLUGGAGE ;
-    Integer CARGONET;
-    Integer CARGOAREALIGHT ;
-    Integer JACKTOOLKIT ;
-    Integer SIDEWALLINS ;
-    Integer PRESSUREINS ;
-    Integer TIREKIT;
-    Integer LIDRELEASE ;
+    String AIRBAGS;
+    String SAFTEYBELTS ;
+    String STEREOANDSPEAKERS ;
+    String ANTENNA ;
+    String ALARMSYSTEM ;
+    String NAVIGATIONSYSTEM ;
+    String AIRCONDITIONINGSYSTEM ;
+    String HEATINGSYSTEM ;
+    String DEFOG ;
+    String CLOCK ;
+    String TILTSTEERINGWHEEL ;
+    String STEERINGCOLUMNLOCK ;
+    String STEERINGWHEELCONTROLS;
+    String HORN ;
+    String WARNINGCHIMES ;
+    String INSTRUMENTPANELANDWARNINGLIGHT ;
+    String WINDSHEILDWIPERS;
+    String REARWINDOWWIPER ;
+    String WASHERS ;
+    String MAPLIGHTS ;
+    String OUTSIDEREARVIEWMIRRORS ;
+    String AUTODIMMINGREARVIEW ;
+    String BLINDSPOT;
+    String REARCAMERA ;
+    String ACTIVEPARKASSIST ;
+    String REARENTERTAINMENTSYSTEM;
+    String POWEROUTLETS ;
+    String LIGHTER ;
+    String ASHTRAYS ;
+    String GLOVEBOX ;
+    String CENTERCONSOLEFRONT;
+    String CENTERCONSOLEFREAR;
+    String SUNVISORS ;
+    String ADJUSTABLEPEDALS ;
+    String INTERIORODOR ;
+    String CARPET ;
+    String FLOODMATS;
+    String DOORTRIM ;
+    String HEADLINER ;
+    String SEATUPHOLDSTERY ;
+    String SEATANDHEAD ;
+    String FOLDINGSEATS;
+    String HEATEDSEATS ;
+    String COOLEDSEATS ;
+    String CONVERTIBLETOP;
+    String SUNROOF ;
+    String DOORHANDLES ;
+    String REMOTEENTRY ;
+    String PUSHBUTTONSTART ;
+    String DOORLOCKS;
+    String CHILDSAFTEYLOCKS ;
+    String WINDOWCONTROLS ;
+    String REMOTEDECKLID ;
+    String FUELFILLERDOOR ;
+    String CARPETLUGGAGE ;
+    String CARGONET;
+    String CARGOAREALIGHT ;
+    String JACKTOOLKIT ;
+    String SIDEWALLINS ;
+    String PRESSUREINS ;
+    String TIREKIT;
+    String LIDRELEASE ;
     Float REPAIRINGCOSTINTERIOR ;
     String COMMENTINTERIOR ;
 
@@ -425,7 +426,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                     SEATUPHOLDSTERY,SEATANDHEAD,FOLDINGSEATS,HEATEDSEATS,COOLEDSEATS,CONVERTIBLETOP,SUNROOF,DOORHANDLES,REMOTEENTRY,PUSHBUTTONSTART
             ,DOORLOCKS,CHILDSAFTEYLOCKS,WINDOWCONTROLS,REMOTEDECKLID,FUELFILLERDOOR,CARPETLUGGAGE,CARGONET,CARGOAREALIGHT,JACKTOOLKIT,SIDEWALLINS
             ,PRESSUREINS,TIREKIT,LIDRELEASE,REPAIRINGCOSTINTERIOR,COMMENTINTERIOR);
-            InteriorModal interiorModalold = cupboard().withDatabase(db).query(InteriorModal.class).withSelection( "id = ?", "1").get();
+            InteriorModal interiorModalold = cupboard().withDatabase(db).query(InteriorModal.class).withSelection( "id = ?", id).get();
             if(interiorModalold==null) {
                 Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(interiorModal);
@@ -468,8 +469,8 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
         ANTENNA=helperFormsFunctions.returnCheckboxValue(checkBoxantenna);
         ALARMSYSTEM=helperFormsFunctions.returnCheckboxValue(checkBoxalarmtheftsystem);
         NAVIGATIONSYSTEM=helperFormsFunctions.returnRadioGroup(radioButtonnavisystem,rootView);
-        AIRCONDITIONINGSYSTEM=seekBarAirconditioning.getProgress();
-        HEATINGSYSTEM=seekBarHeatingSystem.getProgress();
+        AIRCONDITIONINGSYSTEM=String.valueOf(seekBarAirconditioning.getProgress());
+        HEATINGSYSTEM=String.valueOf(seekBarHeatingSystem.getProgress());
         DEFOG=helperFormsFunctions.returnRadioGroup(radioButtondefog,rootView);
         CLOCK=helperFormsFunctions.returnRadioGroup(radioButtonclock,rootView);
         TILTSTEERINGWHEEL=helperFormsFunctions.returnRadioGroup(radioButtontilttelescopic,rootView);
@@ -534,6 +535,7 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.interior_form,container, false);
         initialize(rootView);
+        setHasOptionsMenu(true);
         findViews(rootView);
         returnchanges();
         return rootView;
@@ -583,8 +585,8 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                 OLDCOST=0f;
             }
             editTextreplacement.setText(interiorModal.getCOMMENTINTERIOR());
-            seekBarAirconditioning.setProgress(interiorModal.getAIRCONDITIONINGSYSTEM());
-            seekBarHeatingSystem.setProgress(interiorModal.getHEATINGSYSTEM());
+            seekBarAirconditioning.setProgress(Integer.parseInt(interiorModal.getAIRCONDITIONINGSYSTEM()));
+            seekBarHeatingSystem.setProgress(Integer.parseInt(interiorModal.getHEATINGSYSTEM()));
             progress1.setText(String.valueOf(interiorModal.getAIRCONDITIONINGSYSTEM()));
             progress2.setText(String.valueOf(interiorModal.getHEATINGSYSTEM()));
             feedbackprogress1.setText(helperFormsFunctions.returnFeedbackSeekBar(interiorModal.getAIRCONDITIONINGSYSTEM()));
@@ -642,10 +644,10 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if(seekBar.getId()==seekBarAirconditioning.getId()){
             progress1.setText(String.valueOf(progress));
-            feedbackprogress1.setText(helperFormsFunctions.returnFeedbackSeekBar(progress));
+            feedbackprogress1.setText(helperFormsFunctions.returnFeedbackSeekBar(String.valueOf(progress)));
         }else{
             progress2.setText(String.valueOf(progress));
-            feedbackprogress2.setText(helperFormsFunctions.returnFeedbackSeekBar(progress));
+            feedbackprogress2.setText(helperFormsFunctions.returnFeedbackSeekBar(String.valueOf(progress)));
         }
     }
 
@@ -714,5 +716,15 @@ public class InteriorFragment extends android.app.Fragment implements SeekBar.On
                     break;
             }
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                saveinterior.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -3,6 +3,7 @@ package com.a123sold.a123soldinspection;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a123sold.a123soldinspection.Adapters.InspectionCategoryAdapter;
 import com.a123sold.a123soldinspection.Database.InspectionFormDatabase;
+import com.a123sold.a123soldinspection.Helpers.Config;
 import com.a123sold.a123soldinspection.Helpers.HelperFormsFunctions;
 import com.a123sold.a123soldinspection.Helpers.InspectionCategoryData;
+import com.a123sold.a123soldinspection.Helpers.JsonRequest;
 import com.a123sold.a123soldinspection.modals.CarprogressModal;
 import com.a123sold.a123soldinspection.modals.CategoryDataModal;
 import com.a123sold.a123soldinspection.modals.ConvienceModal;
@@ -36,10 +38,13 @@ import com.a123sold.a123soldinspection.modals.UnderbodyformModal;
 import com.a123sold.a123soldinspection.modals.UnderhoodModal;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
-
 public class InspectionCategories extends AppCompatActivity implements View.OnClickListener {
     private static final int STATIC_INTEGER_VALUE = 1;
     Toolbar toolbar;
@@ -73,7 +78,6 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inspection_categories);
-       // Log.d("ID",dataModal.getId());
         TOTAL_REPAIRING_COST = 0.0f;
         PROGRESS = 0;
         UNDERBODYCOMPLETED = false;
@@ -96,6 +100,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
         String cmake=getIntent().getExtras().getString("make");
         String cmodel=getIntent().getExtras().getString("model");
         String cversion=getIntent().getExtras().getString("version");
+        String cnumber=getIntent().getExtras().getString("number");
         name = (TextView) findViewById(R.id.customername);
         make = (TextView) findViewById(R.id.carmaker);
         model = (TextView) findViewById(R.id.carmodel);
@@ -103,7 +108,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
         requestid = (TextView) findViewById(R.id.requestid);
         email = (TextView) findViewById(R.id.email);
         phno = (TextView) findViewById(R.id.customernumber);
-        phno.setText("");
+        phno.setText(cnumber);
         email.setText("");
         requestid.setText("#"+id);
         name.setText(cname);
@@ -184,26 +189,59 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
             checks.add(carprogressModal.getCONVIENCECOMPLETED());
         }
     }
-    public void uploadmodal(Class modalclass,String TAG){
-        Object object=cupboard().withDatabase(db).query(modalclass).withSelection("id='1'").get();
-        String conviencejson=helperFormsFunctions.ModalToJSON(object);
-        Log.d(TAG,conviencejson);
+    public JSONObject uploadmodal(Class modalclass,String TAG) throws JSONException {
+        Object object=cupboard().withDatabase(db).query(modalclass).withSelection("id=?",id).get();
+        JSONObject json=helperFormsFunctions.ModalToJSON(TAG,object);
+        return json;
     }
     @Override
     public void onClick(View v) {
 
         if(v==buttonUpload){
-            uploadmodal(ConvienceModal.class,"Convience");
-            uploadmodal(ExteriorformModal.class,"Exterior");
-            uploadmodal(InteriorModal.class,"Interior");
-            uploadmodal(HistoryModal.class,"History");
-            uploadmodal(HybridformModal.class,"Hybrid");
-            uploadmodal(RoadtestModal.class,"Roadtest");
-            uploadmodal(UnderhoodModal.class,"Underhood");
-            uploadmodal(UnderbodyformModal.class,"Underbody");
+            SharedPreferences sharedpreferences = activity.getSharedPreferences(Config.localUserDB, activity.MODE_PRIVATE);
+            String userId = sharedpreferences.getString("userId", null);
+            String authToken = sharedpreferences.getString("authToken",null);
+
+            JSONObject params= new JSONObject();
+            JSONArray data=new JSONArray();
+            JSONObject modals;
+            try {
+                modals=uploadmodal(ConvienceModal.class,"Convience");
+                data.put(modals);
+                modals=uploadmodal(ExteriorformModal.class,"Exterior");
+                data.put(modals);
+                modals=uploadmodal(InteriorModal.class,"Interior");
+                data.put(modals);
+                modals=uploadmodal(HistoryModal.class,"History");
+                data.put(modals);
+                modals=uploadmodal(RoadtestModal.class,"Road Test");
+                data.put(modals);
+                modals=uploadmodal(UnderbodyformModal.class,"Underbody");
+                data.put(modals);
+                modals=uploadmodal(UnderhoodModal.class,"Underhood");
+                data.put(modals);
+                modals=uploadmodal(HybridformModal.class,"Hybrid");
+                data.put(modals);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                params.put("userId",userId);
+                params.put("auctionId",id);
+                params.put("repairCost",TOTAL_REPAIRING_COST);
+                params.put("data",data);
+                Log.d("data",data.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JsonRequest jsonRequest=new JsonRequest(this.getApplicationContext(),this);
+          /*  try {
+               jsonRequest.Uploading(Config.BASE_URL+"/api/123sold/inspectionInfo/updateTheInspectionDetailsOfAuction",params);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }  */
         }
     }
-
     private class MyOnClickListener implements View.OnClickListener {
 
         private final Context context;
@@ -219,10 +257,10 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
             String name[] = {null};
             if(v==buttonUpload)
             {
-                Toast.makeText(getApplicationContext(),"hereinside",Toast.LENGTH_SHORT).show();
-                ConvienceModal convienceModal=cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("id=1").get();
-                String conviencejson=helperFormsFunctions.ModalToJSON(convienceModal);
-                Log.d("JSONCOVIENCE",conviencejson);
+              //  Toast.makeText(getApplicationContext(),"hereinside",Toast.LENGTH_SHORT).show();
+              //  ConvienceModal convienceModal=cupboard().withDatabase(db).query(ConvienceModal.class).withSelection("id=?",id).get();
+               // String conviencejson=helperFormsFunctions.ModalToJSON(convienceModal);
+               // Log.d("JSONCOVIENCE",conviencejson);
             }
             switch (pos) {
                 case 0:
@@ -275,6 +313,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
                 return true;
             case R.id.miCompose:
                 Button b=HelperFormsFunctions.getButton();
+                Log.d("Button",b.toString());
                 b.performClick();
                 break;
         }
@@ -294,6 +333,7 @@ public class InspectionCategories extends AppCompatActivity implements View.OnCl
                 break;
             }
         }
-
     }
+
+
 }

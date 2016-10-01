@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -48,43 +49,43 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     private Button saveunderhood;
     private ImageView engine1,engine2,plusengine1,plusengine2;
     String id;
-    Integer ENGINEOIL ;
-    Integer CHASISTUBE ;
-    Integer COOLANT ;
-    Integer BRAKEFLUID ;
-    Integer TRANSAXLEFLUID ;
-    Integer TRANSFERCASEFUID ;
-    Integer DRIVEAXLEFLUID ;
-    Integer POWERSTEERINGFLUID ;
-    Integer MANUALTRANSFLUID ;
-    Integer WASHERFLUID ;
-    Integer AIRCONDITIONINGSYSTEMCHARGE ;
-    Integer FLUIDLEAKS ;
-    Integer HOSESLINESFITTINGS ;
-    Integer BELTS ;
-    Integer WIRING ;
-    Integer OILINAIRCLEANSER ;
-    Integer WATERSLUDGEOIL ;
-    Integer OILPRESSURE ;
-    Integer RELATIVECYLENDIRCOMPRESSION ;
-    Integer TIMINGBELT ;
-    Integer ENGINEMOUNTS ;
-    Integer TURBOCHARGERAIRCOOLER ;
-    Integer RADIATOR ;
-    Integer RADIATORCAP ;
-    Integer COOLINGFANS ;
-    Integer WATERPUMP ;
-    Integer COOLANTRECOVERYTANK ;
-    Integer CABINAIRFILTER ;
-    Integer FUELPUMPNOISENORMAL ;
-    Integer FUELPUMPPRESSURE ;
-    Integer FUELFILTER ;
-    Integer ENGINEAIRFILTER ;
-    Integer STARTEROPERATION ;
-    Integer IGNITIONSYSTEM ;
-    Integer BATTERY ;
-    Integer ALTERNATOROUTPUT ;
-    Integer DIESELGLOWPLUGSYSTEM ;
+    String ENGINEOIL ;
+    String CHASISTUBE ;
+    String COOLANT ;
+    String BRAKEFLUID ;
+    String TRANSAXLEFLUID ;
+    String TRANSFERCASEFUID ;
+    String DRIVEAXLEFLUID ;
+    String POWERSTEERINGFLUID ;
+    String MANUALTRANSFLUID ;
+    String WASHERFLUID ;
+    String AIRCONDITIONINGSYSTEMCHARGE ;
+    String FLUIDLEAKS ;
+    String HOSESLINESFITTINGS ;
+    String BELTS ;
+    String WIRING ;
+    String OILINAIRCLEANSER ;
+    String WATERSLUDGEOIL ;
+    String OILPRESSURE ;
+    String RELATIVECYLENDIRCOMPRESSION ;
+    String TIMINGBELT ;
+    String ENGINEMOUNTS ;
+    String TURBOCHARGERAIRCOOLER ;
+    String RADIATOR ;
+    String RADIATORCAP ;
+    String COOLINGFANS ;
+    String WATERPUMP ;
+    String COOLANTRECOVERYTANK ;
+    String CABINAIRFILTER ;
+    String FUELPUMPNOISENORMAL ;
+    String FUELPUMPPRESSURE ;
+    String FUELFILTER ;
+    String ENGINEAIRFILTER ;
+    String STARTEROPERATION ;
+    String IGNITIONSYSTEM ;
+    String BATTERY ;
+    String ALTERNATOROUTPUT ;
+    String DIESELGLOWPLUGSYSTEM ;
     Float REPAIRINGCOSTUNDERHOOD ;
     String COMMENTUNDERHOOD ;
     Float OLDCOST;
@@ -93,6 +94,7 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.underhood_form,container, false);
         initialize(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -300,55 +302,66 @@ public class UnderhoodFragment extends android.app.Fragment implements View.OnCl
 
     private void mapvalues() {
         SeekBarListAdapter adapter= (SeekBarListAdapter) listViewFluids.getAdapter();
-        ENGINEOIL=Integer.valueOf(adapter.values.get(0)) ;
-        CHASISTUBE=Integer.valueOf(adapter.values.get(1));
-        COOLANT=Integer.valueOf(adapter.values.get(2));
-        BRAKEFLUID=Integer.valueOf(adapter.values.get(3)); ;
-        TRANSAXLEFLUID =Integer.valueOf(adapter.values.get(4));;
-        TRANSFERCASEFUID =Integer.valueOf(adapter.values.get(5));;
-        DRIVEAXLEFLUID =Integer.valueOf(adapter.values.get(6));;
-        POWERSTEERINGFLUID =Integer.valueOf(adapter.values.get(7));;
-        MANUALTRANSFLUID =Integer.valueOf(adapter.values.get(8));;
-        WASHERFLUID =Integer.valueOf(adapter.values.get(9));;
-        AIRCONDITIONINGSYSTEMCHARGE =Integer.valueOf(adapter.values.get(10));;
+        ENGINEOIL=String.valueOf(adapter.values.get(0)) ;
+        CHASISTUBE=String.valueOf(adapter.values.get(1));
+        COOLANT=String.valueOf(adapter.values.get(2));
+        BRAKEFLUID=String.valueOf(adapter.values.get(3)); ;
+        TRANSAXLEFLUID =String.valueOf(adapter.values.get(4));;
+        TRANSFERCASEFUID =String.valueOf(adapter.values.get(5));;
+        DRIVEAXLEFLUID =String.valueOf(adapter.values.get(6));;
+        POWERSTEERINGFLUID =String.valueOf(adapter.values.get(7));;
+        MANUALTRANSFLUID =String.valueOf(adapter.values.get(8));;
+        WASHERFLUID =String.valueOf(adapter.values.get(9));;
+        AIRCONDITIONINGSYSTEMCHARGE =String.valueOf(adapter.values.get(10));;
 
         adapter= (SeekBarListAdapter) listViewEngine.getAdapter();
-        FLUIDLEAKS =Integer.valueOf(adapter.values.get(0));
-        HOSESLINESFITTINGS =Integer.valueOf(adapter.values.get(1));
-        BELTS =Integer.valueOf(adapter.values.get(2));
-        WIRING =Integer.valueOf(adapter.values.get(3));
-        OILINAIRCLEANSER =Integer.valueOf(adapter.values.get(4));
-        WATERSLUDGEOIL =Integer.valueOf(adapter.values.get(5));
-        OILPRESSURE =Integer.valueOf(adapter.values.get(6));
-        RELATIVECYLENDIRCOMPRESSION =Integer.valueOf(adapter.values.get(7));
-        TIMINGBELT =Integer.valueOf(adapter.values.get(8));
-        ENGINEMOUNTS =Integer.valueOf(adapter.values.get(9));
-        TURBOCHARGERAIRCOOLER =Integer.valueOf(adapter.values.get(10));
+        FLUIDLEAKS =String.valueOf(adapter.values.get(0));
+        HOSESLINESFITTINGS =String.valueOf(adapter.values.get(1));
+        BELTS =String.valueOf(adapter.values.get(2));
+        WIRING =String.valueOf(adapter.values.get(3));
+        OILINAIRCLEANSER =String.valueOf(adapter.values.get(4));
+        WATERSLUDGEOIL =String.valueOf(adapter.values.get(5));
+        OILPRESSURE =String.valueOf(adapter.values.get(6));
+        RELATIVECYLENDIRCOMPRESSION =String.valueOf(adapter.values.get(7));
+        TIMINGBELT =String.valueOf(adapter.values.get(8));
+        ENGINEMOUNTS =String.valueOf(adapter.values.get(9));
+        TURBOCHARGERAIRCOOLER =String.valueOf(adapter.values.get(10));
 
         adapter= (SeekBarListAdapter) listViewCoolingsystem.getAdapter();
-        RADIATOR =Integer.valueOf(adapter.values.get(0));
-        RADIATORCAP =Integer.valueOf(adapter.values.get(1));
-        COOLINGFANS =Integer.valueOf(adapter.values.get(2));
-        WATERPUMP =Integer.valueOf(adapter.values.get(3));
-        COOLANTRECOVERYTANK =Integer.valueOf(adapter.values.get(4));
-        CABINAIRFILTER =Integer.valueOf(adapter.values.get(5));
+        RADIATOR =String.valueOf(adapter.values.get(0));
+        RADIATORCAP =String.valueOf(adapter.values.get(1));
+        COOLINGFANS =String.valueOf(adapter.values.get(2));
+        WATERPUMP =String.valueOf(adapter.values.get(3));
+        COOLANTRECOVERYTANK =String.valueOf(adapter.values.get(4));
+        CABINAIRFILTER =String.valueOf(adapter.values.get(5));
 
         adapter= (SeekBarListAdapter) listViewFuelsystem.getAdapter();
-        FUELPUMPNOISENORMAL =Integer.valueOf(adapter.values.get(1));
-        FUELPUMPPRESSURE =Integer.valueOf(adapter.values.get(2));
-        FUELFILTER =Integer.valueOf(adapter.values.get(3));
-        ENGINEAIRFILTER =Integer.valueOf(adapter.values.get(4));
+        FUELPUMPNOISENORMAL =String.valueOf(adapter.values.get(1));
+        FUELPUMPPRESSURE =String.valueOf(adapter.values.get(2));
+        FUELFILTER =String.valueOf(adapter.values.get(3));
+        ENGINEAIRFILTER =String.valueOf(adapter.values.get(4));
 
         adapter= (SeekBarListAdapter) listViewFuelsystem.getAdapter();
-        STARTEROPERATION =Integer.valueOf(adapter.values.get(0));
-        IGNITIONSYSTEM =Integer.valueOf(adapter.values.get(1));
-        BATTERY =Integer.valueOf(adapter.values.get(2));
-        ALTERNATOROUTPUT =Integer.valueOf(adapter.values.get(3));
-        DIESELGLOWPLUGSYSTEM =Integer.valueOf(adapter.values.get(4));
+        STARTEROPERATION =String.valueOf(adapter.values.get(0));
+        IGNITIONSYSTEM =String.valueOf(adapter.values.get(1));
+        BATTERY =String.valueOf(adapter.values.get(2));
+        ALTERNATOROUTPUT =String.valueOf(adapter.values.get(3));
+        DIESELGLOWPLUGSYSTEM =String.valueOf(adapter.values.get(4));
 
         try {
             REPAIRINGCOSTUNDERHOOD=Float.valueOf(editTextreplacementcost.getText().toString());
         }catch (Exception e){}
         COMMENTUNDERHOOD=editTextreplacement.getText().toString();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                saveunderhood.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

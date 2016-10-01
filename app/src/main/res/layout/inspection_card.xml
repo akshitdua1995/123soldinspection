@@ -203,8 +203,7 @@
                 >
             <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
                 android:orientation="vertical"
                 >
                 <TextView
@@ -249,47 +248,25 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     />
-                <LinearLayout android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:visibility="gone"
-                    android:orientation="horizontal"
-                    >
+
                 <com.github.lzyzsd.circleprogress.ArcProgress
+                    android:layout_marginTop="10sp"
                     android:id="@+id/arc_progress1"
                     android:layout_alignParentRight="true"
+                    android:visibility="gone"
                     android:layout_width="50sp"
-                    android:layout_centerVertical="true"
                     android:layout_height="50sp"
                     android:layout_marginRight="10sp"
-                    app:arc_bottom_text="PROGRESS"
                     app:arc_unfinished_color="@color/selecteditem"
                     app:arc_finished_color="@color/colorAccent"
                     app:arc_max="100"
-                    app:arc_progress="40"
-                    app:arc_suffix_text="%"
-                    app:arc_suffix_text_size="8sp"
+                    app:arc_progress="0"
                     app:arc_text_color="@color/colorPrimary"
                     app:arc_stroke_width="4sp"
                     app:arc_bottom_text_size="6sp"
                     app:paddingEnd="10sp"
-                    app:arc_text_size="20sp"
+                    app:arc_text_size="16sp"
                     />
-                    <Button
-                        android:layout_marginRight="5sp"
-                        android:layout_width="70sp"
-                        android:layout_height="35sp"
-                        android:text="Resume"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:background="@drawable/acceptbutton_background"
-                        android:id="@+id/resumebutton"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_alignParentRight="true"
-                        />
-                </LinearLayout>
             </RelativeLayout>
 
         </LinearLayout>

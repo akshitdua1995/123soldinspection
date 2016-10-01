@@ -1,6 +1,7 @@
 package com.a123sold.a123soldinspection.Helpers;
 
 import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
 
 import com.a123sold.a123soldinspection.Adapters.AssignedRequestAdapter;
@@ -13,8 +14,9 @@ public class ViewsVisibility {
     public static RelativeLayout NewrelativeLayout;
     public static RelativeLayout AssignedrelativeLayout;
     public static RelativeLayout PendingrelativeLayout;
+    public static RecyclerView pendingrecyclerView;
     public static AssignedRequestAdapter assignedRequestAdapter;
     public static PendingRequestAdapter pendingRequestAdapter;
     public static Activity conextActivity;
-
+    public static Activity conextcompletedActivity;
 }

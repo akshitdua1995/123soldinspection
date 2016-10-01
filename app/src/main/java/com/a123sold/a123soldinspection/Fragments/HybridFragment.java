@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,10 +39,10 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
     HelperFormsFunctions helperFormsFunctions;
 
     String id;
-    Integer HYBRIDCOOLINGSYSTEM;
-    Integer SWITCHABLEPOWERTRAINMOUNT;
-    Integer HYBRIDENTERTAINMENTANDINFORMATIONDISPLAY;
-    Integer POWEROUTLET;
+    String HYBRIDCOOLINGSYSTEM;
+    String SWITCHABLEPOWERTRAINMOUNT;
+    String HYBRIDENTERTAINMENTANDINFORMATIONDISPLAY;
+    String POWEROUTLET;
     Float REPAIRINGCOSTHYBRID;
     String COMMENTHYBRID;
     Float OLDCOST;
@@ -50,6 +51,7 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.hybrid_form,container, false);
         findViews(rootView);
+        setHasOptionsMenu(true);
         returnchanges();
         return rootView;
     }
@@ -149,5 +151,15 @@ public class HybridFragment extends android.app.Fragment implements View.OnClick
             COMMENTHYBRID=editTextreplacement.getText().toString();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+                Log.d("here","here");
+                savehybrid.performClick();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

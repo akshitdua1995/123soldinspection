@@ -5,12 +5,12 @@ import android.os.Parcelable;
 
 
 public class NewRequestDataModal implements Parcelable {
-    String make,model,version,fuelType,transmission,address,ownerName;
+    String make,model,version,fuelType,transmission,address,ownerName,userName,mobileNumber,imageUrl;
     int year,numberOfOwners,kmDriven;
     int assigned,pending,completed;
     String id;
 
-    public NewRequestDataModal(String make, String model, String version, int kmDriven, String fuelType, String transmission, String address, String ownerName, int year, int numberOfOwners, int assigned, int pending, int completed, String id) {
+    public NewRequestDataModal(String make, String model, String version, int kmDriven, String fuelType, String transmission, String address, String ownerName, int year, int numberOfOwners, int assigned, int pending, int completed, String id,String userName,String mobileNumber,String imageUrl) {
         //this.image = image;
         this.make = make;
         this.model = model;
@@ -26,6 +26,9 @@ public class NewRequestDataModal implements Parcelable {
         this.pending = pending;
         this.completed = completed;
         this.id = id;
+        this.userName = userName;
+        this.mobileNumber=mobileNumber;
+        this.imageUrl=imageUrl;
     }
 
     protected NewRequestDataModal(Parcel in) {
@@ -44,6 +47,9 @@ public class NewRequestDataModal implements Parcelable {
         pending = in.readInt();
         completed = in.readInt();
         id = in.readString();
+        userName=in.readString();
+        mobileNumber=in.readString();
+        imageUrl=in.readString();
     }
 
     public static final Creator<NewRequestDataModal> CREATOR = new Creator<NewRequestDataModal>() {
@@ -65,6 +71,8 @@ public class NewRequestDataModal implements Parcelable {
     public String getMake() {
         return make;
     }
+
+    public String getImageUrl() {return imageUrl;}
 
     public String getModel() {
         return model;
@@ -183,6 +191,16 @@ public class NewRequestDataModal implements Parcelable {
         this.id = id;
     }
 
+    public void setUserName(String userName) {this.userName = userName;}
+
+    public String getUserName() { return userName;}
+
+    public void setMobileNumber(String mobileNumber) {this.mobileNumber = mobileNumber;}
+
+    public String getMobileNumber() { return mobileNumber;}
+
+    public void setImageUrl(String imageUrl){ this.imageUrl=imageUrl;}
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 //        dest.writeInt(image);
@@ -200,5 +218,8 @@ public class NewRequestDataModal implements Parcelable {
         dest.writeInt(pending);
         dest.writeInt(completed);
         dest.writeString(id);
+        dest.writeString(userName);
+        dest.writeString(mobileNumber);
+        dest.writeString(imageUrl);
     }
 }
